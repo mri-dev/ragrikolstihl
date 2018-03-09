@@ -4,43 +4,62 @@ header {
 
 	.top {
 		background-color: $color-grey;
-		padding: 8px 0;
+		padding: 0;
 
 		.flex {
 			align-items: center;
+
+			& > .div{
+				flex-basis: 1px;
+				position: relative;
+				height: 64px;
+
+				&:after{
+					height: 90%;
+					position: absolute;
+					width: 1px;
+					content: "";
+					top: 0;
+					-webkit-transform: translate(50%, -50%);
+					transform: translate(50%, -50%);
+					right: 50%;
+					top: 50%;
+					background-color: lighten($color-grey, 5%);
+				}
+			}
+
+			.badge {
+				pointer-events: none;
+				position: absolute;
+				right: 2px;
+				bottom: 2px;
+				background-color: $color-orange;
+				color: white;
+				font-size: 11px;
+				width: 20px;
+				z-index: 10;
+				height: 20px;
+				padding: 0;
+				line-height: 20px;
+				text-align: center;
+				border-radius: 20px;
+			}
 		}
 
-		.contact {
-			font-size: 0.75em;
-			border-right: 1px solid #aaaaaa;
-			flex: 1;
-			.flex {
-				align-items: center;
-				& > div {
-					line-height: 1;
-					flex: 1;
+		.badge-des{
+			height: 64px;
+			background: $color-orange;
+			flex-basis: $size-sidebar;
 
-					.wrapper{
-						padding: 0 10px;
-						color: white;
-
-						a {
-							color: white;
-							text-decoration: none;
-						}
-
-						i {
-							color: lighten($color-orange, 10%);
-							float: left;
-					    font-size: 24px;
-					    margin: -2px 5px 0 0;
-						}
-					}
-					.val {
-						margin-top: 5px;
-						font-size: 0.95em;
-					}
-				}
+			.prev-vw {
+				position: absolute;
+				background: $color-orange;
+				height: 64px;
+				left: 0;
+				top: 0;
+				width: 200px;
+				content: "";
+				border-right: 1px solid lighten($color-orange, 4%);
 			}
 		}
 		.social {
@@ -64,6 +83,131 @@ header {
 				}
 			}
 		}
+
+		.buttons{
+			padding: 15px;
+		}
+
+		.cart {
+			padding: 0;
+			flex:1;
+			.flex {
+				align-items: center;
+				& > div.ico {
+					flex-basis: 35px;
+					position: relative;
+				}
+				& > div.info {
+					flex: 1;
+				}
+			}
+
+			.badge {
+				bottom: 5px;
+				right: -10px;
+			}
+			.info {
+				line-height: 1;
+				padding: 0 5px 0 15px;
+				text-align: left;
+				.h {
+					border-bottom: 1px solid #ffffffb0;
+					padding: 0px 0 2px 0;
+					margin: 0 0 2px 0;
+				}
+				.l {
+					font-size: 0.7em;
+					margin: 5px 0;
+				}
+				.cash {
+					font-weight: bold;
+					font-size: 1.3em;
+				}
+			}
+
+			.floating{
+				right: -13px;
+				top: 100%;
+				width: 350px;
+				position: absolute;
+				background: #ffffff;
+				outline: 4px solid #c5161d91;
+				display: none;
+				z-index: 999;
+
+				#cartContent{
+					color: $color-grey;
+				}
+
+				.whattodo{
+					.flex{
+						& > div {
+							flex: 1;
+							a{
+								display: block;
+								text-align: center;
+								padding: 0 10px;
+								color: white !important;
+								height: 42px;
+								line-height: 42px;
+								text-decoration: none;
+								font-size: 0.9em;
+								i{
+									font-size: 20px;
+									height: 22px !important;
+									line-height: 1;
+									vertical-align: middle;
+								}
+							}
+
+							&.doorder{
+								background: $color-green;
+								a{
+									font-size: 1.15em;
+									text-transform: uppercase;
+									font-weight: bold;
+								}
+							}
+
+							&.doempty{
+								background: $color-grey;
+								a{
+									color: #a9a9a9 !important;
+								}
+								i{
+									font-size: 15px;
+									height: 17px !important;
+								}
+							}
+						}
+					}
+				}
+			}
+
+			& > div.holder{
+				height: 100%;
+				padding: 5px 15px;
+				width: 173px;
+				float: right;
+
+				&:hover{
+					background-color: darken($color-grey, 10%);
+
+					.floating{
+						display: block;
+					}
+				}
+			}
+
+			.flex{
+				z-index: 12;
+			}
+
+			& > div.holder#mb-cart{
+				position: relative;
+			}
+		}
+
 		.actions {
 			padding: 0 20px;
 			flex-basis: 300px;
@@ -73,12 +217,12 @@ header {
 				& > div {
 					flex: 1;
 					padding: 0 5px;
-					button {
+					button, a {
 						@include border-radius(5px);
 						border:  none;
 						font-weight: bold;
 						font-size: 0.67em;
-						padding: 10px;
+						padding: 5px;
 						display: block;
 						width: 100%;
 					}
@@ -89,60 +233,14 @@ header {
 							text-transform: uppercase;
 						}
 					}
-					&.ajanlatkeres{
-						button {
+					&.feliratkozas{
+						a {
+							text-align: center;
 							background: saturate(lighten($color-orange, 5%), 10);
-							color: $color-grey;
+							color: white;
+							text-decoration: none;
 							text-transform: uppercase;
 						}
-					}
-				}
-			}
-		}
-		.tudastar {
-			padding-left: 10px;
-			height: 30px;
-
-			& > .flex > div {
-				padding: 0 3px;
-				height: 30px;
-				line-height: 30px;
-			}
-			.ico{
-				.wrap{
-					width: 30px;
-					height: 30px;
-					line-height: 30px;
-					background-color: $color-orange;
-					color: white;
-					text-align: center;
-					font-size: 20px;
-					@include border-radius(30px);
-				}
-			}
-			& > .flex > .text {
-				text-transform: uppercase;
-			}
-			.dropmenu{
-				.dropmenu-container{
-					cursor: pointer;
-					background-color: white;
-					color: $color-grey;
-					font-size: 0.7em;
-					text-transform: none !important;
-
-					.text {
-						padding: 0 10px;
-					}
-
-					.arrow {
-						height: 30px;
-						width: 30px;
-						text-align: center;
-						padding: 0;
-						color: $color-green;
-						font-size: 14px;
-						background-color: lighten($color-grey, 70%);
 					}
 				}
 			}
@@ -150,7 +248,7 @@ header {
 	}
 
 	.main {
-		background-color: $color-green;
+		background-color: $color-green-light;
 		padding: 10px 0;
 
 		& > .pw > .flex {
@@ -365,42 +463,6 @@ header {
 				line-height: 20px;
 				text-align: center;
 				border-radius: 20px;
-			}
-
-			.cart {
-				padding: 0 10px;
-				.flex {
-					align-items: center;
-					& > div.ico {
-						flex-basis: 35px;
-					}
-					& > div.info {
-						flex: 1;
-					}
-				}
-
-				.badge {
-					bottom: 5px;
-					right: -10px;
-				}
-				.info {
-					line-height: 1;
-					padding: 0 5px 0 15px;
-					text-align: left;
-					.h {
-						border-bottom: 1px solid #ffffffb0;
-				    padding: 0px 0 2px 0;
-				    margin: 0 0 2px 0;
-					}
-					.l {
-						font-size: 0.7em;
-						margin: 5px 0;
-					}
-					.cash {
-						font-weight: bold;
-						font-size: 1.3em;
-					}
-				}
 			}
 
 			a.holder {
@@ -630,7 +692,7 @@ header {
 		}
 	}
 	.sec-bottom{
-		background-color: #eceff2;
+		background-color: $color-orange;
 		height: 32px;
 
 		.highlight-view{
@@ -673,7 +735,7 @@ header {
 
 					li {
 						display: none;
-						background: $color-orange;
+						background: #333333;
 						padding: 10px;
 						height: 32px;
 						font-size: 0.9em;
