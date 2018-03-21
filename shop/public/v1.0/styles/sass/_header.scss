@@ -12,7 +12,7 @@ header {
 			& > .div{
 				flex-basis: 1px;
 				position: relative;
-				height: 64px;
+				height: $header-top-height;
 
 				&:after{
 					height: 90%;
@@ -47,14 +47,46 @@ header {
 		}
 
 		.badge-des{
-			height: 64px;
-			background: $color-orange;
+			height: $header-top-height;
 			flex-basis: $size-sidebar;
+
+			.stihl-badge{
+				height: 100%;
+				max-height: 100%;
+				border-right: 3px solid white;
+				float:left;
+				img{
+					height: 100%;
+					max-height: 100%;
+				}
+			}
+
+			.on-partner{
+				height: $header-top-height;
+				float:left;
+				img{
+					height: 100%;
+					max-height: 100%;
+				}
+			}
+
+			.hum-des{
+				height: $header-top-height;
+				float:left;
+				position: relative;
+				img{
+					height: 100%;
+					max-height: 100%;
+					position: absolute;
+					bottom: -15px;
+					left: 0;
+				}
+			}
 
 			.prev-vw {
 				position: absolute;
 				background: $color-orange;
-				height: 64px;
+				height: $header-top-height;
 				left: 0;
 				top: 0;
 				width: 200px;
@@ -85,7 +117,46 @@ header {
 		}
 
 		.buttons{
-			padding: 15px;
+			display: -webkit-box;
+		  display: -ms-flexbox;
+		  display: flex;
+			align-items: center;
+    	padding: 0 10px 0 13px;
+
+			.ico {
+				text-align: center;
+				margin-bottom: 4px;
+				img {
+					height: 24px;
+				}
+
+				i {
+					font-size: 24px;
+					height: 24px;
+				}
+			}
+
+			& > div{
+				padding: 0 5px;
+			}
+
+			a.holder{
+				background: #8996a1;
+				border-radius: 8px;
+				display: block;
+				padding: 8px;
+				font-size: 0.7em;
+				color: white;
+				width: 55px;
+				text-align: center;
+				text-decoration: none;
+			}
+
+			.login{
+				a {
+					background: $color-orange;
+				}
+			}
 		}
 
 		.cart {
@@ -209,8 +280,8 @@ header {
 		}
 
 		.actions {
-			padding: 0 20px;
-			flex-basis: 300px;
+			padding: 0 20px  0 80px;
+			flex-basis: 400px;
 			& > div.flex {
 				align-items: center;
 				justify-content: space-between;
@@ -221,14 +292,14 @@ header {
 						@include border-radius(5px);
 						border:  none;
 						font-weight: bold;
-						font-size: 0.67em;
-						padding: 5px;
+						font-size: 0.75em;
+    				padding: 10px;
 						display: block;
 						width: 100%;
 					}
 					&.visszahivas{
 						button {
-							background: $color-green;
+							background: $color-orange;
 							color: white;
 							text-transform: uppercase;
 						}
@@ -236,7 +307,7 @@ header {
 					&.feliratkozas{
 						a {
 							text-align: center;
-							background: saturate(lighten($color-orange, 5%), 10);
+							background: saturate(lighten($color-green, 5%), 10);
 							color: white;
 							text-decoration: none;
 							text-transform: uppercase;
@@ -301,8 +372,8 @@ header {
 
 				input[type=text],
 				button {
-					line-height: 30px;
-					padding: 0 5px;
+					line-height: 40px;
+    			padding: 0 12px;
 				}
 
 				button {
@@ -317,7 +388,7 @@ header {
 			}
 		}
 		.actions {
-			flex-basis: 35%;
+			flex-basis: 260px;
 			padding-left: 20px;
 			font-size: 0.9em;
 
@@ -331,88 +402,26 @@ header {
 					text-align: center;
 					flex-basis: 65px;
 				}
-				& > div.cart{
+				& > div.favorite{
+					flex-basis:70px;
+				}
+				& > div.contact-phone{
 					flex: 1;
-					position: relative;
-					z-index: 200;
+					text-align: left;
+					font-size: 1.3em;
+					padding-left: 10px;
 
-					&:hover{
-						background-color: #971116;
+					img {
+						height: 30px;
+						margin-bottom: 5px;
 					}
-
-					& > div.holder{
-						height: 100%;
-						padding: 5px 0;
-					}
-
-					.flex{
-						z-index: 12;
-					}
-
-					& > div.holder#mb-cart{
-						position: relative;
-					}
-
-					.floating{
-						right: -13px;
-						top: 100%;
-						width: 350px;
-						position: absolute;
-						z-index: 10;
-						background: #ffffff;
-    				outline: 4px solid #c5161d91;
-
-						#cartContent{
-							color: $color-grey;
-						}
-
-						.whattodo{
-							.flex{
-								& > div {
-									flex: 1;
-									a{
-										display: block;
-										text-align: center;
-										padding: 0 10px;
-										color: white !important;
-										height: 42px;
-										line-height: 42px;
-										text-decoration: none;
-										font-size: 0.9em;
-										i{
-											font-size: 20px;
-											height: 22px !important;
-											line-height: 1;
-											vertical-align: middle;
-										}
-									}
-
-									&.doorder{
-										background: $color-green;
-										a{
-											font-size: 1.15em;
-											text-transform: uppercase;
-											font-weight: bold;
-										}
-									}
-
-									&.doempty{
-										background: $color-grey;
-										a{
-											color: #a9a9a9 !important;
-										}
-										i{
-											font-size: 15px;
-											height: 17px !important;
-										}
-									}
-								}
-							}
-						}
+					a{
+						color: white;
+						text-decoration: none;
 					}
 				}
 				& > .div{
-					flex-basis: 6px;
+					flex-basis: 12px;
 					position: relative;
 
 					&:after{
@@ -453,8 +462,8 @@ header {
 				position: absolute;
 				right: 2px;
 				bottom: 2px;
-				background-color: #ffcc00;
-				color: black;
+				background-color: $color-orange;
+				color: white;
 				font-size: 11px;
 				width: 20px;
 				z-index: 10;
@@ -475,7 +484,7 @@ header {
 
 
 				&:hover{
-					background-color: #971116;
+					background-color: $color-green;;
 					-webkit-transform: scale(0.9);
          	transform: scale(0.9);
 				}

@@ -1,5 +1,5 @@
 
-	<?php if ( !$this->homepage ): ?>
+	<?php if ( true ): ?>
 		</div> <!-- .inside-content -->
 		<div class="clr"></div>
 		</div><!-- #main -->
@@ -63,7 +63,7 @@
 										<h3>Feliratkozás</h3>
 									</div>
 									<div class="form">
-										<form class="" action="" method="post">
+										<form class="" action="/feliratkozas" method="get">
 											<div class="name">
 												<div class="flex flexmob-exc-resp">
 													<div class="ico">

@@ -53,6 +53,35 @@
 	}
 }
 
+.subscribe{
+	text-align: center;
+
+	h1 + .subtitle{
+		margin-top: 10px;
+	}
+	.subs-form{
+		text-align: center;
+		margin: 20px auto;
+		width: 500px;
+
+		label{
+			margin: 0 0 10px 0;
+			font-size: 1.1em;
+			color: $color-grey;
+		}
+
+		input[type=text]{
+			padding: 10px;
+			font-size: 1.2em;
+			color: $color-red;
+		}
+	}
+	.unsubscribe{
+		margin: 15px 0 0 0;
+		font-size: 1.2em;
+	}
+}
+
 .slideShow {
 	position: relative;
 	background: #FFFFFF;
@@ -873,6 +902,14 @@
 		font-weight: bold;
 		margin: 10px;
 		color: darken( $color-sec, 40%);
+	}
+
+	.filter-sidebar{
+		flex-basis: $size-sidebar;
+	}
+	.home-content{
+		flex: 1;
+		padding-left: 25px;
 	}
 }
 

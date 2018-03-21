@@ -35,6 +35,15 @@
       <div class="flex">
         <div class="badge-des">
           <div class="prev-vw" style="width: 0px;"></div>
+          <div class="stihl-badge">
+            <img src="<?=IMG?>stihl-bg-top.svg" alt="Stihl">
+          </div>
+          <div class="on-partner">
+            <img src="<?=IMG?>online-partner-top.jpg" alt="Stihl Online Partner">
+          </div>
+          <div class="hum-des">
+            <img src="<?=IMG?>person-design-stihl.png" alt="Person Contact">
+          </div>
         </div>
         <div class="actions" ng-controller="ActionButtons">
           <div class="flex flexmob-exc-resp">
@@ -79,10 +88,20 @@
         <div class="div"></div>
         <div class="buttons">
           <div class="login">
-
+            <a href="/user/belepes" class="holder">
+              <div class="ico">
+                <img src="<?=IMG?>icons/lock.svg" alt="Belépés">
+              </div>
+              Belépés
+            </a>
           </div>
           <div class="contact">
-
+            <a href="/kapcsolat" class="holder">
+              <div class="ico">
+                <i class="fa fa-user"></i>
+              </div>
+              Kapcsolat
+            </a>
           </div>
         </div>
         <div class="social">
@@ -144,53 +163,9 @@
               </a>
             </div>
             <div class="div">&nbsp;</div>
-            <div class="account">
-              <a href="/user/belepes" class="holder">
-                <div class="ico">
-                  <img src="<?=IMG?>icons/lock.svg" alt="Belépés">
-                </div>
-                Belépés
-              </a>
-            </div>
-            <div class="div"></div>
-            <div class="cart">
-              <div class="holder" id="mb-cart">
-                <div class="flex" mb-event="true" data-mb='{ "event": "toggleOnClick", "target" : "#mb-cart" }'>
-                  <div class="ico">
-                    <span class="badge" id="cart-item-num-v">0</span>
-                    <img src="<?=IMG?>icons/cart.svg" alt="Kosár" />
-                  </div>
-                  <div class="info">
-                    <div class="h">Kosár tartalom</div>
-                    <div class="l">Összeg</div>
-                    <div class="cash"><span class="amount" id="cart-item-prices">0</span> Ft</div>
-                  </div>
-                </div>
-                <div class="floating">
-                  <div id="cartContent" class="overflowed">
-          					<div class="noItem"><div class="inf">A kosár üres</div></div>
-          				</div>
-                  <div class="whattodo">
-                    <div class="flex">
-                      <div class="doempty">
-                        <a href="/kosar/?clear=1">Kosár ürítése <i class="fa fa-trash"></i></a>
-                      </div>
-                      <div class="doorder">
-                        <a href="/kosar">Megrendelése <i class="fa fa-arrow-circle-o-right"></i></a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="div"></div>
-            <div class="contact">
-              <a href="/kapcsolat" class="holder">
-                <div class="ico">
-                  <i class="fa fa-fire-extinguisher"></i>
-                </div>
-                Kapcsolat
-              </a>
+            <div class="contact-phone">
+              <img src="<?=IMG?>contact-phone.svg" alt="Telefon"><br>
+              <a href="tel:<?php echo $this->settings['page_author_phone']; ?>"><?php echo $this->settings['page_author_phone']; ?></a>
             </div>
           </div>
         </div>
@@ -220,7 +195,7 @@
     </div>
   </div>
 </header>
-<?php if ( !$this->homepage ): ?>
+<?php if ( true ): ?>
 <!-- Content View -->
 <div class="website">
 		<?=$this->gmsg?>
