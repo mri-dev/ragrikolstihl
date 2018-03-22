@@ -388,7 +388,7 @@ header {
 			}
 		}
 		.actions {
-			flex-basis: 260px;
+			flex-basis: 305px;
 			padding-left: 20px;
 			font-size: 0.9em;
 
@@ -406,7 +406,7 @@ header {
 					flex-basis:70px;
 				}
 				& > div.contact-phone{
-					flex: 1;
+					flex-basis: 200px;
 					text-align: left;
 					font-size: 1.3em;
 					padding-left: 10px;
@@ -702,51 +702,102 @@ header {
 	}
 	.sec-bottom{
 		background-color: $color-orange;
-		height: 32px;
+		height: $sec-bottom-header-height;
+
+		.item-holder {
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			flex-wrap: nowrap;
+			align-items: center;
+		}
+
+		.contacts {
+			flex-basis: 365px;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			flex-wrap: nowrap;
+			align-items: center;
+    	justify-content: flex-end;
+			font-size: 0.7em;
+			line-height: 1.4;
+
+			.email{
+				flex: 1;
+			}
+
+			.address{
+				flex-basis: 208px;
+				border-left: 0.6px solid #f3804a;
+				padding-left: 15px;
+			}
+
+			a {
+				color: white;
+				text-decoration: none;
+			}
+
+			.ico {
+				float: left;
+				margin-right: 8px;
+				i {
+					font-size: 24px;
+				}
+			}
+		}
 
 		.highlight-view{
+			flex: 1;
 			text-align: center;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			flex-wrap: nowrap;
+			align-items: center;
+
+			& > a.handler {
+				display: block;
+				font-size: 17px;
+				color: #f78550;
+				text-decoration: none;
+				flex-basis: $sec-bottom-header-height;
+				height: $sec-bottom-header-height;
+				line-height: $sec-bottom-header-height;
+				background: #d2581f;
+    		margin: 0 0.5px 0 0;
+
+				&:hover{
+					color: #ffffff;
+				}
+
+				&.prev{
+					left: 5px;
+				}
+				&.next {
+					right: 5px;
+				}
+			}
+
+			.items {
+				flex: 1;
+			}
+
 			.hl-cont {
 				margin: 0 auto;
 				position: relative;
-				height: 32px;
-
-				& > a.handler {
-					position: absolute;
-					top: 50%;
-					-webkit-transform: translateY(-50%);
-        	transform: translateY(-50%);
-					font-size: 17px;
-    			color: #cacaca;
-					text-decoration: none;
-
-					&:hover{
-						color: #666666;
-					}
-
-					&.prev{
-						left: 5px;
-					}
-					&.next {
-						right: 5px;
-					}
-				}
+				height: $sec-bottom-header-height;
 
 				ul {
 					float:left;
-					position: absolute;
-					left:50%;
-					top: 0;
-					bottom: 0;
 					height: 32px;
-					-webkit-transform: translateX(-50%);
-        	transform: translateX(-50%);
 
 					li {
 						display: none;
-						background: #333333;
-						padding: 10px;
-						height: 32px;
+						background: #343434;
+						padding: 0 10px;
+						height: $sec-bottom-header-height;
+						line-height: $sec-bottom-header-height;
 						font-size: 0.9em;
 						font-weight: bold;
 

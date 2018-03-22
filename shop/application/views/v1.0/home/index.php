@@ -1,11 +1,12 @@
 <div class="home">
 	<div class="pw">
+
 		<div class="grid-layout">
 			<div class="grid-row filter-sidebar">
-				ASD
+				<? $this->render('templates/sidebar'); ?>
 			</div>
 			<div class="grid-row home-content">
-				asdas
+				content
 				<? //$this->render('templates/slideshow'); ?>
 			</div>
 		</div>

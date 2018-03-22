@@ -224,7 +224,7 @@ $(function(){
 	});
 
 	var hlviewer = setInterval( function(){
-		var key = $('.highlight-view .items a[key]').attr('key');
+		var key = $('.highlight-view a[key]').attr('key');
 		var item_nums = $('.highlight-view .items li').size();
 		var current = parseInt($('.highlight-view .items li[class*=active]').attr('index'));
 		var next = current + 1;
@@ -249,7 +249,7 @@ $(function(){
 	}, 2500);
 
 
-	$('.highlight-view .items a[key]').click( function(){
+	$('.highlight-view a[key]').click( function(){
 		var key = $(this).attr('key');
 		var item_nums = $('.highlight-view .items li').size();
 		var current = parseInt($('.highlight-view .items li[class*=active]').attr('index'));

@@ -943,7 +943,7 @@ header .main .searcher .searchform button {
 }
 /* line 390, sass/_header.scss */
 header .main .actions {
-  flex-basis: 260px;
+  flex-basis: 305px;
   padding-left: 20px;
   font-size: 0.9em;
 }
@@ -967,7 +967,7 @@ header .main .actions > .flex > div.favorite {
 }
 /* line 408, sass/_header.scss */
 header .main .actions > .flex > div.contact-phone {
-  flex: 1;
+  flex-basis: 200px;
   text-align: left;
   font-size: 1.3em;
   padding-left: 10px;
@@ -1258,83 +1258,134 @@ header .bottom .nav > ul > li:hover > .sub {
 /* line 703, sass/_header.scss */
 header .sec-bottom {
   background-color: #f26522;
-  height: 32px;
+  height: 42px;
 }
 /* line 707, sass/_header.scss */
-header .sec-bottom .highlight-view {
-  text-align: center;
+header .sec-bottom .item-holder {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
 }
-/* line 709, sass/_header.scss */
+/* line 715, sass/_header.scss */
+header .sec-bottom .contacts {
+  flex-basis: 365px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 0.7em;
+  line-height: 1.4;
+}
+/* line 726, sass/_header.scss */
+header .sec-bottom .contacts .email {
+  flex: 1;
+}
+/* line 730, sass/_header.scss */
+header .sec-bottom .contacts .address {
+  flex-basis: 208px;
+  border-left: 0.6px solid #f3804a;
+  padding-left: 15px;
+}
+/* line 736, sass/_header.scss */
+header .sec-bottom .contacts a {
+  color: white;
+  text-decoration: none;
+}
+/* line 741, sass/_header.scss */
+header .sec-bottom .contacts .ico {
+  float: left;
+  margin-right: 8px;
+}
+/* line 744, sass/_header.scss */
+header .sec-bottom .contacts .ico i {
+  font-size: 24px;
+}
+/* line 750, sass/_header.scss */
+header .sec-bottom .highlight-view {
+  flex: 1;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+/* line 759, sass/_header.scss */
+header .sec-bottom .highlight-view > a.handler {
+  display: block;
+  font-size: 17px;
+  color: #f78550;
+  text-decoration: none;
+  flex-basis: 42px;
+  height: 42px;
+  line-height: 42px;
+  background: #d2581f;
+  margin: 0 0.5px 0 0;
+}
+/* line 770, sass/_header.scss */
+header .sec-bottom .highlight-view > a.handler:hover {
+  color: #ffffff;
+}
+/* line 774, sass/_header.scss */
+header .sec-bottom .highlight-view > a.handler.prev {
+  left: 5px;
+}
+/* line 777, sass/_header.scss */
+header .sec-bottom .highlight-view > a.handler.next {
+  right: 5px;
+}
+/* line 782, sass/_header.scss */
+header .sec-bottom .highlight-view .items {
+  flex: 1;
+}
+/* line 786, sass/_header.scss */
 header .sec-bottom .highlight-view .hl-cont {
   margin: 0 auto;
   position: relative;
-  height: 32px;
+  height: 42px;
 }
-/* line 714, sass/_header.scss */
-header .sec-bottom .highlight-view .hl-cont > a.handler {
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
-  font-size: 17px;
-  color: #cacaca;
-  text-decoration: none;
-}
-/* line 723, sass/_header.scss */
-header .sec-bottom .highlight-view .hl-cont > a.handler:hover {
-  color: #666666;
-}
-/* line 727, sass/_header.scss */
-header .sec-bottom .highlight-view .hl-cont > a.handler.prev {
-  left: 5px;
-}
-/* line 730, sass/_header.scss */
-header .sec-bottom .highlight-view .hl-cont > a.handler.next {
-  right: 5px;
-}
-/* line 735, sass/_header.scss */
+/* line 791, sass/_header.scss */
 header .sec-bottom .highlight-view .hl-cont ul {
   float: left;
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
   height: 32px;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
 }
-/* line 745, sass/_header.scss */
+/* line 795, sass/_header.scss */
 header .sec-bottom .highlight-view .hl-cont ul li {
   display: none;
-  background: #333333;
-  padding: 10px;
-  height: 32px;
+  background: #343434;
+  padding: 0 10px;
+  height: 42px;
+  line-height: 42px;
   font-size: 0.9em;
   font-weight: bold;
 }
-/* line 753, sass/_header.scss */
+/* line 804, sass/_header.scss */
 header .sec-bottom .highlight-view .hl-cont ul li.active {
   display: block;
 }
-/* line 757, sass/_header.scss */
+/* line 808, sass/_header.scss */
 header .sec-bottom .highlight-view .hl-cont ul li a {
   color: white;
   font-weight: normal;
 }
-/* line 767, sass/_header.scss */
+/* line 818, sass/_header.scss */
 header a, header a:visited {
   color: white;
 }
-/* line 771, sass/_header.scss */
+/* line 822, sass/_header.scss */
 header .logo {
   position: relative;
 }
-/* line 772, sass/_header.scss */
+/* line 823, sass/_header.scss */
 header .logo img {
   max-height: 50px;
   max-width: 100%;
 }
-/* line 779, sass/_header.scss */
+/* line 830, sass/_header.scss */
 header .logo .cimke {
   display: none;
   position: absolute;
@@ -1345,14 +1396,14 @@ header .logo .cimke {
   pointer-events: none;
 }
 
-/* line 792, sass/_header.scss */
+/* line 843, sass/_header.scss */
 .general-sidebar {
   width: 20%;
   float: left;
   display: table-cell;
   vertical-align: top;
 }
-/* line 799, sass/_header.scss */
+/* line 850, sass/_header.scss */
 .general-sidebar .menu li.menu-item {
   display: table;
   width: 100%;
@@ -1360,7 +1411,7 @@ header .logo .cimke {
   border: 1px solid #f26827;
   background: #f5834d;
 }
-/* line 806, sass/_header.scss */
+/* line 857, sass/_header.scss */
 .general-sidebar .menu li.menu-item a {
   display: table-cell;
   font-size: 1.1em;
@@ -1373,23 +1424,23 @@ header .logo .cimke {
   vertical-align: middle;
   text-decoration: none;
 }
-/* line 818, sass/_header.scss */
+/* line 869, sass/_header.scss */
 .general-sidebar .menu li.menu-item a img {
   float: left;
   margin-right: 5px;
   vertical-align: middle;
 }
-/* line 824, sass/_header.scss */
+/* line 875, sass/_header.scss */
 .general-sidebar .menu li.menu-item a i {
   width: 25px;
   height: 25px;
   font-size: 25px;
 }
-/* line 830, sass/_header.scss */
+/* line 881, sass/_header.scss */
 .general-sidebar .menu li.menu-item a span {
   line-height: 25px;
 }
-/* line 835, sass/_header.scss */
+/* line 886, sass/_header.scss */
 .general-sidebar .menu li.menu-item span.icon {
   width: 35px;
   text-align: center;
@@ -1397,19 +1448,19 @@ header .logo .cimke {
   vertical-align: middle;
   padding-left: 8px;
 }
-/* line 843, sass/_header.scss */
+/* line 894, sass/_header.scss */
 .general-sidebar .menu li.menu-item i.dashicons {
   line-height: 28px;
   font-size: 1.2em;
 }
-/* line 848, sass/_header.scss */
+/* line 899, sass/_header.scss */
 .general-sidebar .menu li.blank-divider {
   background: transparent;
   border: none;
   padding: 10px 0;
   display: block;
 }
-/* line 854, sass/_header.scss */
+/* line 905, sass/_header.scss */
 .general-sidebar .menu li.text-item-header {
   font-size: 1.1em;
   text-transform: uppercase;
@@ -1418,17 +1469,17 @@ header .logo .cimke {
   font-family: "PT Sans Narrow", sans-serif;
   text-align: center;
 }
-/* line 862, sass/_header.scss */
+/* line 913, sass/_header.scss */
 .general-sidebar .menu li.kat-child {
   border-left: 2px solid #cccccc;
 }
-/* line 864, sass/_header.scss */
+/* line 915, sass/_header.scss */
 .general-sidebar .menu li.kat-child a {
   font-weight: normal;
   font-size: 0.9em;
   text-transform: none;
 }
-/* line 870, sass/_header.scss */
+/* line 921, sass/_header.scss */
 .general-sidebar .menu li.text-thin a {
   font-weight: 400;
   font-size: 1.2em;
@@ -1437,11 +1488,11 @@ header .logo .cimke {
   width: 100%;
   text-transform: lowercase;
 }
-/* line 880, sass/_header.scss */
+/* line 931, sass/_header.scss */
 .general-sidebar .menu .webshop-cat-items li.cat-item {
   border-bottom: 1px solid #DCDCDC;
 }
-/* line 883, sass/_header.scss */
+/* line 934, sass/_header.scss */
 .general-sidebar .menu .webshop-cat-items li.cat-item a {
   font-weight: 400;
   font-size: 1.2em;
@@ -1450,12 +1501,12 @@ header .logo .cimke {
   width: 100%;
   text-transform: lowercase;
 }
-/* line 896, sass/_header.scss */
+/* line 947, sass/_header.scss */
 .general-sidebar .menu li.menu-item.has-icon.two-row:not(.text-thin) span.ic {
   display: table-cell;
   vertical-align: middle;
 }
-/* line 900, sass/_header.scss */
+/* line 951, sass/_header.scss */
 .general-sidebar .menu li.menu-item.has-icon.two-row:not(.text-thin) span.text {
   display: table-cell;
   vertical-align: middle;
@@ -1961,7 +2012,7 @@ header .logo .cimke {
 .webshop-product-top .items .item .image .short-desc,
 .related-products .items .item .image .short-desc {
   z-index: 2;
-  background: rgba(240, 240, 240, 0.81);
+  background: rgba(240, 240, 240, 0);
   padding: 5px;
   font-size: 0.8em;
   text-align: left;
@@ -3972,7 +4023,7 @@ md-toast {
 /* line 400, scss/_base.scss */
 /* line 2335, sass/_base.scss */
 .dialogBox.overlayed {
-  background: rgba(74, 74, 74, 0.9);
+  background: rgba(74, 74, 74, 0);
   pointer-events: auto;
 }
 

@@ -174,24 +174,42 @@
   </div>
   <div class="sec-bottom">
     <div class="pw">
-      <? if( count($this->highlight_text) > 0 ): ?>
-      <div class="highlight-view">
-      	<div class="items">
-      		<div class="hl-cont">
-      			<? if( count($this->highlight_text['data']) > 1 ): ?>
-      			<a href="javascript:void(0);" title="Előző" class="prev handler" key="prev"><i class="fa fa-angle-left"></i> |</a>
-      			<a href="javascript:void(0);" title="Következő" class="next handler" key="next">| <i class="fa fa-angle-right"></i></a>
-      			<? endif; ?>
-      			<ul>
-      				<? $step = 0; foreach( $this->highlight_text['data'] as $text ): $step++; ?>
-      				<li class="<?=($step == 1)?'active':''?>" index="<?=$step?>"><?=$text['tartalom']?></li>
-      				<? endforeach; ?>
-      			</ul>
-            <div class="clr"></div>
-      		</div>
-      	</div>
+      <div class="item-holder">
+        <? if( count($this->highlight_text) > 0 ): ?>
+        <div class="highlight-view">
+          <? if( count($this->highlight_text['data']) > 1 ): ?>
+          <a href="javascript:void(0);" title="Előző" class="prev handler" key="prev"><i class="fa fa-arrow-circle-left"></i></a>
+          <a href="javascript:void(0);" title="Következő" class="next handler" key="next"><i class="fa fa-arrow-circle-right"></i></a>
+          <? endif; ?>
+          <div class="items">
+            <div class="hl-cont">
+              <ul>
+                <? $step = 0; foreach( $this->highlight_text['data'] as $text ): $step++; ?>
+                <li class="<?=($step == 1)?'active':''?>" index="<?=$step?>"><?=$text['tartalom']?></li>
+                <? endforeach; ?>
+              </ul>
+              <div class="clr"></div>
+            </div>
+          </div>
+        </div>
+        <? endif; ?>
+        <div class="contacts">
+          <div class="email">
+            <div class="ico">
+              <i class="fa fa-envelope-o"></i>
+            </div>
+            E-mail:<br>
+            <a href="mailto:<?php echo $this->settings['office_email']; ?>"><?php echo $this->settings['office_email']; ?></a>
+          </div>
+          <div class="address">
+            <div class="ico">
+              <i class="fa fa-map-marker"></i>
+            </div>
+            Központi cím:<br>
+            <?php echo $this->settings['page_author_address']; ?>
+          </div>
+        </div>
       </div>
-      <? endif; ?>
     </div>
   </div>
 </header>
