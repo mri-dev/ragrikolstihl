@@ -7,6 +7,7 @@ use PortalManager\Template;
 use PortalManager\Users;
 use PortalManager\Redirector;
 use ShopManager\Shop;
+use ShopManager\Categories;
 use PortalManager\News;
 use PortalManager\Portal;
 use Applications\Captcha;
@@ -58,6 +59,7 @@ class Controller {
           'user' => $this->User->get()
         ));
 
+
         $this->Portal = new Portal( array( 'db' => $this->db, 'view' => $this->view )  );
         $this->captcha = (new Captcha)
         ->init(
@@ -68,23 +70,25 @@ class Controller {
         $this->out( 'db',   $this->db );
         $this->out( 'user', $this->User->get( self::$user_opt ) );
 
+        // Kategóriák
+        if ( defined('PRODUCTIONSITE') )
+        {
+          $this->Categories = new Categories(array( 'db' => $this->db ));
+          $this->Categories->getTree();
+          $this->out( 'categories', $this->Categories );
+        }
+
         // redirector
-        $redrirector = new Redirector('shop', ltrim($_SERVER['REQUEST_URI'], '/'), array('db' => $this->db));
-        $redrirector->start();
+        if ( defined('PRODUCTIONSITE') )
+        {
+          $redrirector = new Redirector('shop', ltrim($_SERVER['REQUEST_URI'], '/'), array('db' => $this->db));
+          $redrirector->start();
+        }
 
         $templates = new Template( VIEW . 'templates/' );
         $this->out( 'templates', $templates );
         $this->out( 'highlight_text', $this->Portal->getHighlightItems() );
         $this->out( 'slideshow', $this->Portal->getSlideshow() );
-
-        // Menük
-        $tree = null;
-        $menu_header  = new Menus( false, array( 'db' => $this->db ) );
-        // Header menü
-        $menu_header->addFilter( 'menu_type', 'header' );
-        $menu_header->isFinal(true);
-        $tree   = $menu_header->getTree();
-        $this->out( 'menu_header',  $tree );
 
         // Footer menü
         $tree = null;
@@ -106,39 +110,43 @@ class Controller {
           }
         }
 
-        /****
-        * TOP TERMÉKEK
-        *****/
-        $arg = array(
-          'limit' 	=> 5,
-          'collectby' => 'top'
-        );
-        $top_products = (new Products( array(
-          'db' => $this->db,
-          'user' => $this->User->get()
-        ) ))->prepareList( $arg );
-        $this->out( 'top_products', $top_products );
-        $this->out( 'top_products_list', $top_products->getList() );
+        if ( defined('PRODUCTIONSITE') )
+        {
+          /****
+          * TOP TERMÉKEK
+          *****/
+          $arg = array(
+            'limit' 	=> 5,
+            'collectby' => 'top'
+          );
+          $top_products = (new Products( array(
+            'db' => $this->db,
+            'user' => $this->User->get()
+          ) ))->prepareList( $arg );
+          $this->out( 'top_products', $top_products );
+          $this->out( 'top_products_list', $top_products->getList() );
 
-        /****
-        * MEGNÉZETT TERMÉKEK
-        *****/
-        $arg = array();
-        $viewed_products = (new Products( array(
-          'db' => $this->db,
-          'user' => $this->User->get()
-        ) ))->getLastviewedList( \Helper::getMachineID(), 5, $arg );
-        $this->out( 'viewed_products_list', $viewed_products );
+          /****
+          * MEGNÉZETT TERMÉKEK
+          *****/
+          $arg = array();
+          $viewed_products = (new Products( array(
+            'db' => $this->db,
+            'user' => $this->User->get()
+          ) ))->getLastviewedList( \Helper::getMachineID(), 5, $arg );
+          $this->out( 'viewed_products_list', $viewed_products );
 
-        /****
-        * Live TERMÉKEK
-        *****/
-        $arg = array();
-        $live_products = (new Products( array(
-          'db' => $this->db,
-          'user' => $this->User->get()
-        ) ))->getLiveviewedList( \Helper::getMachineID(), 5, $arg );
-        $this->out( 'live_products_list', $live_products );
+          /****
+          * Live TERMÉKEK
+          *****/
+          $arg = array();
+          $live_products = (new Products( array(
+            'db' => $this->db,
+            'user' => $this->User->get()
+          ) ))->getLiveviewedList( \Helper::getMachineID(), 5, $arg );
+          $this->out( 'live_products_list', $live_products );
+        }
+
 
         if ( $_GET['msgkey'] ) {
             $this->out( $_GET['msgkey'], Helper::makeAlertMsg('pSuccess', $_GET[$_GET['msgkey']]) );
@@ -169,7 +177,7 @@ class Controller {
 
         if(!$arg[hidePatern]){ $this->hidePatern = false; }
 
-         $this->view->valuta  = 'Ft';
+        $this->view->valuta  = 'Ft';
     }
 
     function out( $viewKey, $output ){

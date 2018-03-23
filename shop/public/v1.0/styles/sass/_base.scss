@@ -883,6 +883,134 @@
 	}
 }
 
+.single-menu {
+	position: relative;
+	border-bottom: 1px solid #404e59;
+
+	a{
+		background: #252e35;
+		display: block;
+		color: white;
+		padding: 0 15px;
+		line-height: 34px;
+		text-decoration: none;
+		padding-right: 35px;
+
+		img{
+			float: left;
+			vertical-align: middle;
+			max-height: 34px;
+			height: 34px;
+		}
+	}
+
+	&.arrowed:after{
+		content: "\f105";
+		pointer-events: none;
+		font-family: 'FontAwesome';
+		position: absolute;
+		right: 0;
+		top: 50%;
+		color: white;
+		width: 25px;
+		text-align: center;
+		-webkit-transform: translateY(-50%);
+		transform: translateY(-50%);
+	}
+
+	&.imaged{
+		a{
+			padding: 0 15px 0 0;
+
+			img {
+				margin-right: 15px;
+			}
+		}
+
+		&.image-to-right{
+			a{
+				padding: 0 0 0 15px;
+			}
+		}
+	}
+	&.color-orange{
+		a{
+			background: $color-orange;
+		}
+	}
+	&.color-green{
+		a{
+			background: $color-green;
+		}
+	}
+}
+
+.cat-menu{
+	ul{
+		li{
+			border-bottom: 1px solid #404e59;
+			position: relative;
+
+			.toggler{
+				position: absolute;
+				right: 0;
+				top: 0;
+				color: white;
+				height: 100%;
+				width: 25px;
+				text-align: center;
+				border-left: 1px solid #313d47;
+
+				i {
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					line-height: 1;
+					margin: 0;
+					padding: 0;
+					-webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+				}
+			}
+			a{
+				background: #252e35;
+				display: block;
+				color: white;
+				padding: 15px;
+				line-height: 1.2;
+				text-decoration: none;
+				padding-right: 35px;
+			}
+
+			&.deep1{
+				a{
+					background: #475159;
+					padding: 12px;
+					padding-right: 35px;
+					font-size: 0.9em;
+				}
+
+				.toggler{
+					border-left: 1px solid #555e6a;
+				}
+			}
+			&.deep2{
+				border-bottom: none;
+				padding-left: 12px;
+				background: #6d7780;
+				a{
+					background: #6d7780;
+					padding: 10px;
+					padding-right: 35px;
+					font-size: 0.8em;
+					border-left: 1px solid $color-orange;
+					border-bottom: 1px solid #858e97;
+				}
+			}
+		}
+	}
+}
+
 .nav-container{
 	text-align: center;
 }
@@ -909,7 +1037,7 @@
 	}
 	.home-content{
 		flex: 1;
-		padding-left: 25px;
+		padding-left: 10px; 
 	}
 }
 
