@@ -950,7 +950,7 @@
 		li{
 			border-bottom: 1px solid #404e59;
 			position: relative;
-
+			display: none;
 			.toggler{
 				position: absolute;
 				right: 0;
@@ -961,7 +961,9 @@
 				text-align: center;
 				border-left: 1px solid #313d47;
 
-				i {
+				&:after{
+					font-family: 'FontAwesome';
+					content:"\f105";
 					position: absolute;
 					top: 50%;
 					left: 50%;
@@ -970,6 +972,11 @@
 					padding: 0;
 					-webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+				}
+				&.toggled{
+					&:after{
+						content:"\f107";
+					}
 				}
 			}
 			a{
@@ -1007,6 +1014,12 @@
 					border-bottom: 1px solid #858e97;
 				}
 			}
+
+			&.deep0,
+			&.showed{
+				display: block;
+			}
+
 		}
 	}
 }
@@ -1037,7 +1050,7 @@
 	}
 	.home-content{
 		flex: 1;
-		padding-left: 10px; 
+		padding-left: 10px;
 	}
 }
 

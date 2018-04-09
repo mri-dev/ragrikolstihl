@@ -53,6 +53,24 @@ $(function(){
 		}	*/
 	});
 
+	$('*[toggle-menu]').click(function(){
+		var s = $(this).hasClass('toggled');
+		var row = $(this).attr('toggle-menu');
+
+		console.log(row);
+
+		if (s) {
+			$(this).removeClass('toggled');
+			$('.cat-menu li.childof'+row).removeClass('showed');
+			$('.cat-menu li[class*=row-'+row+'-]').removeClass('showed');
+			$('.cat-menu li[class*=row-'+row+'] .toggler').removeClass('toggled');
+		} else {
+			$(this).addClass('toggled');
+			$('.cat-menu li.childof'+row).addClass('showed');
+		}
+
+	});
+
 	// Auto Resizer
 	autoresizeImages();
 	fixBasgeDesign();
