@@ -91,9 +91,9 @@
 	.info-box {
 		position: absolute;
 		color: white;
-		top: 20%;
+		top: 20px;
 		left: 50%;
-		width: $page-width;
+		width: 100%;
 		z-index: 1000;
 		pointer-events:none;
 		-webkit-transform: translateX(-50%);
@@ -107,17 +107,17 @@
 				float: left;
 			}
 			.main {
-				background: $color-green;
+				background: transparentize($color-orange, 0.1);
 				text-transform: uppercase;
 				font-weight: bold;
 		    padding: 15px;
-		    font-size: 3em;
+		    font-size: 1.8em;
 		    line-height: 1.2;
 			}
 			.second{
-				background: $color-grey;
+				background: $color-green-light;
 				padding: 8px;
-				font-size: 1.6em;
+				font-size: 1.2em;
 				line-height: 1.2;
 				margin-top: 10px;
 			}
@@ -125,10 +125,11 @@
 	}
 
 	.more-link a {
-		background: $color-pr;
-		padding: 5px 10px;
+		background: black;
+		padding: 15px 25px;
 		color: white;
-		font-size: 1em;
+		font-size: 1.1em;
+		font-weight: bold;
 		font-family: $font-cond;
 		text-transform: uppercase;
 		text-decoration: none;
