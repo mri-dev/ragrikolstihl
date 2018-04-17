@@ -6,8 +6,8 @@
 				<? $this->render('templates/sidebar'); ?>
 			</div>
 			<div class="grid-row home-content">
+				<? $this->render('templates/slideshow'); ?>
 				content
-				<? //$this->render('templates/slideshow'); ?>
 			</div>
 		</div>
 	</div>

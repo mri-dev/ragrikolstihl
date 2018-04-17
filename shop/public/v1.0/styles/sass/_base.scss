@@ -85,7 +85,8 @@
 .slideShow {
 	position: relative;
 	background: #FFFFFF;
-	width: 100%;
+	width: 860px;
+	border: 0.5px solid #e6e6e6;
 
 	.info-box {
 		position: absolute;
@@ -159,23 +160,23 @@
 	}
 	.slick-dots li button {
 		display: block;
-	    width: 12px;
-	    height: 0;
-	    padding-top: 12px;
-	    background-position: 0 0;
-	    float: left;
-	    overflow: hidden;
-	    position: relative;
-	    border:none;
-	    background: transparent;
+    width: 18px;
+    height: 0;
+    padding-top: 18px;
+    background-position: 0 0;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    border:none;
+    background: transparent;
 	}
 
 	.slick-dots li button:before {
-		color: $color-sec;
-		font-size:10px;
-		line-height: 12px;
-		width: 12px;
-		content: "\f10c";
+		color: #e0e0e0;
+		font-size: 18px;
+		line-height: 18px;
+		width: 18px;
+		content: "\f111";
 		font-family: FontAwesome;
 		position: absolute;
 		left: 0;
@@ -185,7 +186,7 @@
 	}
 	.slick-dots li.slick-active button:before {
 		color: #ffda00;
-		font-size:12px;
+		font-size: 18px;
 		content: "\f111";
 		font-family: FontAwesome;
 	}
@@ -197,10 +198,10 @@
 	.slick-prev,
 	.slick-next
 	{
-		background: #ffca00;
+		background: $color-green-light;
 		z-index: 1;
-		width: 48px;
-		height: 48px;
+		width: 40px;
+		height: 40px;
 		position: absolute;
 		font-size: 28px;
 		color: transparent !important;
@@ -213,17 +214,17 @@
 	  border: none;
 	}
 	.slick-prev {
-		left: 10px;
+		left: 0px;
 	}
 	.slick-next {
-		right: 10px;
+		right: 0px;
 	}
 	.slick-prev:before {
 		content: "\f104";
-		font-size: 40px;
-    width: 48px;
+		font-size: 32px;
+    width: 40px;
     text-align: center;
-    line-height: 26px;
+    line-height: 18px;
 		position: absolute;
 		font-family: FontAwesome;
 		color: white;
@@ -232,10 +233,10 @@
 	}
 	.slick-next:before {
 		content: "\f105";
-		font-size: 40px;
-    width: 48px;
+		font-size: 32px;
+    width: 40px;
     text-align: center;
-    line-height: 26px;
+    line-height: 18px;
 		position: absolute;
 		font-family: FontAwesome;
 		color: white;
@@ -427,6 +428,11 @@
 				top: 5px;
 				pointer-events: none;
 				z-index: 1;
+
+				img {
+					width: 32px;
+					height: 32px;
+				}
 			}
 
 			.image {
@@ -434,14 +440,24 @@
     		padding: 5px;
 				position: relative;
 				overflow: hidden;
+    		height: 270px;
+				max-height: 270px;
+				position: relative;
+
 				img {
 					width: 80%;
 					max-width: 80%;
 					margin: 0 auto;
+					position: absolute;
+					left: 50%;
+					top: 50%;
+					-webkit-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
 				}
 				.short-desc {
 					z-index: 2;
-					background:rgba(240, 240, 240, 0.81);
+					background: rgba(224, 224, 224, 0.8);
+					border-top: 0.4px solid rgba(148, 148, 148, 0.5);
 					padding: 5px;
 					font-size: 0.8em;
 					text-align: left;
@@ -465,11 +481,11 @@
 				position: relative;
 
 				& > .wrapper {
-					border: 1px solid #e4e4e4;
+					border: 0.5px solid #e4e4e4;
 					border-left: none;
 					border-right: none;
 					text-align: center;
-					padding: 10px 0;
+					padding: 2px 0;
 
 					.ar{
 						.current{
@@ -501,7 +517,7 @@
 						}
 						.percents {
 							position: absolute;
-							background: $color-green;
+							background: $color-red;
 							color: white;
 							font-size: 0.92em;
 							padding: 4px;
@@ -514,7 +530,7 @@
 
 						&.akcios{
 							.current{
-								color: lighten($color-green, 10%);
+								color: lighten($color-red, 10%);
 							}
 						}
 					}
@@ -561,6 +577,7 @@
 				text-align: center;
 		    font-size: 0.9em;
 		    color: #404040;
+    		text-transform: uppercase;
 			}
 			.buttons{
 				display: -webkit-box;
@@ -591,7 +608,7 @@
 
 				.fav {
 					width: 40px;
-					background: #ffcc00;
+					background: darken($color-green-light, 5%);
 					color: white;
 					font-size: 22px;
 					text-align: center;
@@ -601,17 +618,21 @@
 					}
 
 					&.selected{
-						background: #e6585e;
+						background: $color-orange;
 					}
 				}
 
 				.order {
 					flex-basis: 100px;
-					background: #e0e0e0;
-					color: #404040;
+					background: $color-green-light;
+					color: #ffffff;
+
+					a{
+						color: white;
+					}
 
 					&:hover{
-						background: darken(#e0e0e0, 5%);
+						background: darken($color-green-light, 5%);
 					}
 
 					&.req-price {
@@ -620,7 +641,7 @@
 				}
 			}
 			&:hover{
-				border: .4px solid #ff434b;
+				border: .4px solid $color-green;
 
 				.short-desc{
 					bottom: 0;
@@ -674,6 +695,19 @@
 		.head{
 			padding: 15px 10px;
 			text-transform: uppercase;
+    	font-size: 0.9em;
+			position: relative;
+
+			.ico{
+				position: absolute;
+				right: 5px;
+				top: 50%;
+				-webkit-transform:translateY(-50%);
+          transform:translateY(-50%);
+				img{
+					height: 20px;
+				}
+			}
 		}
 
 		.section-group {
@@ -802,7 +836,7 @@
 
 		&.lastviewed{
 			.head{
-				background: #747272;
+				background: $color-green;
 				color: white;
 			}
 			.wrapper{
@@ -810,10 +844,20 @@
 			}
 		}
 		&.topproducts{
-			background: $color-yellow;
+			background: $color-grey;
 			padding: 10px;
 			.head{
+				color: white;
 				padding: 5px 0 15px 0;
+				.ico{
+					right: 0;
+					top: 2px;
+					-webkit-transform:none;
+          transform:none;
+					img {
+						height: 15px;
+					}
+				}
 			}
 			.wrapper{
 				background: white;
@@ -851,7 +895,8 @@
 
 			.desc {
 				margin-top: 5px;
-				font-size: 0.9em;
+				font-size: 0.8em;
+				text-transform: uppercase;
 			}
 
 			&:last-child{
@@ -957,9 +1002,10 @@
 				top: 0;
 				color: white;
 				height: 100%;
-				width: 25px;
+				width: 30px;
 				text-align: center;
 				border-left: 1px solid #313d47;
+				cursor: pointer;
 
 				&:after{
 					font-family: 'FontAwesome';
@@ -972,6 +1018,9 @@
 					padding: 0;
 					-webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+				}
+				&:hover{
+					background: black;
 				}
 				&.toggled{
 					&:after{

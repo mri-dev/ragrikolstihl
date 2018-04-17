@@ -128,7 +128,7 @@
 			<div class="pw">
 				<div class="flex">
 					<div class="copy flex-col-40">
-						&copy; <span class="author"><?=$this->settings['page_title']?></span>: <?=$this->settings['page_description']?> &nbsp;&nbsp; 2013 Minden jog fenntartva!
+						&copy; <span class="author"><?=$this->settings['page_title']?></span>: <?=$this->settings['page_description']?><br>2013 Minden jog fenntartva!
 					</div>
 					<div class="contact">
 						<div class="flex">

@@ -80,10 +80,13 @@
       </div>
     </form>
   <?php endif; // End of product_listing ?>
-  
+
     <? if( $this->viewed_products_list ): ?>
     <div class="lastviewed side-group">
       <div class="head">
+        <div class="ico">
+          <img src="<?=IMG?>like_icon.svg" alt="Legutoljára megnézett termékek">
+        </div>
         Legutoljára megnézett termékek
       </div>
       <div class="wrapper">
@@ -109,6 +112,9 @@
     <? if( $this->top_products && $this->top_products->hasItems() ): ?>
     <div class="topproducts side-group">
       <div class="head">
+        <div class="ico">
+          <img src="<?=IMG?>stars5_icon.svg" alt="Top termékek">
+        </div>
         Top termékek
       </div>
       <div class="wrapper">
@@ -131,6 +137,9 @@
     <? if( $this->live_products_list ): ?>
     <div class="liveproducts side-group">
       <div class="head">
+        <div class="ico">
+          <img src="<?=IMG?>persons_icon.svg" alt="Mások ezeket nézik">
+        </div>
         Mások ezeket nézik
       </div>
       <div class="wrapper">
