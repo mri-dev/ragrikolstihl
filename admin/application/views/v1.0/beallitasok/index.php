@@ -175,7 +175,7 @@
                 <br>
                 <div class="row np">
                     <div class="col-md-5">
-                        <label for="basics_logo">Alapértelmezz logó</label>
+                        <label for="basics_logo">Alapértelmezett logó</label>
                         <div class="input-group">
                             <input type="text" id="basics_logo" name="logo" class="form-control" value="<?=$this->settings['logo']?>">
                             <div class="input-group-addon"><a title="Kép kiválasztása a galériából" href="<?=FILE_BROWSER_IMAGE?>&field_id=basics_logo" data-fancybox-type="iframe" class="iframe-btn" ><i class="fa fa-link"></i></a></div>
@@ -356,6 +356,35 @@
                         <input type="text" id="basics_welcome_subtitle" name="welcome_subtitle" class="form-control" value="<?=$this->settings['welcome_subtitle']?>">
                     </div>
                 </div>
+								<br>
+								<div class="row np">
+                    <div class="col-md-4">
+                      <label for="basics_welcome_img_small">Stihl kép</label>
+											<div class="input-group">
+                          <input type="text" id="basics_welcome_img_small" name="welcome_img_small" class="form-control" value="<?=$this->settings['welcome_img_small']?>">
+                          <div class="input-group-addon"><a title="Kép kiválasztása a galériából" href="<?=FILE_BROWSER_IMAGE?>&field_id=basics_welcome_img_small" data-fancybox-type="iframe" class="iframe-btn" ><i class="fa fa-link"></i></a></div>
+                      </div>
+                    </div>
+										<div class="col-md-4" style="padding-left:8px;">
+											<label for="basics_welcome_img_big">Borító háttérkép</label>
+											<div class="input-group">
+													<input type="text" id="basics_welcome_img_big" name="welcome_img_big" class="form-control" value="<?=$this->settings['welcome_img_big']?>">
+													<div class="input-group-addon"><a title="Kép kiválasztása a galériából" href="<?=FILE_BROWSER_IMAGE?>&field_id=basics_welcome_img_big" data-fancybox-type="iframe" class="iframe-btn" ><i class="fa fa-link"></i></a></div>
+											</div>
+                    </div>
+										<div class="col-md-4" style="padding-left:8px;">
+											<label for="welcome_outside_url">Stihl webshop URL</label>
+											<input type="text" id="basics_welcome_outside_url" name="welcome_outside_url" class="form-control" value="<?=$this->settings['welcome_outside_url']?>">
+                    </div>
+                </div>
+								<br>
+								<div class="row np">
+									<div class="col-md-12">
+										<label for="basics_welcome_text">Üdvözlő szöveg tartalma</label>
+										<textarea type="text" id="basics_welcome_text" name="welcome_text" class="form-control"><?=$this->settings['welcome_text']?></textarea>
+									</div>
+                </div>
+                <br>
                 <div class="divider"></div>
                 <br>
                 <h3>Webáruház</h3>
