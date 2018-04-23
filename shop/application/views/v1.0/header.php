@@ -135,7 +135,7 @@
     <div class="pw">
       <div class="flex">
         <div class="logo">
-          <a href="<?=$this->settings['page_url']?>"><img src="<?=IMG?>ragrikol_logo_white.svg" alt="<?=$this->settings['page_title']?>"></a>
+          <a href="<?=$this->settings['page_url']?>/webshop"><img src="<?=IMG?>ragrikol_logo_white.svg" alt="<?=$this->settings['page_title']?>"></a>
         </div>
         <div class="searcher">
           <div class="searchform">

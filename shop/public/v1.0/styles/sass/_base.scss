@@ -1079,11 +1079,17 @@
 }
 
 .pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus{
-	background-color: #ffcc00;
-	border-color:#e6b904;
+	background-color: $color-green;
+}
+.pagination>li>a:hover, .pagination>li>span:hover, .pagination>li>a:focus, .pagination>li>span:focus{
+	background-color: $color-green;
+	color: white;
 }
 .pagination>li>a, .pagination>li>span{
-	color: #f09f0f;
+	color: #ffffff;
+	border: none;
+	margin: 2px;
+	background: #c3c3c3;
 }
 
 .home {
@@ -1101,6 +1107,104 @@
 	.home-content{
 		flex: 1;
 		padding-left: 10px;
+	}
+
+	&.landing{
+		.grid-layout{
+			justify-content: space-between;
+		}
+		.stihl-webshop{
+			background: $color-orange;
+			color: white;
+
+			.img {
+				height: 250px;
+				img {
+					height: 100%;
+				}
+			}
+
+			a, a:visited{
+				display: block;
+				color: white;
+				text-decoration: none;
+			}
+
+			.header{
+				line-height: 55px;
+				padding: 15px 0;
+				font-size: 1.5em;
+
+				i {
+					margin: 0 0 0 15px;
+				}
+
+				img {
+					height: 55px;
+					float: left;
+					margin: 0 10px 0 0;
+				}
+			}
+
+			.wshop,
+			.agrikol{
+				a{
+					display: block;
+					font-size: 1.2em;
+					text-transform: uppercase;
+					padding: 20px 10px;
+					text-align: center;
+					font-weight: bold;
+				}
+			}
+			.agrikol{
+				a{
+					background: darken($color-grey, 10%);
+				}
+			}
+		}
+		.welcome{
+			border: 0.4px solid #f1f1f1;
+			height: 450px;
+			position: relative;
+			background-repeat: no-repeat;
+			background-position: left top;
+    	background-size: contain;
+
+			.text {
+				background: white;
+				padding: 25px;
+				font-size: 1.05em;
+				position: absolute;
+				right: 0;
+				top: 0;
+				bottom:0;
+				height: 100%;
+				width: 45%;
+				max-height: 450px;
+				overflow: auto;
+
+				h2 {
+					color: $color-green;
+					font-weight: bold;
+			    font-size: 1.7em;
+			    line-height: 1;
+			    margin: 0 0 10px 0;
+				}
+
+				h3 {
+					color: #70777a;
+					font-weight: bold;
+					font-size: 1.1em;
+			    margin: 0 0 20px 0;
+				}
+
+				.cont{
+					color: #70777a;
+    			line-height: 1.4;
+				}
+			}
+		}
 	}
 }
 
