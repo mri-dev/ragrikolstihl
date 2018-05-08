@@ -406,7 +406,7 @@
 
 				.ajanlott{
 					position: absolute;
-					background: #404040;
+					background: #ff9d20;
 					padding: 10px 12px;
 					left:0;
 					top:0;
@@ -1093,6 +1093,16 @@
 }
 
 .home {
+	.title-header{
+		text-align: center;
+		margin: 20px 0;
+		text-transform: uppercase;
+		h2{
+			font-weight: bold;
+			font-size: 1.6em;
+		}
+	}
+
 	h1.stitle, h3.stitle {
 		text-transform: uppercase;
 		font-size: 1.6em;

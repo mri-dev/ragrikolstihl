@@ -2,7 +2,7 @@
   <a href="#">KIEMELT AJÁNLATUNK</a>
 </div>
 <div class="single-menu imaged arrowed color-orange">
-  <a href="#"><img src="<?=IMG?>stihl-bg-top.svg" alt="Stihl Termékek"> <strong>TERMÉKEK</strong></a>
+  <a href="<?=$this->settings['welcome_outside_url']?>" target="_blank"><img src="<?=IMG?>stihl-bg-top.svg" alt="Stihl Termékek"> <strong>TERMÉKEK</strong></a>
 </div>
 <div class="cat-menu">
   <ul>

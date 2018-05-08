@@ -1,6 +1,6 @@
 <div class="item">
   <div class="wrapper">
-    <? if( $ajanlatunk == '1' ): ?>
+    <? if( $kiemelt == '1' ): ?>
     <div class="ajanlott">
       <img src="<?=IMG?>ajanlatunk.svg" title="Ajánlatunk!" alt="Ajánlatunk">
     </div>
@@ -19,7 +19,7 @@
     </div>
 
     <div class="image">
-			<a href="<?=$link?>"><img title="<?=$product_nev?>" src="<?=$profil_kep?>" alt="<?=$product_nev?>"></a>
+			<a href="<?=$link?>"><img title="<?=$product_nev?>" src="<?=$profil_kep_small?>" alt="<?=$product_nev?>"></a>
       <div class="short-desc">
         <?php echo $rovid_leiras; ?>
       </div>
