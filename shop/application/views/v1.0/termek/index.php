@@ -31,6 +31,9 @@
           <? if( $ar >= $this->settings['cetelem_min_product_price'] && $ar <= $this->settings['cetelem_max_product_price'] && $this->product['no_cetelem'] != 1 ): ?>
               <img class="cetelem" src="<?=IMG?>cetelem_badge.png" alt="Cetelem Online Hitel">
           <? endif; ?>
+          <?  if( $this->product['akcios'] == '1' && $this->product['akcios_fogy_ar'] > 0): ?>
+          <div class="discount-percent"><div class="p">-<? echo 100-round($this->product['akcios_fogy_ar'] / ($this->product['brutto_ar'] / 100)); ?>%</div></div>
+          <? endif; ?>
           <div class="img-thb">
               <a href="<?=$this->product['profil_kep']?>" class="zoom"><img di="<?=$this->product['profil_kep']?>" src="<?=$this->product['profil_kep']?>" alt="<?=$this->product['nev']?>"></a>
           </div>
@@ -51,34 +54,30 @@
         <div class="csoport">
           <?=$this->product['csoport_kategoria']?>
         </div>
+        <div class="cimkek">
+        <? if($this->product['ujdonsag'] == '1'): ?>
+            <img src="<?=IMG?>new_icon_sq.svg" title="Újdonság!" alt="Újdonság">
+        <? endif; ?>
+        </div>
         <div class="prices">
-            <div class="base">
-              <?php if ($this->product['without_price']): ?>
-                <div class="current">
-                  ÉRDEKLŐDJÖN!
-                </div>
-              <?php else: ?>
-                <?  if( $this->product['akcios'] == '1' && $this->product['akcios_fogy_ar'] > 0):
-                    $ar = $this->product['akcios_fogy_ar'];
-                ?>
-                <div class="old">
-                    <div class="price"><strike><?=\PortalManager\Formater::cashFormat($this->product['ar'])?> <?=$this->valuta?></strike></div>
-                </div>
-                <div class="discount_percent">-<? echo 100-round($this->product['akcios_fogy_ar'] / ($this->product['brutto_ar'] / 100)); ?>%</div>
-                <? endif; ?>
-                <div class="current">
-                    <?=\PortalManager\Formater::cashFormat($ar)?> <?=$this->valuta?>
-                </div>
-              <?php endif; ?>
-            </div>
-            <div class="cimkek">
-            <? if($this->product['akcios'] == '1'): ?>
-                <img src="<?=IMG?>discount_icon.png" title="Akciós!" alt="Akciós">
-            <? endif; ?>
-            <? if($this->product['ujdonsag'] == '1'): ?>
-                <img src="<?=IMG?>new_icon.png" title="Újdonság!" alt="Újdonság">
-            <? endif; ?>
-            </div>
+          <div class="base">
+            <?php if ($this->product['without_price']): ?>
+              <div class="current">
+                ÉRDEKLŐDJÖN!
+              </div>
+            <?php else: ?>
+              <?  if( $this->product['akcios'] == '1' && $this->product['akcios_fogy_ar'] > 0):
+                  $ar = $this->product['akcios_fogy_ar'];
+              ?>
+              <div class="old">
+                  <div class="price"><strike><?=\PortalManager\Formater::cashFormat($this->product['ar'])?> <?=$this->valuta?></strike></div>
+              </div>
+              <? endif; ?>
+              <div class="current">
+                  <?=\PortalManager\Formater::cashFormat($ar)?> <?=$this->valuta?>
+              </div>
+            <?php endif; ?>
+          </div>
         </div>
         <div class="divider"></div>
         <div class="status-params">
@@ -90,13 +89,13 @@
             <div class="h">Várható szállítás:</div>
             <div class="v"><span><?=$this->product['szallitas_info']?></span></div>
           </div>
+          <?php if ( $ar > $this->settings['FREE_TRANSPORT_ABOVEPRICE']): ?>
           <div class="free-transport">
-            <?php if ( $ar > $this->settings['FREE_TRANSPORT_ABOVEPRICE']): ?>
             <div class="free-transport-ele">
               <i class="fa fa-car"></i> Ingyen szállítjuk
             </div>
-            <?php endif; ?>
           </div>
+          <?php endif; ?>
         </div>
         <div class="divider"></div>
         <div class="short-desc">
@@ -147,7 +146,7 @@
               <?php endif; ?>
               <?php if ( !$this->product['without_price'] ): ?>
                 <div class="buttonorder">
-                  <button id="addtocart" cart-data="<?=$this->product['ID']?>" cart-remsg="cart-msg" title="Kosárba rakom" class="tocart cart-btn"><?=__('kosárba rakom')?></i></button>
+                  <button id="addtocart" cart-data="<?=$this->product['ID']?>" cart-remsg="cart-msg" title="Kosárba rakom" class="tocart cart-btn"> <img src="<?=IMG?>icons/cart.svg" alt="kosárba rakom"> <?=__('kosárba rakom')?></i></button>
                 </div>
               <?php else: ?>
                 <div class="requestbutton">

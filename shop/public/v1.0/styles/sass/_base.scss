@@ -291,7 +291,7 @@
 			}
 			.grid-row.products {
 				flex: 1;
-				padding: 0 0 0 20px;
+				padding: 0 0 0 10px;
 			}
 		}
 	}
@@ -1363,6 +1363,30 @@
 						-webkit-transform: translate(-50%,-50%);
           	transform: translate(-50%,-50%);
 					}
+
+					.discount-percent{
+						z-index: 10;
+						color: white;
+						pointer-events: none;
+						font-size: 1.6em;
+						position: absolute;
+						left: 0;
+						top: 0;
+						font-weight: bold;
+						width: 150px;
+						height: 150px;
+						background: url('#{$imgroot}discount_half_square.svg');
+						background-position: center;
+						background-repeat: no-repeat;
+
+						.p {
+							position: absolute;
+							left: 33%;
+    					top: 30%;
+							-webkit-transform: translate(-50%,-50%);
+	          	transform: translate(-50%,-50%);
+						}
+					}
 				}
 
 				.all {
@@ -1381,9 +1405,22 @@
 
 			.main-data {
 				padding-left: 10px;
+				position: relative;
+
+				.cimkek{
+					position: absolute;
+					right: 0;
+					top: 5px;
+
+					img {
+						height: 20px;
+					}
+				}
+
 				h1 {
-					font-size: 2.3em;
+					font-size: 2em;
 					line-height: 1.2;
+					padding-right: 50px;
 				}
 				.csoport {
 					color: #404040;
@@ -1397,32 +1434,18 @@
 
 					.old{
     				font-weight: 100;
-					}
-
-					.discount_percent{
-						background: $color-green;
-				    color: white;
-				    padding: 5px;
-				    font-size: 0.5em;
-				    border-radius: 5px;
+						font-size: 0.75em;
 					}
 
 					.price-head,
-					.old,
-					.discount_percent{
+					.old{
 						margin-right: 10px;
 					}
 
 					.current{
 						font-weight: bold;
-						color: $color-green;
+						color: lighten($color-red, 10%);
 						font-size: 1.3em;
-					}
-
-					.cimkek{
-						position: absolute;
-						right: 0;
-						top: -12px;
 					}
 
 					.base {
@@ -1487,7 +1510,7 @@
 					flex-wrap: wrap;
 					align-items: center;
 					justify-content: space-between;
-					margin: 0 -5px;
+					margin: 10px -5px;
 					font-size: 0.75em;
 
 					& > div{
@@ -1569,6 +1592,12 @@
 								font-weight: bold;
 								line-height: 40px;
 								padding: 0 10px;
+
+								img {
+									height: 17px;
+									vertical-align: text-bottom;
+									margin-right: 5px;
+								}
 							}
 						}
 					}

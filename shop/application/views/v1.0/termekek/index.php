@@ -1,12 +1,12 @@
 <? if( true ): ?>
     <div class="category-listing page-width">
-        <? $this->render('templates/slideshow'); ?>
         <div class="list-view webshop-product-top">
           <div class="grid-layout">
             <div class="grid-row filter-sidebar">
-              <? $this->render('templates/sidebar'); ?> 
+              <? $this->render('templates/sidebar'); ?>
             </div>
             <div class="grid-row products">
+              <? $this->render('templates/slideshow'); ?>
               <div>
                   <? if($this->parent_menu&& count($this->parent_menu) > 0): ?>
                   <div class="sub-categories">
@@ -54,11 +54,11 @@
                   <? if( !$this->products->hasItems()): ?>
                   <div class="no-product-items">
                       <?php if ($this->myfavorite): ?>
-                        <div class="icon"><i class="fa fa-fire"></i></div>
+                        <div class="icon"><i class="fa fa-heart-o"></i></div>
                         <strong>Nincsenek kedvencnek jelölt termékei!</strong><br>
                         Kedvencnek jelölhet bármilyen terméket, hogy később gyorsan és könnyedén megtalálja.
                       <?php else: ?>
-                        <div class="icon"><i class="fa fa-fire"></i></div>
+                        <div class="icon"><i class="fa fa-window-restore"></i></div>
                         <strong>Nincsenek termékek ebben a kategóriában!</strong><br>
                         A szűrőfeltételek alapján nincs megfelelő termék, amit ajánlani tudunk. Böngésszen további termékeink között.
                       <?php endif; ?>

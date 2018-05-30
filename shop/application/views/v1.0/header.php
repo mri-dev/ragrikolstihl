@@ -60,7 +60,7 @@
             <div class="flex" mb-event="true" data-mb='{ "event": "toggleOnClick", "target" : "#mb-cart" }'>
               <div class="ico">
                 <span class="badge" id="cart-item-num-v">0</span>
-                <img src="<?=IMG?>icons/cart.svg" alt="Kosár" />
+                <img src="<?=IMG?>icons/cartv2.svg" alt="Kosár" />
               </div>
               <div class="info">
                 <div class="h">Kosár tartalom</div>
