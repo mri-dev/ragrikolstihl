@@ -46,7 +46,7 @@ body, html {
 	position: relative;
 }
 body.blured-bg {
-  background: #171717;
+  background: #f3f3f3;
 }
 body.blured > *  {
  	-webkit-filter: blur(3px);
@@ -112,7 +112,7 @@ div[class*=col-p-5]{
 }
 button, input[type=button], input[type=submit]{
 	color:#ffffff;
-	background: #fab108;
+	background: #388a3d;
 	border:0;
 	padding:4px 10px;
   border-radius: 5px;
@@ -121,7 +121,7 @@ button:hover{
 	background:#fe8024;
 }
 #top{
-	background-color: #c5161d;
+	background-color: #f26522;
 	color:#fff;
 	line-height:50px;
 	padding:0;
@@ -137,10 +137,10 @@ button:hover{
 	margin: 8px 20px 8px 0;
 }
 body.blured-bg #top {
-	background-color: #c5161d;
+	background-color: #f26522;
 }
 #top .shower{
-	background: #af161c;
+	background:#f5793f;
 	float:right;
 	position:relative;
 	padding:0 10px;
@@ -173,7 +173,7 @@ body.blured-bg #top {
 .shower.fb-vote a
 { color: white; font-size:12px; }
 .dmenu{
-	background:#af161c;
+	background:#f5793f;
 	position:absolute;
 	display:none;
 	top: 49px;
@@ -195,7 +195,7 @@ body.blured-bg #top {
 	display:block;
 }
 #top .shower .dmenu li:hover a{
-	background: #931519;
+	background: #f26522;
 	text-decoration:none;
 }
 #login .links {
@@ -217,7 +217,7 @@ body.blured-bg #top {
 	color: #ffbb11;
 }
 #login .bg{
-	background-color: #ffffff14 !important;
+	background-color: #ffffff !important;
 	padding:20px 40px;
   border-radius: 4px;
   box-shadow: 0 5px 30px -10px black;
@@ -252,7 +252,7 @@ body.blured-bg #content .container-fluid{
 	z-index:10;
 }
 #content .slideMenu{
-	background:#292929;
+	background: #373737;
 	width:200px;
 	min-height:100%;
 	padding:0;
@@ -285,10 +285,9 @@ body.blured-bg #content .container-fluid{
 
 #content .slideMenu .menu ul li.sub a {
 	font-size: 0.85em;
-    line-height: 2.4;
-    padding-right: 25px;
-    background: #333;
-
+  line-height: 2.4;
+  padding-right: 25px;
+  background: #333232;
 	color: #737373;
 }
 #content .slideMenu .menu ul li a span.ni{
@@ -334,7 +333,7 @@ body.blured-bg #content .container-fluid{
 	position:absolute;
 }
 #content .slideMenu .menu ul li:hover a,#content .slideMenu .menu ul li.on a{
-	background: #ffab00;
+	background: #388a3d;
 	color:white;
 	text-decoration:none;
 }
@@ -344,7 +343,7 @@ body.blured-bg #content .container-fluid{
 #content .ct h1{
 	font-family:'myriadprobold', sans-serif;
 	margin:0;
-	color:#ffab00;
+	color:#388a3d;
 	font-weight:300;
 	font-size:32px;
 	text-transform:uppercase;
