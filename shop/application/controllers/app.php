@@ -28,7 +28,11 @@ class app extends Controller{
 
 			// paraméterek:
 
-			$hostandport="149.200.12.199:80"; // ide a webservice tényleges elérését kell írni!
+			$hostandport="86.59.218.107:80"; // ide a webservice tényleges elérését kell írni!
+
+			if (isset($_GET['host'])) {
+				$hostandport= $_GET['host'].":80"; // ide a webservice tényleges elérését kell írni!
+			}
 
 			$volume = ""; // kötetjel: üres azaz alaértelmezett. "A_" kötet esetén = "_A_"!
 
