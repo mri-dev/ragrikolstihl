@@ -28,11 +28,7 @@ class app extends Controller{
 
 			// paraméterek:
 
-			//$hostandport="86.59.218.107:80"; // ide a webservice tényleges elérését kell írni!
-
-			if (isset($_GET['host'])) {
-				$hostandport= $_GET['host'].":80"; // ide a webservice tényleges elérését kell írni!
-			}
+			$hostandport="188.6.165.137:80"; // ide a webservice tényleges elérését kell írni!
 
 			$volume = ""; // kötetjel: üres azaz alaértelmezett. "A_" kötet esetén = "_A_"!
 
@@ -51,9 +47,163 @@ class app extends Controller{
 
 			$param = URLEncode ( 'Listanév' ).'='.URLEncode ( $listname );
 
+			$get = $_GET;
+			unset($get['tag']);
+			unset($get['lista']);
+
+			$get['IDátum'] = '19.07.02';
+
+			$get['IIdőpont'] = '';
+
+			$get['IRend'] = '0|1|5|3|4';
+
+			$get['IÖssz'] = '2';
+
+			$get['IÁr'] = 'Eladási';
+
+			$get['IÁrtábla'] = '';
+
+			$get['IBruttó'] = '';
+
+			$get['IÜgyfél'] = '';
+
+			//<Input Nev="ÉrvKészlet'] = 'Normál';
+
+			//$get['TKészlet'] = 'Nem kell a sor, ha nulla';
+
+			$get['IDKészlet'] = '';
+
+			$get['IFogy1'] = 'Nem kell';
+
+			$get['IElsőDátum'] = '';
+
+			$get['IIdőszak11'] = '';
+
+			$get['IUtolsóDátum'] = '';
+
+			$get['IIdőszak12'] = '';
+
+			$get['IFogy2'] = '';
+
+			$get['IElsőDátum2'] = '';
+
+			$get['Időszak21'] = '';
+
+			$get['IUtolsóDátum2'] = '';
+
+			$get['IIdőszak22'] = '';
+
+			$get['IFogy3'] = '';
+
+			$get['IElsőDátum3'] = '';
+
+			$get['IIdőszak31'] = '';
+
+			$get['IUtolsóDátum3'] = '';
+
+			$get['IIdőszak32'] = '';
+
+			$get['ISzlaUgyf'] = '';
+
+			$get['IMozgNemKpl'] = '';
+
+			$get['IVVisz'] = 'Nem kell';
+
+			$get['IVDiszp'] = 'Nem kell';
+
+			$get['ISzRend'] = 'Nem kell';
+
+			$get['ISzVisz'] = 'Nem kell';
+
+			$get['IKövSzáll'] = '';
+
+			$get['ISzabKészl'] = 'Nem kell';
+
+			$get['ISzabSzűr'] = '';
+
+			$get['ISzerKészl'] = 'Nem kell';
+
+			$get['ISzerSzűr'] = '';
+
+			$get['IKMinK'] = 'Nem kell';
+
+			$get['IKMaxK'] = 'Nem kell';
+
+			$get['IKMinR'] = 'Nem kell';
+
+			$get['IKRend1'] = 'Nem kell';
+
+			$get['IKRendSz1'] = '';
+
+			$get['IKRend2'] = 'Nem kell';
+
+			$get['IKRendSz2'] = '';
+
+			$get['IKSzallAr'] = 'Nem kell';
+
+			$get['ISorAttr'] = '';
+
+			$get['ISorSzín'] = '';
+
+			$get['IMenny2'] = 'Normál';
+
+			$get['RRKpl2'] = '';
+
+			$get['IMinT'] = '';
+
+			$get['IMinA'] = '';
+
+			$get['IMaxT'] = '';
+
+			$get['IMaxA'] = '';
+
+			$get['IMinRT'] = '';
+
+			$get['IMinRA'] = '';
+
+			$get['IIdCkTörzs'] = '';
+
+			$get['RaktStart'] = '';
+
+			$get['RaktEnd'] = '';
+
+			$get['RekStart'] = '';
+
+			$get['RekEnd'] = '';
+
+			$get['RRKepl'] = '';
+
+			$get['ElsőCikk'] = '';
+
+			$get['UtolsóCikk'] = '';
+
+			$get['CikkKepl'] = '';
+
+			$get['CikkTStart'] = '';
+
+			$get['CikkTEnd'] = '';
+
+			$get['CikkTKepl'] = '';
+
+			$get['ICkBesKpl'] = '';
+
+			$get['IElsőSzáll'] = '';
+
+			$get['IUtolsóSzáll'] = '';
+
+			$get['ISzállKéplet'] = '';
+
+			$get['ICsakSzáll'] = 'Igen';
+
+			foreach ((array)$get as $gk => $gv) {
+				$param .= '&'.URLEncode ( $gk ).'='.URLEncode ( $gv );
+			}
+
 			$param .= '&PrnForma=HTML';
 
 			$url = 'http://'.$hostandport.'/LGQUERY'.$volume.'?'.$param;
+
+			echo $url;
 
 			curl_setopt($curl,CURLOPT_URL, $url);
 			curl_setopt($curl, CURLOPT_USERPWD, $username.':'.$password );
