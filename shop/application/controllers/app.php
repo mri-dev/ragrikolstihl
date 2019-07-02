@@ -28,7 +28,7 @@ class app extends Controller{
 
 			// paraméterek:
 
-			$hostandport="86.59.218.107:80"; // ide a webservice tényleges elérését kell írni!
+			//$hostandport="86.59.218.107:80"; // ide a webservice tényleges elérését kell írni!
 
 			if (isset($_GET['host'])) {
 				$hostandport= $_GET['host'].":80"; // ide a webservice tényleges elérését kell írni!
@@ -37,6 +37,7 @@ class app extends Controller{
 			$volume = ""; // kötetjel: üres azaz alaértelmezett. "A_" kötet esetén = "_A_"!
 
 			$listname = $_GET['lista']; // lehet még pl: "WebService Cikk Minta", "WebService Keszlet Minta"...
+			//$listname = 'Bővített készlet lista'; // lehet még pl: "WebService Cikk Minta", "WebService Keszlet Minta"...
 
 			$username = "WebServer"; // A WebServer terminálhoz megadott felhasználónév/jelszó. Ez az alapértelmezett.
 
@@ -44,24 +45,25 @@ class app extends Controller{
 
 			// lekérdezés futtatása:
 
-			header('Content-type: text/xml'); // ez csak ahhoz kell, hogy szépen írja ki a választ.
+			//header('Content-type: text/xml'); // ez csak ahhoz kell, hogy szépen írja ki a választ.
 
 			$curl = curl_init();
 
 			$param = URLEncode ( 'Listanév' ).'='.URLEncode ( $listname );
 
-			$param .= '&PrnForma=XML';
+			$param .= '&PrnForma=HTML';
 
-			curl_setopt($curl,CURLOPT_URL,'http://'.$hostandport.'/LGQUERY'.$volume.'?'.$param);
+			$url = 'http://'.$hostandport.'/LGQUERY'.$volume.'?'.$param;
 
+			curl_setopt($curl,CURLOPT_URL, $url);
 			curl_setopt($curl, CURLOPT_USERPWD, $username.':'.$password );
-
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
 			$response = curl_exec($curl);
 
 			curl_close($curl);
 
+			//echo iconv( "Windows-1250", "UTF-8", $response);
 			echo $response;
 
 		}
