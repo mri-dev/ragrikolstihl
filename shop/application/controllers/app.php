@@ -51,9 +51,9 @@ class app extends Controller{
 			unset($get['tag']);
 			unset($get['lista']);
 
-			$get['IDátum'] = '19.07.02';
+			$get['IDátum'] = '19.07.12';
 
-			$get['IIdőpont'] = '';
+			$get['IIdőpont'] = 'Nem kell';
 
 			$get['IRend'] = '0|1|5|3|4';
 
@@ -61,51 +61,51 @@ class app extends Controller{
 
 			$get['IÁr'] = 'Eladási';
 
-			$get['IÁrtábla'] = '';
+			$get['IÁrtábla'] = 'Nem kell';
 
-			$get['IBruttó'] = '';
+			$get['IBruttó'] = 'Nem kell';
 
-			$get['IÜgyfél'] = '';
+			$get['IÜgyfél'] = 'Nem kell';
 
-			//<Input Nev="ÉrvKészlet'] = 'Normál';
+			$get['ÉrvKészlet'] = 'Normál';
 
-			//$get['TKészlet'] = 'Nem kell a sor, ha nulla';
+			$get['ITKészlet'] = 'Nem kell';
 
-			$get['IDKészlet'] = '';
+			$get['IDKészlet'] = 'Nem kell';
 
 			$get['IFogy1'] = 'Nem kell';
 
-			$get['IElsőDátum'] = '';
+			$get['IElsőDátum'] = 'Nem kell';
 
-			$get['IIdőszak11'] = '';
+			$get['IIdőszak11'] = 'Nem kell';
 
-			$get['IUtolsóDátum'] = '';
+			$get['IUtolsóDátum'] = 'Nem kell';
 
-			$get['IIdőszak12'] = '';
+			$get['IIdőszak12'] = 'Nem kell';
 
-			$get['IFogy2'] = '';
+			$get['IFogy2'] = 'Nem kell';
 
-			$get['IElsőDátum2'] = '';
+			$get['IElsőDátum2'] = 'Nem kell';
 
-			$get['Időszak21'] = '';
+			$get['IIdőszak21'] = 'Nem kell';
 
-			$get['IUtolsóDátum2'] = '';
+			$get['IUtolsóDátum2'] = 'Nem kell';
 
-			$get['IIdőszak22'] = '';
+			$get['IIdőszak22'] = 'Nem kell';
 
-			$get['IFogy3'] = '';
+			$get['IFogy3'] = 'Nem kell';
 
-			$get['IElsőDátum3'] = '';
+			$get['IElsőDátum3'] = 'Nem kell';
 
-			$get['IIdőszak31'] = '';
+			$get['IIdőszak31'] = 'Nem kell';
 
-			$get['IUtolsóDátum3'] = '';
+			$get['IUtolsóDátum3'] = 'Nem kell';
 
-			$get['IIdőszak32'] = '';
+			$get['IIdőszak32'] = 'Nem kell';
 
-			$get['ISzlaUgyf'] = '';
+			$get['ISzlaUgyf'] = 'Nem kell';
 
-			$get['IMozgNemKpl'] = '';
+			$get['IMozgNemKpl'] = 'Nem kell';
 
 			$get['IVVisz'] = 'Nem kell';
 
@@ -115,15 +115,15 @@ class app extends Controller{
 
 			$get['ISzVisz'] = 'Nem kell';
 
-			$get['IKövSzáll'] = '';
+			$get['IKövSzáll'] = 'Nem kell';
 
 			$get['ISzabKészl'] = 'Nem kell';
 
-			$get['ISzabSzűr'] = '';
+			$get['ISzabSzűr'] = 'Nem kell';
 
 			$get['ISzerKészl'] = 'Nem kell';
 
-			$get['ISzerSzűr'] = '';
+			$get['ISzerSzűr'] = 'Nem kell';
 
 			$get['IKMinK'] = 'Nem kell';
 
@@ -133,65 +133,65 @@ class app extends Controller{
 
 			$get['IKRend1'] = 'Nem kell';
 
-			$get['IKRendSz1'] = '';
+			$get['IKRendSz1'] = 'Nem kell';
 
 			$get['IKRend2'] = 'Nem kell';
 
-			$get['IKRendSz2'] = '';
+			$get['IKRendSz2'] = 'Nem kell';
 
 			$get['IKSzallAr'] = 'Nem kell';
 
-			$get['ISorAttr'] = '';
+			$get['ISorAttr'] = 'Nem kell';
 
-			$get['ISorSzín'] = '';
+			$get['ISorSzín'] = 'Nem kell';
 
 			$get['IMenny2'] = 'Normál';
 
-			$get['RRKpl2'] = '';
+			$get['RRKpl2'] = 'Nem kell';
 
-			$get['IMinT'] = '';
+			$get['IMinT'] = 'Nem kell';
 
-			$get['IMinA'] = '';
+			$get['IMinA'] = 'Nem kell';
 
-			$get['IMaxT'] = '';
+			$get['IMaxT'] = 'Nem kell';
 
-			$get['IMaxA'] = '';
+			$get['IMaxA'] = 'Nem kell';
 
-			$get['IMinRT'] = '';
+			$get['IMinRT'] = 'Nem kell';
 
-			$get['IMinRA'] = '';
+			$get['IMinRA'] = 'Nem kell';
 
-			$get['IIdCkTörzs'] = '';
+			$get['IIdCkTörzs'] = 'Nem kell';
 
-			$get['RaktStart'] = '';
+			$get['RaktStart'] = 'Nem kell';
 
-			$get['RaktEnd'] = '';
+			$get['RaktEnd'] = 'Nem kell';
 
-			$get['RekStart'] = '';
+			$get['RekStart'] = 'Nem kell';
 
-			$get['RekEnd'] = '';
+			$get['RekEnd'] = 'Nem kell';
 
-			$get['RRKepl'] = '';
+			$get['RRKepl'] = 'Nem kell';
 
-			$get['ElsőCikk'] = '';
+			$get['ElsőCikk'] = 'Nem kell';
 
-			$get['UtolsóCikk'] = '';
+			$get['UtolsóCikk'] = 'Nem kell';
 
-			$get['CikkKepl'] = '';
+			$get['CikkKepl'] = 'Nem kell';
 
-			$get['CikkTStart'] = '';
+			$get['CikkTStart'] = 'Nem kell';
 
-			$get['CikkTEnd'] = '';
+			$get['CikkTEnd'] = 'Nem kell';
 
-			$get['CikkTKepl'] = '';
+			$get['CikkTKepl'] = 'Nem kell';
 
-			$get['ICkBesKpl'] = '';
+			$get['ICkBesKpl'] = 'Nem kell';
 
-			$get['IElsőSzáll'] = '';
+			$get['IElsőSzáll'] = 'Nem kell';
 
-			$get['IUtolsóSzáll'] = '';
+			$get['IUtolsóSzáll'] = 'Nem kell';
 
-			$get['ISzállKéplet'] = '';
+			$get['ISzállKéplet'] = 'Nem kell';
 
 			$get['ICsakSzáll'] = 'Igen';
 
@@ -203,7 +203,7 @@ class app extends Controller{
 
 			$url = 'http://'.$hostandport.'/LGQUERY'.$volume.'?'.$param;
 
-			echo $url;
+			//echo $url;
 
 			curl_setopt($curl,CURLOPT_URL, $url);
 			curl_setopt($curl, CURLOPT_USERPWD, $username.':'.$password );
