@@ -51,7 +51,9 @@ class app extends Controller{
 			unset($get['tag']);
 			unset($get['lista']);
 
-			$get['IDátum'] = '19.07.12';
+			/* */
+
+			$get['IDátum'] = '19.07.31';
 
 			$get['IIdőpont'] = 'Nem kell';
 
@@ -63,7 +65,7 @@ class app extends Controller{
 
 			$get['IÁrtábla'] = 'Nem kell';
 
-			$get['IBruttó'] = 'Nem kell';
+			$get['IBruttó'] = 'Bruttó';
 
 			$get['IÜgyfél'] = 'Nem kell';
 
@@ -194,6 +196,8 @@ class app extends Controller{
 			$get['ISzállKéplet'] = 'Nem kell';
 
 			$get['ICsakSzáll'] = 'Igen';
+
+			/* */
 
 			foreach ((array)$get as $gk => $gv) {
 				$param .= '&'.URLEncode ( $gk ).'='.URLEncode ( $gv );
