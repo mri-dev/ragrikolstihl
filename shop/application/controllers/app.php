@@ -53,11 +53,11 @@ class app extends Controller{
 
 			/* */
 
-			$get['IDátum'] = '19.07.31';
+			$get['IDátum'] = '19.08.01';
 
 			$get['IIdőpont'] = 'Nem kell';
 
-			$get['IRend'] = '0|1|5|3|4';
+			//$get['IRend'] = '0|1|5|3|4';
 
 			$get['IÖssz'] = '2';
 
@@ -195,7 +195,7 @@ class app extends Controller{
 
 			$get['ISzállKéplet'] = 'Nem kell';
 
-			$get['ICsakSzáll'] = 'Igen';
+			$get['ICsakSzáll'] = 'Nem';
 
 			/* */
 
@@ -203,7 +203,7 @@ class app extends Controller{
 				$param .= '&'.URLEncode ( $gk ).'='.URLEncode ( $gv );
 			}
 
-			$param .= '&PrnForma=HTML';
+			$param .= '&PrnForma=XML';
 
 			$url = 'http://'.$hostandport.'/LGQUERY'.$volume.'?'.$param;
 
