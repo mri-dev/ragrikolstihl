@@ -1,5 +1,7 @@
 <?
 use ProductManager\Products;
+use Applications\NagyMachinatorImport;
+use Applications\CSVParser;
 
 class app extends Controller{
 		function __construct(){
@@ -22,7 +24,70 @@ class app extends Controller{
 			$this->view->SEOSERVICE = $SEO;
 		}
 
-		public function nm()
+		function nm_keszlet()
+		{
+			if (!isset($_GET['key']) && $_GET['key'] != 'sadh4738ras5d6532xr5s632r728s7234') {
+				header('HTTP/1.0 403 Forbidden');
+				exit;
+			}
+			$machinator = new NagyMachinatorImport(array('db' => $this->db));
+
+			// Készlet
+			try {
+				$machinator->setListName('WebService Keszlet Minta');
+				$machinator->outputFormat('XML');
+
+				$data = $machinator->connect();
+				if ($data) {
+					file_put_contents($_SERVER['DOCUMENT_ROOT']."/admin/src/json/keszlet.xml", $data);
+					//$data = $machinator->parseCSVData($data);
+					//print_r($data);
+					unset($data);
+				}
+			} catch (\Exception $e) {
+				echo $e->getMessage();
+			}
+
+			unset($machinator);
+		}
+
+		function nm_termekek()
+		{
+			if (!isset($_GET['key']) && $_GET['key'] != 'sadh4738ras5d6532xr5s632r728s7234') {
+				header('HTTP/1.0 403 Forbidden');
+				exit;
+			}
+			$machinator = new NagyMachinatorImport(array('db' => $this->db));
+
+			// Cikkek
+			try {
+				$machinator->setListName('WebService Cikk Minta');
+				$machinator->outputFormat('XML');
+
+				$data = $machinator->connect();
+				if ($data) {
+					file_put_contents($_SERVER['DOCUMENT_ROOT']."/admin/src/json/articles.xml", $data);
+					//$data = $machinator->parseCSVData($data);
+					//print_r($data);
+					unset($data);
+				}
+			} catch (\Exception $e) {
+				echo $e->getMessage();
+			}
+
+			unset($machinator);
+		}
+
+		function nm_sync()
+		{
+
+		}
+
+		/*
+		UnasShop+WEB+Lista
+		*/
+
+		public function devnm()
 		{
 			set_time_limit ( 120 ); // hosszabb futási idejű listák esetén érdemes fentebb állítani!
 
@@ -34,9 +99,7 @@ class app extends Controller{
 
 			$listname = $_GET['lista']; // lehet még pl: "WebService Cikk Minta", "WebService Keszlet Minta"...
 			//$listname = 'Bővített készlet lista'; // lehet még pl: "WebService Cikk Minta", "WebService Keszlet Minta"...
-
 			$username = "WebServer"; // A WebServer terminálhoz megadott felhasználónév/jelszó. Ez az alapértelmezett.
-
 			$password = "WEBSERVER";
 
 			// lekérdezés futtatása:
@@ -51,7 +114,7 @@ class app extends Controller{
 			unset($get['tag']);
 			unset($get['lista']);
 
-			/* */
+			/* * /
 
 			$get['IDátum'] = '19.08.01';
 
@@ -203,23 +266,18 @@ class app extends Controller{
 				$param .= '&'.URLEncode ( $gk ).'='.URLEncode ( $gv );
 			}
 
-			$param .= '&PrnForma=XML';
+			$param .= '&PrnForma=HTML';
 
 			$url = 'http://'.$hostandport.'/LGQUERY'.$volume.'?'.$param;
 
 			//echo $url;
-
 			curl_setopt($curl,CURLOPT_URL, $url);
 			curl_setopt($curl, CURLOPT_USERPWD, $username.':'.$password );
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-
 			$response = curl_exec($curl);
-
 			curl_close($curl);
-
 			//echo iconv( "Windows-1250", "UTF-8", $response);
 			echo $response;
-
 		}
 
 		/**
