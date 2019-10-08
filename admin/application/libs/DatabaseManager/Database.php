@@ -25,6 +25,7 @@ class Database
 		try{
 			$this->db = new \PDO('mysql:host=' . $this->db_host . ';dbname=' . $this->db_name, $this->db_user , $this->db_pw );
 			//echo '-DBOPEN-';
+			$this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 			$this->query("set names utf8");
 		}catch(\PDOException $e){
 			die($e->getMessage());
@@ -62,7 +63,11 @@ class Database
 
 	public function query( $qry )
 	{
-		return $this->db->query( $qry );
+		try {
+				return $this->db->query( $qry );
+		} catch (\PDOException $e) {
+				die($e->getMessage());
+		}
 	}
 
 	public function lastInsertId()

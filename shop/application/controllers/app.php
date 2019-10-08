@@ -78,6 +78,17 @@ class app extends Controller{
 			unset($machinator);
 		}
 
+		function importToTermekek($value='')
+		{
+			if (!isset($_GET['key']) && $_GET['key'] != 'sadh4738ras5d6532xr5s632r728s7234') {
+				header('HTTP/1.0 403 Forbidden');
+				exit;
+			}
+
+			$machinator = new NagyMachinatorImport(array('db' => $this->db));
+			$machinator->importToTermekek();
+		}
+
 		function nm_sync()
 		{
 			if (!isset($_GET['key']) && $_GET['key'] != 'sadh4738ras5d6532xr5s632r728s7234') {
@@ -85,10 +96,15 @@ class app extends Controller{
 				exit;
 			}
 			$machinator = new NagyMachinatorImport(array('db' => $this->db));
+
 			// Termékek betöltése
 			$machinator->syncArticles();
+
 			// Készlet szinkron
 			$machinator->syncStock();
+
+			// Termékek frissítése a shop-ban
+			//$machinator->importToTermekek();
 		}
 
 		/*
