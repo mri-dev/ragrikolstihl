@@ -1,0 +1,67 @@
+RewriteEngine on
+AddDefaultCharset utf8
+Options -Indexes
+
+<filesMatch ".(css|jpg|jpeg|png|gif|js|ico|svg)$">
+Header set Cache-Control "max-age=2592000, public"
+</filesMatch>
+
+RewriteCond %{HTTPS} off
+# First rewrite to HTTPS:
+# Don't put www. here. If it is already there it will be included, if not
+# the subsequent rule will catch it.
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# Now, rewrite any request to the wrong domain to use www.
+# [NC] is a case-insensitive match
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule .* https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+#Almappába irányítás
+RewriteCond %{HTTPS} off
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteCond %{HTTP_HOST} ^r-agrikol.web-pro.hu$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www.r-agrikol.web-pro.hu$
+RewriteCond %{REQUEST_URI} !shop/
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule (.*) /shop/$1 [L]  
+
+# BEGIN cPanel-generated php ini directives, do not edit
+# Manual editing of this file may result in unexpected behavior.
+# To make changes to this file, use the cPanel MultiPHP INI Editor (Home >> Software >> MultiPHP INI Editor)
+# For more information, read our documentation (https://go.cpanel.net/EA4ModifyINI)
+<IfModule php5_module>
+   php_flag asp_tags Off
+   php_flag display_errors Off
+   php_value max_execution_time 30
+   php_value max_input_time 60
+   php_value max_input_vars 1000
+   php_value memory_limit 256M
+   php_value post_max_size 8M
+   php_value session.gc_maxlifetime 1440
+   php_value session.save_path "/var/cpanel/php/sessions/ea-php56"
+   php_value upload_max_filesize 2M
+   php_flag zlib.output_compression On
+</IfModule>
+<IfModule lsapi_module>
+   php_flag asp_tags Off
+   php_flag display_errors Off
+   php_value max_execution_time 30
+   php_value max_input_time 60
+   php_value max_input_vars 1000
+   php_value memory_limit 256M
+   php_value post_max_size 8M
+   php_value session.gc_maxlifetime 1440
+   php_value session.save_path "/var/cpanel/php/sessions/ea-php56"
+   php_value upload_max_filesize 2M
+   php_flag zlib.output_compression On
+</IfModule>
+# END cPanel-generated php ini directives, do not edit

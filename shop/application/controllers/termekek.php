@@ -27,6 +27,7 @@ class termekek extends Controller {
 			$cat = new Category(Product::getTermekIDFromUrl(), array( 'db' => $this->db ));
 			$this->out( 'category', $cat );
 
+
 			// Kategória szülő almenüi
 			$categories = new Categories( array( 'db' => $this->db ) );
 
@@ -68,6 +69,7 @@ class termekek extends Controller {
 			/****
 			* Termékek
 			*****/
+
 			$filters = array();
 			$paramfilters = array();
 			$order = array();
@@ -95,12 +97,11 @@ class termekek extends Controller {
 				'db' => $this->db,
 				'user' => $this->User->get()
 			) ))->prepareList( $arg );
+
 			$this->out( 'products', $products );
 			$this->out( 'product_list', $products->getList() );
 			$this->out( 'productFilters', $products->productFilters( (array)$products->getLoadedIDS() ) );
 			$this->out( 'filters', $products->getFilters($_GET,'fil'));
-
-
 			$get = $_GET;
 			unset($get['tag']);
 			$get = http_build_query($get);
@@ -113,7 +114,6 @@ class termekek extends Controller {
 				'after' => ( $get ) ? '?'.$get : '',
 				'item_limit' => 12
 			)))->render() );
-
 			$this->out( 'slideshow', 	$this->Portal->getSlideshow( $this->view->category->getName() ) );
 
 			// Log AV

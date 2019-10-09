@@ -124,6 +124,7 @@ class termekek extends Controller
 
 			// Termék lista
 			$products = new Products( array( 'db' => $this->db ) );
+			$price_groups = $products->priceGroupList();
 
 			$filters = Helper::getCookieFilter('filter',array('filtered'));
 
@@ -171,6 +172,8 @@ class termekek extends Controller
 			$this->view->fizetesiMod = $nfizmod;
 			// Szállítási idő lista
 			$this->view->szallitas 	= $this->AdminUser->getSzallitasIdoLista();
+			// Ár csoportok
+			$this->view->price_groups = $price_groups;
 
 
 			// SEO Információk

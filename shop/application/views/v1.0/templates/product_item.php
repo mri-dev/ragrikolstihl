@@ -26,23 +26,21 @@
 		</div>
 
     <div class="prices">
-      <?php
-        $ar = $brutto_ar;
-        $wo_price = ($without_price == '1') ? true : false;
-        if( $akcios == '1' ) $ar = $akcios_fogy_ar;
-      ?>
       <div class="wrapper <?=($wo_price)?'wo-price':''?>">
         <?php if ( $wo_price ): ?>
           <div class="ar">
-            <strong>ÉRDEKLŐDJÖN!</strong><br>
-            Kérje szakértőnk tanácsát!
+            <div class="">
+               <strong>ÉRDEKLŐDJÖN!</strong>
+            </div>
+            <div class="">
+              Kérje szakértőnk tanácsát!
+            </div>
           </div>
         <?php else: ?>
           <?php if ( $akcios == '1' ): ?>
             <div class="ar akcios">
-              <div class="old"><?=Helper::cashFormat($brutto_ar)?> <?=$valuta?></div>
-              <div class="percents">-<? echo 100-round($akcios_fogy_ar / ($brutto_ar / 100)); ?>%</div>
               <div class="current"><?=Helper::cashFormat($ar)?> <?=$valuta?></div>
+              <div class="old"><?=Helper::cashFormat($eredeti_ar)?> <?=$valuta?></div>
             </div>
           <?php else: ?>
             <div class="ar">

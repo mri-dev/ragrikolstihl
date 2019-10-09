@@ -548,7 +548,7 @@ class Products
 		}
 
 		$admin_listing = ( $arg['admin'] ) ? true : false;
-
+		$uid = (int)$this->user[data][ID];
 		/*==========  Lekérdezés  ==========*/
 		$qry = "
 		SELECT SQL_CALC_FOUND_ROWS
@@ -578,19 +578,22 @@ class Products
 			p.without_price,
 			p.szin,
 			p.csoport_kategoria,
+			p.alapertelmezett_kategoria,
 			p.ajanlatunk,
 			p.meret,
 			p.garancia_honap,
 			p.termek_site_url,
 			p.ajandek,
 			p.rovid_leiras,
-			GROUP_CONCAT(CONCAT('p_',pa.parameterID,':',pa.ertek)) as paramErtek,
-			IF(p.egyedi_ar IS NOT NULL,
-				p.egyedi_ar,
-				getTermekAr(p.marka, IF(p.akcios,p.akcios_brutto_ar,p.brutto_ar))
-			) as ar,
+			p.xml_import_origin,
+			p.xml_import_res_id,
+			p.kulcsszavak,
 			p.fotermek,
-			(SELECT GROUP_CONCAT(kategoria_id) FROM shop_termek_in_kategoria WHERE termekID = p.ID ) as in_cat,
+			p.sorrend,
+			GROUP_CONCAT(CONCAT('p_',pa.parameterID,':',pa.ertek)) as paramErtek,
+			getTermekAr(p.ID, ".$uid.") as ar,
+			getTermekOriginalAr(p.ID, ".$uid.") as eredeti_ar,
+			(SELECT GROUP_CONCAT(stik.kategoria_id) FROM shop_termek_in_kategoria as stik LEFT OUTER JOIN shop_termek_kategoriak as tk ON tk.ID = stik.kategoria_id WHERE stik.termekID = p.ID and tk.ID IS NOT NULL) as in_cat,
 			(SELECT neve FROM shop_termek_kategoriak WHERE ID = p.alapertelmezett_kategoria ) as alap_kategoria";
 
 		if ( isset($arg['collectby']) && $arg['collectby'] == 'top' ) {
@@ -608,7 +611,7 @@ class Products
 		$add = '';
 
 		if (!$admin_listing) {
-			$add = " and p.lathato = 1 and p.profil_kep IS NOT NULL ";
+			$add = " and p.lathato = 1 ";
 			$whr .= $add;
 			$size_whr .= $add;
 
@@ -663,8 +666,31 @@ class Products
 			$size_whr .= $add;
 		}
 
-		if ( $arg['in_cat'] ) {
-			$add = " and FIND_IN_SET(".$arg['in_cat'].",(SELECT GROUP_CONCAT(kategoria_id) FROM shop_termek_in_kategoria WHERE termekID = p.ID )) ";
+		if ( isset($arg['in_cat']) ) {
+			$in_cats = array();
+
+			if (is_array($arg['in_cat'])) {
+				$catid = $arg['in_cat'];
+				$in_cats = array_merge($in_cats, $arg['in_cat']);
+			} else {
+				$catid = (int)$arg['in_cat'];
+				$in_cats[] = $catid;
+			}
+
+			$cat_children = $this->getCategoryChildren($catid);
+			if ($cat_children)
+			{
+				$in_cats = array_merge($in_cats, $cat_children);
+			}
+
+			$in_cat_str = ' and (';
+			foreach ((array)$in_cats as $ic) {
+				$in_cat_str .= "FIND_IN_SET(".$ic.",(SELECT GROUP_CONCAT(kategoria_id) FROM shop_termek_in_kategoria WHERE termekID = p.ID )) or ";
+			}
+			$in_cat_str = rtrim($in_cat_str, " or ");
+			$in_cat_str .= ')';
+
+			$add = $in_cat_str;
 			$whr .= $add;
 			$size_whr .= $add;
 		}
@@ -963,10 +989,13 @@ class Products
 			$d['link'] 				= DOMAIN.'termek/'.\PortalManager\Formater::makeSafeUrl( $d['product_nev'], '_-'.$d['product_id'] );
 			$d['hasonlo_termek_ids']= $this->getProductRelatives( $d['product_id'] );
 			$d['parameters'] 		= $this->getParameters( $d['product_id'], $d['alapertelmezett_kategoria'] );
+			$d['price_groups'] 	= $this->priceGroups( $d['xml_import_origin'], $d['xml_import_res_id'] );
 			$d['inKatList'] 		= $in_cat;
-			$d['ar'] 				= $arInfo['ar'];
-			$d['akcios_fogy_ar']	= $akcios_arInfo['ar'];
-			$d['arres_szazalek'] 	= $arInfo['arres'];
+			$d['mertekegyseg_egysegar'] = $this->calcEgysegAr($d['mertekegyseg'], $d['mertekegyseg_ertek'], $d['ar']);
+
+			//$d['ar'] 				= $arInfo['ar'];
+			//$d['akcios_fogy_ar']	= $akcios_arInfo['ar'];
+			//$d['arres_szazalek'] 	= $arInfo['arres'];
 
 			$bdata[]	 			= $d;
 		}
@@ -2009,6 +2038,143 @@ class Products
 		}
 
 		return false;
+	}
+
+	public static function calcEgysegAr( $me, $mevar, $price)
+	{
+		$ea = 0;
+		$mert = $me;
+		switch ( $me ) {
+			case 'méter':
+				$ea = $price / $mevar;
+			break;
+			case 'ml':
+				$ea = $price / $mevar * 1000;
+				$mert = 'l';
+			break;
+		}
+
+		if ($ea == 0 || $mevar == 1) {
+			return false;
+		} else {
+			return number_format($ea,2, ".", " ") . ' Ft/'.$mert;
+		}
+	}
+
+	public function makeKeywordsArray( &$keywords )
+	{
+		if ($keywords == '') {
+			return array();
+		}
+
+		$keywords = str_replace(", ", ",", $keywords);
+		$keywords = explode(",", $keywords);
+
+		return $keywords;
+	}
+
+	public function priceGroupList()
+	{
+		$q = "SELECT * FROM shop_price_groups ORDER BY groupkey ASC";
+		$qry = $this->db->query($q);
+
+		if ( $qry->rowCount() == 0 ) {
+			return array();
+		}
+
+		$data = $qry->fetchAll(\PDO::FETCH_ASSOC);
+
+		$bdata = array();
+		foreach ((array)$data as $d) {
+			$bdata[$d['groupkey']] = $d;
+		}
+		unset($data);
+		return $bdata;
+	}
+
+	public function priceGroups( $originid = 0, $xml_res_id )
+	{
+		if ($originid == 0) {
+			return false;
+		}
+		$groups = array();
+		$groups['has'] = array();
+		$pricenums = 6;
+
+		$qkey = "";
+		for ($x= 1; $x <= $pricenums  ; $x++) {
+			$qkey .= "t.ar".$x.", ";
+		}
+		$qkey = rtrim($qkey,", ");
+
+		$xml_res_id = addslashes($xml_res_id);
+
+		$q = "SELECT ".$qkey." FROM xml_temp_products as t WHERE t.origin_id = {$originid} and t.ID = '$xml_res_id'";
+
+		$prices = $this->db->query($q);
+
+		if ( $prices->rowCount() != 0 ) {
+			$prices = $prices->fetch(\PDO::FETCH_ASSOC);
+		} else $prices = array();
+
+		for ($i = 1; $i <= $pricenums ; $i++) {
+			$key = 'ar'.$i;
+			$net = (float)$prices[$key];
+			if($net != 0 && !in_array($key, $groups['has'])) {
+				$groups['has'][] = $key;
+			}
+			$groups['set'][$key] = array(
+				'brutto' => $net,
+				'netto' => ($net / 1.27)
+			);
+		}
+
+		unset($prices);
+
+		return $groups;
+	}
+
+
+	/**
+	*  Kategóriák ID-jának leszármazottjai
+	**/
+	public function getCategoryChildren( $cat_id )
+	{
+		$set = array();
+		$walk = true;
+
+		if (is_array($cat_id)) {
+			foreach ((array)$cat_id as $cid) {
+				if ((int)$cid == 0) {
+					continue;
+				}
+				$q = $this->db->squery("SELECT ID FROM shop_termek_kategoriak WHERE szulo_id = :cid;", array('cid' => $cid));
+				if ($q->rowCount() == 0) {
+					return false;
+				}
+
+				$qd = $q->fetchAll(\PDO::FETCH_ASSOC);
+
+				foreach ( (array)$qd as $c ) {
+					if (!in_array((int)$c['ID'], $set)) {
+						$set[] = (int)$c['ID'];
+					}
+				}
+			}
+		} else {
+			$q = $this->db->squery("SELECT ID FROM shop_termek_kategoriak WHERE szulo_id = :cid;", array('cid' => $cat_id));
+			if ($q->rowCount() == 0) {
+				return false;
+			}
+
+			$qd = $q->fetchAll(\PDO::FETCH_ASSOC);
+
+			foreach ( (array)$qd as $cid ) {
+				$set[] = (int)$cid['ID'];
+			}
+		}
+
+		return $set;
 	}
 
 	/*===============================

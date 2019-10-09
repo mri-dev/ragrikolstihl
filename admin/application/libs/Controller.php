@@ -60,6 +60,8 @@ class Controller {
         ));
 
 
+
+
         $this->Portal = new Portal( array( 'db' => $this->db, 'view' => $this->view )  );
         $this->captcha = (new Captcha)
         ->init(
@@ -67,117 +69,332 @@ class Controller {
             $this->view->settings['recaptcha_private_key']
         );
 
-        $this->out( 'db',   $this->db );
+        $this->out( 'db', $this->db );
         $this->out( 'user', $this->User->get( self::$user_opt ) );
 
-        // Kategóriák
-        if ( defined('PRODUCTIONSITE') )
+        // Ha nem ajax requestről van szó
+        if ($this->gets[0] != 'ajax')
         {
-          $this->Categories = new Categories(array( 'db' => $this->db ));
-          $this->Categories->getTree();
-          $this->out( 'categories', $this->Categories );
-        }
-
-        // redirector
-        if ( defined('PRODUCTIONSITE') )
-        {
-          $redrirector = new Redirector('shop', ltrim($_SERVER['REQUEST_URI'], '/'), array('db' => $this->db));
-          $redrirector->start();
-        }
-
-        $templates = new Template( VIEW . 'templates/' );
-        $this->out( 'templates', $templates );
-        $this->out( 'highlight_text', $this->Portal->getHighlightItems() );
-        $this->out( 'slideshow', $this->Portal->getSlideshow() );
-
-        // Footer menü
-        $tree = null;
-        $menu_footer  = new Menus( false, array( 'db' => $this->db ) );
-        $menu_footer->addFilter( 'menu_type', 'footer' );
-        $menu_footer->isFinal(true);
-        $tree   = $menu_footer->getTree();
-        $this->out( 'menu_footer',  $tree );
-
-        unset($tree);
-
-        // Kapcsolat menü üzenet
-        if ( Post::on('contact_form') ) {
-          try {
-            $this->Portal->sendContactMsg();
-            Helper::reload('?msgkey=page_msg&page_msg=Üzenetét sikeresen elküldte. Hamarosan válaszolni fogunk rá!');
-          } catch (Exception $e) {
-            $this->out( 'page_msg', Helper::makeAlertMsg('pError', $e->getMessage()) );
+          // Kategóriák
+          if ( defined('PRODUCTIONSITE') )
+          {
+            $this->Categories = new Categories(array( 'db' => $this->db ));
+            $this->Categories->getTree();
+            $this->out( 'categories', $this->Categories );
           }
+
+          // redirector
+          if ( defined('PRODUCTIONSITE') )
+          {
+            $redrirector = new Redirector('shop', ltrim($_SERVER['REQUEST_URI'], '/'), array('db' => $this->db));
+            $redrirector->start();
+          }
+
+          $templates = new Template( VIEW . 'templates/' );
+          $this->out( 'templates', $templates );
+          $this->out( 'highlight_text', $this->Portal->getHighlightItems() );
+          $this->out( 'slideshow', $this->Portal->getSlideshow() );
+
+          // Footer menü
+          $tree = null;
+          $menu_footer  = new Menus( false, array( 'db' => $this->db ) );
+          $menu_footer->addFilter( 'menu_type', 'footer' );
+          $menu_footer->isFinal(true);
+          $tree   = $menu_footer->getTree();
+          $this->out( 'menu_footer',  $tree );
+
+          unset($tree);
+
+          // Kapcsolat menü üzenet
+          if ( Post::on('contact_form') ) {
+            try {
+              $this->Portal->sendContactMsg();
+              Helper::reload('?msgkey=page_msg&page_msg=Üzenetét sikeresen elküldte. Hamarosan válaszolni fogunk rá!');
+            } catch (Exception $e) {
+              $this->out( 'page_msg', Helper::makeAlertMsg('pError', $e->getMessage()) );
+            }
+          }
+
+          if ( defined('PRODUCTIONSITE') )
+          {
+            if (false) {
+              /****
+              * TOP TERMÉKEK
+              *****/
+              $arg = array(
+                'limit' 	=> 5,
+                'collectby' => 'top'
+              );
+              $top_products = (new Products( array(
+                'db' => $this->db,
+                'user' => $this->User->get()
+              ) ))->prepareList( $arg );
+              $this->out( 'top_products', $top_products );
+              $this->out( 'top_products_list', $top_products->getList() );
+
+              /****
+              * MEGNÉZETT TERMÉKEK
+              *****/
+              $arg = array();
+              $viewed_products = (new Products( array(
+                'db' => $this->db,
+                'user' => $this->User->get()
+              ) ))->getLastviewedList( \Helper::getMachineID(), 5, $arg );
+              $this->out( 'viewed_products_list', $viewed_products );
+
+              /****
+              * Live TERMÉKEK
+              *****/
+              $arg = array();
+              $live_products = (new Products( array(
+                'db' => $this->db,
+                'user' => $this->User->get()
+              ) ))->getLiveviewedList( \Helper::getMachineID(), 5, $arg );
+              $this->out( 'live_products_list', $live_products );
+            }
+          }
+
+
+          if ( $_GET['msgkey'] ) {
+              $this->out( $_GET['msgkey'], Helper::makeAlertMsg('pSuccess', $_GET[$_GET['msgkey']]) );
+          }
+
+          $this->out( 'states', array(
+              0=>"Bács-Kiskun",
+              1=>"Baranya",
+              2=>"Békés",
+              3=>"Borsod-Abaúj-Zemplén",
+              4=>"Budapest",
+              5=>"Csongrád",
+              6=>"Fejér",
+              7=>"Győr-Moson-Sopron",
+              8=>"Hajdú-Bihar",
+              9=>"Heves",
+              10=>"Jász-Nagykun-Szolnok",
+              11=>"Komárom-Esztergom",
+              12=>"Nógrád",
+              13=>"Pest",
+              14=>"Somogy",
+              15=>"Szabolcs-Szatmár-Bereg",
+              16=>"Tolna",
+              17=>"Vas",
+              18=>"Veszprém",
+              19=>"Zala",
+          ) );
+
+          $this->out( 'kozterulet_jellege', $this->kozterulet_jellege() );
         }
 
-        if ( defined('PRODUCTIONSITE') )
-        {
-          /****
-          * TOP TERMÉKEK
-          *****/
-          $arg = array(
-            'limit' 	=> 5,
-            'collectby' => 'top'
-          );
-          $top_products = (new Products( array(
-            'db' => $this->db,
-            'user' => $this->User->get()
-          ) ))->prepareList( $arg );
-          $this->out( 'top_products', $top_products );
-          $this->out( 'top_products_list', $top_products->getList() );
 
-          /****
-          * MEGNÉZETT TERMÉKEK
-          *****/
-          $arg = array();
-          $viewed_products = (new Products( array(
-            'db' => $this->db,
-            'user' => $this->User->get()
-          ) ))->getLastviewedList( \Helper::getMachineID(), 5, $arg );
-          $this->out( 'viewed_products_list', $viewed_products );
-
-          /****
-          * Live TERMÉKEK
-          *****/
-          $arg = array();
-          $live_products = (new Products( array(
-            'db' => $this->db,
-            'user' => $this->User->get()
-          ) ))->getLiveviewedList( \Helper::getMachineID(), 5, $arg );
-          $this->out( 'live_products_list', $live_products );
-        }
-
-
-        if ( $_GET['msgkey'] ) {
-            $this->out( $_GET['msgkey'], Helper::makeAlertMsg('pSuccess', $_GET[$_GET['msgkey']]) );
-        }
-
-        $this->out( 'states', array(
-            0=>"Bács-Kiskun",
-            1=>"Baranya",
-            2=>"Békés",
-            3=>"Borsod-Abaúj-Zemplén",
-            4=>"Budapest",
-            5=>"Csongrád",
-            6=>"Fejér",
-            7=>"Győr-Moson-Sopron",
-            8=>"Hajdú-Bihar",
-            9=>"Heves",
-            10=>"Jász-Nagykun-Szolnok",
-            11=>"Komárom-Esztergom",
-            12=>"Nógrád",
-            13=>"Pest",
-            14=>"Somogy",
-            15=>"Szabolcs-Szatmár-Bereg",
-            16=>"Tolna",
-            17=>"Vas",
-            18=>"Veszprém",
-            19=>"Zala",
-        ) );
 
         if(!$arg[hidePatern]){ $this->hidePatern = false; }
 
         $this->view->valuta  = 'Ft';
+    }
+
+    public function kozterulet_jellege()
+    {
+       $arr = array(
+            'akna',
+            'akna-alsó',
+            'akna-felső',
+            'alagút',
+            'alsórakpart',
+            'arborétum',
+            'autóút',
+            'barakképület',
+            'barlang',
+            'bejáró',
+            'bekötőút',
+            'bánya',
+            'bányatelep',
+            'bástya',
+            'bástyája',
+            'csárda',
+            'csónakházak',
+            'domb',
+            'dűlő',
+            'dűlők',
+            'dűlősor',
+            'dűlőterület',
+            'dűlőút',
+            'egyetemváros',
+            'egyéb',
+            'elágazás',
+            'emlékút',
+            'erdészház',
+            'erdészlak',
+            'erdő',
+            'erdősor',
+            'fasor',
+            'fasora',
+            'felső',
+            'forduló',
+            'főmérnökség',
+            'főtér',
+            'főút',
+            'föld',
+            'gyár',
+            'gyártelep',
+            'gyárváros',
+            'gyümölcsös',
+            'gát',
+            'gátsor',
+            'gátőrház',
+            'határsor',
+            'határút',
+            'hegy',
+            'hegyhát',
+            'hegyhát dűlő',
+            'hegyhát',
+            'köz',
+            'hrsz',
+            'hrsz.',
+            'ház',
+            'hídfő',
+            'iskola',
+            'játszótér',
+            'kapu',
+            'kastély',
+            'kert',
+            'kertsor',
+            'kerület',
+            'kilátó',
+            'kioszk',
+            'kocsiszín',
+            'kolónia',
+            'korzó',
+            'kultúrpark',
+            'kunyhó',
+            'kör',
+            'körtér',
+            'körvasútsor',
+            'körzet',
+            'körönd',
+            'körút',
+            'köz',
+            'kút',
+            'kültelek',
+            'lakóház',
+            'lakókert',
+            'lakónegyed',
+            'lakópark',
+            'lakótelep',
+            'lejtő',
+            'lejáró',
+            'liget',
+            'lépcső',
+            'major',
+            'malom',
+            'menedékház',
+            'munkásszálló',
+            'mélyút',
+            'műút',
+            'oldal',
+            'orom',
+            'park',
+            'parkja',
+            'parkoló',
+            'part',
+            'pavilon',
+            'piac',
+            'pihenő',
+            'pince',
+            'pincesor',
+            'postafiók',
+            'puszta',
+            'pálya',
+            'pályaudvar',
+            'rakpart',
+            'repülőtér',
+            'rész',
+            'rét',
+            'sarok',
+            'sor',
+            'sora',
+            'sportpálya',
+            'sporttelep',
+            'stadion',
+            'strandfürdő',
+            'sugárút',
+            'szer',
+            'sziget',
+            'szivattyútelep',
+            'szállás',
+            'szállások',
+            'szél',
+            'szőlő',
+            'szőlőhegy',
+            'szőlők',
+            'sánc',
+            'sávház',
+            'sétány',
+            'tag',
+            'tanya',
+            'tanyák',
+            'telep',
+            'temető',
+            'tere',
+            'tető',
+            'turistaház',
+            'téli kikötő',
+            'tér',
+            'tömb',
+            'udvar',
+            'utak',
+            'utca',
+            'utcája',
+            'vadaskert',
+            'vadászház',
+            'vasúti megálló',
+            'vasúti őrház',
+            'vasútsor',
+            'vasútállomás',
+            'vezetőút',
+            'villasor',
+            'vágóhíd',
+            'vár',
+            'várköz',
+            'város',
+            'vízmű',
+            'völgy',
+            'zsilip',
+            'zug',
+            'állat és növ.kert',
+            'állomás',
+            'árnyék',
+            'árok',
+            'átjáró',
+            'őrház',
+            'őrházak',
+            'őrházlak',
+            'út',
+            'útja',
+            'útőrház',
+            'üdülő',
+            'üdülő-part',
+            'üdülő-sor',
+            'üdülő-telep',
+            );
+
+        asort($arr);
+        uasort($arr, array('Controller', 'Hcmp'));
+
+        return $arr;
+    }
+
+    /**
+    * Magyar ékezetes betűk korrigálás/rewrite rendezéshez
+    * */
+    static function Hcmp($a, $b)
+    {
+      static $Hchr = array('á'=>'az', 'é'=>'ez', 'í'=>'iz', 'ó'=>'oz', 'ö'=>'ozz', 'ő'=>'ozz', 'ú'=>'uz', 'ü'=>'uzz', 'ű'=>'uzz', 'cs'=>'cz', 'zs'=>'zz',
+       'ccs'=>'czcz', 'ggy'=>'gzgz', 'lly'=>'lzlz', 'nny'=>'nznz', 'ssz'=>'szsz', 'tty'=>'tztz', 'zzs'=>'zzzz', 'Á'=>'az', 'É'=>'ez', 'Í'=>'iz',
+       'Ó'=>'oz', 'Ö'=>'ozz', 'Ő'=>'ozz', 'Ú'=>'uz', 'Ü'=>'uzz', 'Ű'=>'uzz', 'CS'=>'cz', 'ZZ'=>'zz', 'CCS'=>'czcz', 'GGY'=>'gzgz', 'LLY'=>'lzlz',
+       'NNY'=>'nznz', 'SSZ'=>'szsz', 'TTY'=>'tztz', 'ZZS'=>'zzzz');
+       $a = strtr($a,$Hchr);   $b = strtr($b,$Hchr);
+       $a=strtolower($a); $b=strtolower($b);
+       return strcmp($a, $b);
     }
 
     function out( $viewKey, $output ){

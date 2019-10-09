@@ -2,6 +2,11 @@ $(function(){
 	searchFilters();
 	getLocation();
 
+	$('*[jOpen]').openPage({
+		overlayed 	: true,
+		path 		: '<?=AJAX_BOX?>'
+	});
+
 	$.cookieAccepter('https://www.tuzvedelmicentrum.web-pro.hu/p/aszf/');
 
 	var transports_c 			= $('.transports');
@@ -338,6 +343,17 @@ $(function(){
 		}
 	});
 })
+
+function searchItem(e){
+	var srcString = e.find('input[type=text]').val();
+	$.post('<?=AJAX_POST?>',{
+		type: 'log',
+		mode: 'searching',
+		val: srcString
+	},function(re){
+		document.location.href='/kereses/'+srcString;
+	},"html");
+}
 
 function autoresizeImages(){
 	var images = $('.img-auto-cuberatio');
