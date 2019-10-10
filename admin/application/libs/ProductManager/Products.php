@@ -262,10 +262,10 @@ class Products
 
 		// Kötelező mezők ellenőrzése
 		if( !$product->getName() ) throw new \Exception('Termék nevének megadása kötelező!');
-		if(	!$product->getManufacturerId() ) throw new \Exception('Márka kiválasztása kötelező!');
+		//if(	!$product->getManufacturerId() ) throw new \Exception('Márka kiválasztása kötelező!');
 		if( !$product->getTransportTimeId() ) throw new \Exception('Szállítási időt kötelező kiválasztani!');
 		if( !$product->getStatusId() ) throw new \Exception('Állapotot kötelező kiválasztani!');
-		if( !$product->getCategoryList() ) throw new \Exception('Termék kategória kiválasztása kötelező!');
+		//if( !$product->getCategoryList() ) throw new \Exception('Termék kategória kiválasztása kötelező!');
 
 		if( true ){
 			$cikkszam 		= $product->getItemNumber();
@@ -310,6 +310,9 @@ class Products
 			$tudastar_url 	= (!$product->getVariable('tudastar_url')) ? NULL : $product->getVariable('tudastar_url');
 			$referer_price_discount 	= (!$product->getVariable('referer_price_discount')) ? 0 : $product->getVariable('referer_price_discount');
 			$sorrend 			= (!$product->getVariable('sorrend')) ? 0 : $product->getVariable('sorrend');
+
+			$mertekegyseg = (!$product->getVariable('mertekegyseg')) ? NULL : $product->getVariable('mertekegyseg');
+			$mertekegyseg_ertek = (!$product->getVariable('mertekegyseg_ertek')) ? 1 : $product->getVariable('mertekegyseg_ertek');
 
 			// Csatolt hivatkozások előkészítése
 			if( $link_list ) {
@@ -366,14 +369,16 @@ class Products
 					'tudastar_url' => $tudastar_url,
 					'referer_price_discount' => $referer_price_discount,
 					'sorrend' => $sorrend,
-					'show_stock' => $show_stock
+					'show_stock' => $show_stock,
+					'mertekegyseg' => $mertekegyseg,
+					'mertekegyseg_ertek' => $mertekegyseg_ertek,
 				),
 				sprintf("ID = %d", $product->getId())
 			);
 
 			// Kategóriákba sorolás
 			if ( $product->getCategoryList() ) {
-			 	$this->doCategoryConnect( $product->getId(), $product->getCategoryList() );
+			 	//$this->doCategoryConnect( $product->getId(), $product->getCategoryList() );
 			}
 
 			// Árváltozások módosítása
@@ -1594,6 +1599,8 @@ class Products
 
 		$categories = new Categories( array( 'db' => $this->db ) );
 
+		$uid = (int)$this->user[data][ID];
+
 		$row = "t.*";
 
 		if (isset($opt['rows'])) {
@@ -1602,10 +1609,12 @@ class Products
 
 		$q = $this->db->query("
 			SELECT 			$row,
-							k.neve as kategoriaNev,
-							ta.elnevezes as keszletNev,
-							sza.elnevezes as szallitasNev
-			FROM 			shop_termekek as t
+				getTermekAr(t.ID, ".$uid.") as ar,
+				getTermekOriginalAr(t.ID, ".$uid.") as eredeti_ar,
+				k.neve as kategoriaNev,
+				ta.elnevezes as keszletNev,
+				sza.elnevezes as szallitasNev
+			FROM shop_termekek as t
 			LEFT OUTER JOIN shop_termek_kategoriak as k ON k.ID = t.alapertelmezett_kategoria
 			LEFT OUTER JOIN shop_termek_allapotok as ta ON ta.ID = t.keszletID
 			LEFT OUTER JOIN shop_szallitasi_ido as sza ON sza.ID = t.szallitasID
@@ -1616,7 +1625,8 @@ class Products
 		$data = $q->fetch(\PDO::FETCH_ASSOC);
 
 
-		$brutto_ar 			= $data['brutto_ar'];
+		$brutto_ar	= $data['ar'];
+		$eredeti_brutto_ar	= $data['eredeti_ar'];
 		$akcios_brutto_ar 	= $data['akcios_brutto_ar'];
 
 		$kep = $data['profil_kep'];
@@ -1626,12 +1636,8 @@ class Products
 		$arInfo 		= $this->getProductPriceCalculate( $data['marka'], $brutto_ar );
 		$akcios_arInfo 	= $this->getProductPriceCalculate( $data['marka'], $akcios_brutto_ar );
 
-		if( $d['akcios'] == '1') {
-			$arInfo['ar'] = $arInfo['ar'];
-		}
-
-		$arInfo['ar'] 			= ($this->settings['round_price_5'] == '1') ? round($arInfo['ar'] / 5) * 5 : $arInfo['ar'] ;
-		$akcios_arInfo['ar'] 	= ($this->settings['round_price_5'] == '1') ? round($akcios_arInfo['ar'] / 5) * 5 : $akcios_arInfo['ar'] ;
+		//$arInfo['ar'] 			= ($this->settings['round_price_5'] == '1') ? round($arInfo['ar'] / 5) * 5 : $arInfo['ar'] ;
+		//$akcios_arInfo['ar'] 	= ($this->settings['round_price_5'] == '1') ? round($akcios_arInfo['ar'] / 5) * 5 : $akcios_arInfo['ar'] ;
 
 		$data['rovid_leiras'] 		= $this->addLinkToString( $data, $data['rovid_leiras'] );
 		$data['ar'] 				= $arInfo['ar'];
@@ -1658,7 +1664,41 @@ class Products
 		// Csatolt link hivatkozások
 		$this->getProductLinksFromCategoryHashkeys( $data['in_cat_page_hashkeys'], $data['link_lista'] );
 
+		$data['mertekegyseg_egysegar'] = $this->calcEgysegAr($data['mertekegyseg'], $data['mertekegyseg_ertek'], $data['ar']);
+		$data['kisker_ar'] = $this->getProductPriceByGroup( $product_id, 'ar1');
+
+		$data['crm'] = $this->getFullCRMItemData( 1, $data['xml_import_res_id'] );
+
 		return $data;
+	}
+
+	public function getFullCRMItemData( $origin, $id )
+	{
+		$data = $this->db->squery("SELECT * FROM xml_temp_products as t WHERE t.ID = :id", array('id' => $id));
+
+		if ($data->rowCount() == 0) {
+			return array();
+		} else {
+			return $data->fetch(\PDO::FETCH_ASSOC);
+		}
+	}
+
+	public function getProductPriceByGroup( $id, $group = 'ar1' )
+	{
+		$price = array();
+
+		$res_id = $this->db->squery("SELECT xml_import_res_id FROM shop_termekek WHERE ID = :id", array('id' => $id))->fetchColumn();
+
+		$price['xml_res_id'] = $res_id;
+
+		$netprice = $this->db->squery("SELECT {$group} FROM xml_temp_products WHERE ID = :id", array('id' => $res_id))->fetchColumn();
+
+		if ($netprice) {
+			$price['netto'] = (float)$netprice;
+			$price['brutto'] = round((float)$netprice * 1.27);
+		}
+
+		return $price;
 	}
 
 	public function checkProductTransportName( $szallitasID, $keszlet = 1 )
@@ -2045,12 +2085,16 @@ class Products
 		$ea = 0;
 		$mert = $me;
 		switch ( $me ) {
-			case 'méter':
+			case 'méter': case 'm':
 				$ea = $price / $mevar;
 			break;
 			case 'ml':
 				$ea = $price / $mevar * 1000;
 				$mert = 'l';
+			break;
+			case 'cs':
+				$ea = $price / $mevar;
+				$mert = 'db';
 			break;
 		}
 

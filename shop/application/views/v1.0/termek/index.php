@@ -1,10 +1,5 @@
 <?php
-  $ar = $this->product['brutto_ar'];
-
-  if( $this->product['akcios'] == '1' && $this->product['akcios_fogy_ar'] > 0)
-  {
-     $ar = $this->product['akcios_fogy_ar'];
-  }
+  $ar = $this->product['ar'];
 ?>
 <div class="product-view page-width">
   <div class="product-data">
@@ -60,26 +55,76 @@
         <? endif; ?>
         </div>
         <div class="prices">
-          <div class="base">
-            <?php if ($this->product['without_price']): ?>
-              <div class="current">
-                ÉRDEKLŐDJÖN!
+              <div class="base">
+                <?php if ($this->product['without_price']): ?>
+                  <div class="current">
+                    ÉRDEKLŐDJÖN!
+                  </div>
+                <?php else: ?>
+                  <?php
+                    $price_title_prefix = 'Kiskeredkedelmi';
+                    $show_kisker_prices = false;
+                    if ($this->user) {
+                      switch ($this->user['data']['price_group_title']) {
+                        case 'Viszonteladó':
+                          $price_title_prefix = 'Viszonteladói';
+                          $show_kisker_prices = true;
+                        break;
+                        case 'Nagyker vásárló':
+                          $price_title_prefix = 'Nagykereskedői';
+                          $show_kisker_prices = true;
+                        break;
+                      }
+                    }
+                  ?>
+                  <?php if ($this->user && $this->user[data][user_group] == 'company'): ?>
+                  <div class="netto">
+                    <div class="pricehead"><?=$price_title_prefix?> <strong>nettó ár</strong>:</div>
+                    <span class="price"><?=\PortalManager\Formater::cashFormat($ar/1.27)?> <?=$this->valuta?><? if($this->product['mertekegyseg'] != ''): ?><span class="unit-text">/<?=($this->product['mertekegyseg_ertek']!=1)?$this->product['mertekegyseg_ertek']:''?><?=$this->product['mertekegyseg']?></span><? endif; ?></span>
+                  </div>
+                  <?php endif; ?>
+                  <div class="brutto">
+                    <div class="pricehead"><?=$price_title_prefix?> <strong>bruttó ár</strong>:</div>
+                    <span class="price current <?=( $this->product['akcios'] == '1' && $this->product['akcio']['mertek'] > 0)?'discounted':''?>"><?=\PortalManager\Formater::cashFormat($ar)?> <?=$this->valuta?><? if($this->product['mertekegyseg'] != ''): ?><span class="unit-text">/<?=$this->product['mertekegyseg']?></span><? endif; ?></span>
+                    <?  if( $this->product['akcios'] == '1' && $this->product['akcio']['mertek'] > 0):
+                        $ar = $this->product['eredeti_ar'];
+                    ?>
+                    <div class="price old"><strike><?=\PortalManager\Formater::cashFormat($ar)?> <?=$this->valuta?><? if($this->product['mertekegyseg'] != ''): ?><span class="unit-text">/<?=$this->product['mertekegyseg']?></span><? endif; ?></strike></div>
+                    <? endif; ?>
+                  </div>
+                  <?php if ($show_kisker_prices && $this->product[kisker_ar] && $this->product[kisker_ar][brutto] != '0'): ?>
+                  <div class="kisker-addon-price">
+                    <div class="pricehead">Kiskereskedelmi ár:</div>
+                    <span class="price"><?php echo \PortalManager\Formater::cashFormat($this->product['kisker_ar']['brutto']); ?> <?=$this->valuta?> <span class="net">(<?php echo \PortalManager\Formater::cashFormat($this->product['kisker_ar']['netto']); ?> <?=$this->valuta?> + ÁFA)</span></span>
+                  </div>
+                  <?php endif; ?>
+                <?php endif; ?>
               </div>
-            <?php else: ?>
-              <?  if( $this->product['akcios'] == '1' && $this->product['akcios_fogy_ar'] > 0):
-                  $ar = $this->product['akcios_fogy_ar'];
-              ?>
-              <div class="old">
-                  <div class="price"><strike><?=\PortalManager\Formater::cashFormat($this->product['ar'])?> <?=$this->valuta?></strike></div>
-              </div>
+              <div class="cimkek">
+              <? if($this->product['akcios'] == '1'): ?>
+                  <img src="<?=IMG?>discount_icon.png" title="Akciós!" alt="Akciós">
               <? endif; ?>
-              <div class="current">
-                  <?=\PortalManager\Formater::cashFormat($ar)?> <?=$this->valuta?>
+              <? if($this->product['ujdonsag'] == '1'): ?>
+                  <img src="<?=IMG?>new_icon.png" title="Újdonság!" alt="Újdonság">
+              <? endif; ?>
               </div>
-            <?php endif; ?>
           </div>
-        </div>
         <div class="divider"></div>
+        <? if($this->settings['stock_outselling'] == '0' && $this->product['raktar_keszlet'] <= 0): ?>
+            <div class="out-of-stock">
+              A termék jelenleg nem rendelhető.
+            </div>
+            <? endif; ?>
+
+            <?php if ($this->product['show_stock'] == 1): ?>
+            <div class="stock-info <?=($this->product['raktar_keszlet'] <=0)?'no-stock':''?>">
+              <?php if ($this->product['raktar_keszlet'] > 0): ?>
+                Készleten: <strong><?php echo $this->product['raktar_keszlet']; ?> <?php echo strtolower($this->product['mertekegyseg']); ?>.</strong>
+              <?php else: ?>
+                Készleten: <strong>Nincs készleten jelenleg.</strong>
+              <?php endif; ?>
+            </div>
+            <?php endif; ?>
         <div class="status-params">
           <div class="avaibility">
             <div class="h">Elérhetőség:</div>
@@ -139,7 +184,7 @@
               <?php if ( !$this->product['without_price'] ): ?>
               <div class="men">
                 <div class="wrapper">
-                  <label for="add_cart_num">Darab:</label>
+                  <label for="add_cart_num">Mennyiség:</label>
                   <input type="number" name="" id="add_cart_num" cart-count="<?=$this->product['ID']?>" value="1" min="1">
                 </div>
               </div>
@@ -157,6 +202,14 @@
                 </div>
               <?php endif; ?>
             </div>
+            <?php if ($this->product['mertekegyseg_egysegar']): ?>
+            <div class="egysegar">
+              <?php if ($this->product['meret'] != ''): ?>
+                Kiszerelés: <strong><?php echo $this->product['meret']; ?></strong> &nbsp;
+              <?php endif; ?>
+              Egységár: <strong><?php echo $this->product['mertekegyseg_egysegar']; ?></strong>
+            </div>
+            <?php endif; ?>
           </div>
           <div class="divider"></div>
           <div class="group helpdesk-actions">
@@ -295,7 +348,7 @@
     </div>
     <? endif; ?>
 
-    <? if( $this->top_products->hasItems() ): ?>
+    <? if( $this->top_products && $this->top_products->hasItems() ): ?>
     <div class="topproducts side-group">
       <div class="head">
         Top termékek

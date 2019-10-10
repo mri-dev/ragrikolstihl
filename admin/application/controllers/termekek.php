@@ -221,7 +221,6 @@ class termekek extends Controller
 				case 'edit': case 'newedit':
 
 					// Termék másolása
-
 					if(Post::on('copyTermek')){
 						try{
 							$re = $this->AdminUser->copyTermek($_POST[tid],$_POST[copyNum]);
@@ -283,6 +282,9 @@ class termekek extends Controller
 								'csoport_kategoria' => $_POST['csoport_kategoria'],
 								'ajandek' => $_POST['ajandek'],
 								'termek_site_url' => $_POST['termek_site_url'],
+								'mertekegyseg' => $_POST['mertekegyseg'],
+								'mertekegyseg_ertek' => $_POST['mertekegyseg_ertek'],
+								'referer_price_discount' => $_POST['referer_price_discount'],
 								'tudastar_url' => $_POST['tudastar_url'],
 								'referer_price_discount' => $_POST['referer_price_discount'],
 								'show_stock' => $_POST['show_stock'],
