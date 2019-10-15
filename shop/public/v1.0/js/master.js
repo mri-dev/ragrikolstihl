@@ -426,11 +426,21 @@ function Cart(){
 				'<i class="fa fa-minus-square" title="Kevesebb" onclick="Cart.removeItem('+i.termekID+')"></i>'+
 				'<i class="fa fa-plus-square" title="Több" onclick="Cart.addItem('+i.termekID+')"></i>'+
 			'</div>'+
-			'<div class="remove"><i class="fa fa-times "  onclick="Cart.remove('+i.termekID+');" title="Eltávolítás"></i></div>'+
-			'<div class="name"><a href="'+i.url+'">'+i.termekNev+'</a> <span class="in">x '+i.me+'</span></div>'+
-			'<div class="sub"><div class="tipus">Variáció: <span class="val">'+((i.szin) ? i.szin+'</span>' : '')+''+( (i.meret)?', Kiszerelés: <span class="val">'+i.meret+'</span>':'')+'</div><span class="ar">'+( (i.ar != '-1')? i.ar+' Ft / db' : 'Ár: érdeklődjön' )+'</span></div>'+
-		'</div>'+
-		'<div class="clr"></div></div>';
+			'<div class="remove"><i class="fa fa-times "  onclick="Cart.remove('+i.termekID+');" title="Eltávolítás"></i></div>';
+			ec += '<div class="name"><a href="'+i.url+'">'+i.termekNev+'</a> <span class="in">x '+i.me+'</span></div>';
+			ec += '<div class="sub"><div class="tipus">';
+
+			if (i.szin) {
+				ec += 'Variáció: <span class="val">'+i.szin+'</span>';
+			}
+
+			if (i.meret) {
+				ec += ', Kiszerelés: <span class="val">'+i.meret+'</span>';
+			}
+			ec += '</div>';
+			ec += '<span class="ar">'+( (i.ar != '-1')? i.ar+' Ft / '+((i.mertekegyseg) ? i.mertekegyseg: 'db') : 'Ár: érdeklődjön' )+'</span>';
+			ec += '</div>';
+			ec += '<div class="clr"></div></div>';
 		if(oi.length == 0){
 			$(this.content).html(ec);
 		}else{
@@ -640,6 +650,7 @@ function searchFilters(){
 		refreshCart(e);
 		buildCartItems(e);
 	});
+
 }
 function buildCartItems(c){
 	var i = c.items;
@@ -652,7 +663,8 @@ function buildCartItems(c){
 	}
 }
 
-function getCartInfo(callback){
+async function getCartInfo(callback)
+{
 	$.post('/ajax/get/',{
 		type : 'cartInfo'
 	},function(d){
@@ -660,6 +672,7 @@ function getCartInfo(callback){
 		callback(p);
 	},"html");
 }
+
 function refreshCart(p){
 	$('#cart-item-num-v, .cart-item-num-v').text(p.itemNum);
 	$('#cart-item-num, .cart-item-num-v').text(p.itemNum);

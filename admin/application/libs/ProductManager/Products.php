@@ -496,7 +496,7 @@ class Products
 		foreach($data as $d){
 			$kep = $d['profil_kep'];
 			$d['profil_kep'] 		=  \PortalManager\Formater::productImage( $kep, false, self::TAG_IMG_NOPRODUCT );
-			$d['profil_kep_small'] 	=  \PortalManager\Formater::productImage( $kep, 300, self::TAG_IMG_NOPRODUCT );
+			$d['profil_kep_small'] 	=  \PortalManager\Formater::productImage( $kep, 150, self::TAG_IMG_NOPRODUCT );
 			$d['link'] = DOMAIN.'termek/'.\PortalManager\Formater::makeSafeUrl( $d['product_nev'], '_-'.$d['product_id'] );
 
 			$bdata[]	 			= $d;
@@ -595,7 +595,6 @@ class Products
 			p.kulcsszavak,
 			p.fotermek,
 			p.sorrend,
-			GROUP_CONCAT(CONCAT('p_',pa.parameterID,':',pa.ertek)) as paramErtek,
 			getTermekAr(p.ID, ".$uid.") as ar,
 			getTermekOriginalAr(p.ID, ".$uid.") as eredeti_ar,
 			(SELECT GROUP_CONCAT(stik.kategoria_id) FROM shop_termek_in_kategoria as stik LEFT OUTER JOIN shop_termek_kategoriak as tk ON tk.ID = stik.kategoria_id WHERE stik.termekID = p.ID and tk.ID IS NOT NULL) as in_cat,
@@ -852,35 +851,40 @@ class Products
         }
         $fkq = rtrim($fkq, ' and ');
         if ($fkq != '') {
-            $having .= " HAVING ";
+            $having .= " HAVING ar > 0 and ";
             $having .= $fkq;
         }
-    }
-		//echo $having;
+    } else {
+			$having .= " HAVING ar > 0 ";
+		}
 		/* */
 
 		// GROUP BY
-		if ( !$admin_listing ) {
-			if( isset($arg['favorite']) && !empty($arg['favorite']) ) {
+	if ( !$admin_listing ) {
+		if( isset($arg['favorite']) && !empty($arg['favorite']) ) {
+			$add = "GROUP BY p.ID";
+			$whr .= $add;
+			$qry .= $add;
+		} else {
+
+			if( !empty($arg['meret']) ) {
+				//$add = "GROUP BY p.raktar_articleid";
 				$add = "GROUP BY p.ID";
 				$whr .= $add;
 				$qry .= $add;
 			} else {
-				if( !empty($arg['meret']) ) {
-					$add = "GROUP BY p.raktar_articleid";
-					$whr .= $add;
-					$qry .= $add;
-				} else {
-					$add = "GROUP BY p.raktar_articleid";
-					$whr .= $add;
-					$qry .= $add;
-				}
+				//$add = "GROUP BY p.raktar_articleid";
+				$add = "GROUP BY p.ID";
+				$whr .= $add;
+				$qry .= $add;
 			}
-		} else {
-			$add = "GROUP BY p.ID";
-			$whr .= $add;
-			$qry .= $add;
 		}
+	} else {
+		$add = "GROUP BY p.ID";
+		$whr .= $add;
+		$qry .= $add;
+	}
+
 
 		$qry .= $having;
 

@@ -7,10 +7,6 @@ footer {
 	.main {
 		margin-top: 30px;
 		margin-bottom: -75px;
-		background-image: url('#{$imgroot}src/images/footer-design.svg');
-		background-repeat: repeat-x;
-		background-size: 500px;
-		background-position: bottom center;
 
 		h3 {
 			font-weight: bold;
@@ -21,9 +17,6 @@ footer {
 		& > .pw > .wrapper{
 			padding: 30px 0;
 			border-top: 1px solid #e0e0e0;
-			background-image: url('#{$imgroot}src/images/footer-design-clouds.svg');
-			background-position: top center;
-			background-repeat: no-repeat;
 
 			.about {
 				flex: 1;

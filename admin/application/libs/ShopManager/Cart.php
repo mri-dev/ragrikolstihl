@@ -30,9 +30,10 @@ class Cart
 			return false;
 		}
 
-		$re 		= array();
-		$itemNum 	= 0;
+		$re = array();
+		$itemNum = 0;
 		$totalPrice = 0;
+		$uid = (int)$this->user[data][ID];
 
 		// Clear cart if item num 0
 		$this->db->query("DELETE FROM shop_kosar WHERE me <= 0 and gepID = {$this->machine_id};");
@@ -46,10 +47,13 @@ class Cart
 			t.nev as termekNev,
 			t.meret,
 			t.szin,
+			t.mertekegyseg,
+			t.mertekegyseg_ertek,
 			ta.elnevezes as allapot,
 			t.profil_kep,
-			IF(t.egyedi_ar IS NOT NULL, t.egyedi_ar, getTermekAr(t.marka, IF(t.akcios,t.akcios_brutto_ar,t.brutto_ar))) as ar,
-			(IF(t.egyedi_ar IS NOT NULL, t.egyedi_ar, getTermekAr(t.marka, IF(t.akcios,t.akcios_brutto_ar,t.brutto_ar))) * c.me) as sum_ar,
+			getTermekAr(t.ID, ".$uid.") as ar,
+			getTermekOriginalAr(t.ID, ".$uid.") as eredeti_ar,
+			(getTermekAr(t.ID, ".$uid.") * c.me) as sum_ar,
 			szid.elnevezes as szallitasIdo
 		FROM shop_kosar as c
 		LEFT OUTER JOIN shop_termekek AS t ON t.ID = c.termekID

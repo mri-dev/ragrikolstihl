@@ -20,9 +20,11 @@
 
     <div class="image">
 			<a href="<?=$link?>"><img title="<?=$product_nev?>" src="<?=$profil_kep_small?>" alt="<?=$product_nev?>"></a>
-      <div class="short-desc">
-        <?php echo $rovid_leiras; ?>
-      </div>
+      <?php if ($rovid_leiras): ?>        
+        <div class="short-desc">
+          <?php echo $rovid_leiras; ?>
+        </div>
+      <?php endif; ?>
 		</div>
 
     <div class="prices">

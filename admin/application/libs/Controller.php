@@ -59,9 +59,6 @@ class Controller {
           'user' => $this->User->get()
         ));
 
-
-
-
         $this->Portal = new Portal( array( 'db' => $this->db, 'view' => $this->view )  );
         $this->captcha = (new Captcha)
         ->init(
@@ -117,7 +114,8 @@ class Controller {
 
           if ( defined('PRODUCTIONSITE') )
           {
-            if (false) {
+            $p = $this->gets[0];
+            if (in_array($p, array('termekek', 'termek', 'webshop'))) {
               /****
               * TOP TERMÉKEK
               *****/

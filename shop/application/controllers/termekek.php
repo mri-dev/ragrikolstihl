@@ -88,10 +88,14 @@ class termekek extends Controller {
 				'in_cat' 	=> $cat->getId(),
 				'meret' 	=> $_GET['meret'],
 				'order' 	=> $order,
-				'limit' 	=> 1,
+				'limit' 	=> 30,
 				'page' 		=> Helper::currentPageNum(),
 				'favorite' => $myfavorite
 			);
+
+			if (!empty($_GET['src'])) {
+				$arg['search'] = explode(" ",trim($_GET['src']));
+			}
 
 			$products = (new Products( array(
 				'db' => $this->db,

@@ -1,5 +1,5 @@
 <div class="sidebar-holder">
-    <?php if ( !$this->product_listing ): ?>
+    <?php if ( !$this->product_listing || true ): ?>
       <? $this->render('templates/sidebar_menu'); ?>
     <?php endif; ?>
 

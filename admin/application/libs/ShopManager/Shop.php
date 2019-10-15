@@ -27,7 +27,6 @@ class Shop
 		$this->user = $arg[user];
 		$this->settings = $arg[view]->settings;
 
-
 		// Dokument csoportok
 		// Dokument színek
 		$docs = $this->db->query("SELECT * FROM shop_documents_groups ORDER BY sorrend ASC;");
@@ -1005,7 +1004,8 @@ class Shop
 		return $data;
 	}
 
-	public function cartInfo( $mid, $arg = array() ){
+	public function cartInfo( $mid, $arg = array() )
+	{
 		$re 		= array();
 		$kedvezmeny = 0;
 		$itemNum 	= 0;
@@ -1019,6 +1019,7 @@ class Shop
 		);
 
 		if($mid == '') return false;
+		$uid = (int)$this->user[data][ID];
 
 		if( $arg['coupon'] ) {
 			$coupon = $arg['coupon'];
@@ -1039,12 +1040,15 @@ class Shop
 			t.nev as termekNev,
 			t.szin,
 			t.meret,
+			t.mertekegyseg,
+			t.mertekegyseg_ertek,
 			t.raktar_articleid,
 			getTermekUrl(t.ID,'".DOMAIN."') as url,
 			ta.elnevezes as allapot,
 			t.profil_kep,
-			IF(t.egyedi_ar IS NOT NULL, t.egyedi_ar, getTermekAr(t.marka, IF(t.akcios,t.akcios_brutto_ar,t.brutto_ar))) as ar,
-			(IF(t.egyedi_ar IS NOT NULL, t.egyedi_ar, getTermekAr(t.marka, IF(t.akcios,t.akcios_brutto_ar,t.brutto_ar))) * c.me) as sum_ar,
+			getTermekAr(t.ID, ".$uid.") as ar,
+			getTermekOriginalAr(t.ID, ".$uid.") as eredeti_ar,
+			(getTermekAr(t.ID, ".$uid.") * c.me) as sum_ar,
 			t.referer_price_discount,
 			szid.elnevezes as szallitasIdo
 		FROM shop_kosar as c
@@ -1125,7 +1129,11 @@ class Shop
 			$totalPrice += $d[ar] * $d[me];
 
 
-			$d['profil_kep'] = \PortalManager\Formater::productImage( $d['profil_kep'] );
+			if ($d['profil_kep']) {
+				$d['profil_kep'] = \PortalManager\Formater::productImage( $d['profil_kep'] );
+			} else {
+				$d['profil_kep'] = \PortalManager\Formater::productImage( 'images/no-product-img.png' );
+			}
 
 			if( $d['prices']['old_each'] != 0 && $d['prices']['old_each'] != $d['prices']['current_each']  )
 			{
