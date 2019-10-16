@@ -37,7 +37,11 @@ class app extends Controller{
 				$machinator->setListName('WebService Keszlet Minta');
 				$machinator->outputFormat('XML');
 
+				echo $machinator->requestURI();
+
 				$data = $machinator->connect();
+				var_dump($data);
+				exit;
 				if ($data) {
 					file_put_contents($_SERVER['DOCUMENT_ROOT']."/admin/src/json/keszlet.xml", $data);
 					//$data = $machinator->parseCSVData($data);
@@ -47,6 +51,10 @@ class app extends Controller{
 			} catch (\Exception $e) {
 				echo $e->getMessage();
 			}
+			// Készlet szinkron
+			$machinator->syncStock();
+			// Update
+			$machinator->autoUpdater(1);
 
 			unset($machinator);
 		}
@@ -78,6 +86,17 @@ class app extends Controller{
 			unset($machinator);
 		}
 
+		public function termekUpdater()
+		{
+			if (!isset($_GET['key']) && $_GET['key'] != 'sadh4738ras5d6532xr5s632r728s7234') {
+				header('HTTP/1.0 403 Forbidden');
+				exit;
+			}
+
+			$machinator = new NagyMachinatorImport(array('db' => $this->db));
+			$machinator->autoUpdater(1);
+		}
+
 		function importToTermekek($value='')
 		{
 			if (!isset($_GET['key']) && $_GET['key'] != 'sadh4738ras5d6532xr5s632r728s7234') {
@@ -104,7 +123,7 @@ class app extends Controller{
 			$machinator->syncStock();
 
 			// Termékek frissítése a shop-ban
-			//$machinator->importToTermekek();
+			$machinator->importToTermekek();
 		}
 
 		/*

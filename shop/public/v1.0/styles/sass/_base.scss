@@ -38,6 +38,50 @@
 	line-height: 125px;
 }
 
+.form-control{
+	color: #54ac5a;
+	border: 1px solid #eaeaea;
+	border-radius: 0;
+}
+
+.group-selector{
+		.groups{
+			width: 80%;
+			margin: 0 auto;
+			display: -webkit-box;
+		  display: -ms-flexbox;
+		  display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+
+			& > div {
+				flex-basis: 50%;
+				padding: 10px;
+			}
+
+			a{
+				background: #eceff2;
+				width: 100%;
+				display: block;
+				text-align: center;
+				padding: 60px 40px;
+				font-size: 1.4em;
+				text-transform: uppercase;
+				font-weight: bold;
+				text-decoration: none;
+		    color: $color-orange;
+				@include border-radius(10px);
+				-webkit-transition: all .4s;
+  				transition: all .4s;
+
+				&:hover{
+					background: $color-green;
+					color: white;
+				}
+			}
+		}
+	}
+
 .social {
 	.facebook a {
 		background-color: #6984c1 !important;
@@ -2832,8 +2876,17 @@ md-toast{
 .cartItems .item .subLine{
 	font-size:0.8em;
 	color: #888;
-
 	line-height: 28px;
+
+	.stock{
+		margin: 0 0 0 10px;
+		font-weight: bold;
+		color: $color-green-light;
+
+		&.no-stock{
+			color: $color-orange;
+		}
+	}
 }
 .cartItems .item > td {
 	vertical-align: middle;
@@ -2845,10 +2898,10 @@ md-toast{
 .cartItems .item .nev a{
 	font-family: 'Din Comp', sans-serif;
 	text-transform: uppercase;
-	font-size:1.2em;
+	font-size:1.4rem;
 	font-weight: bold;
-	color: $color-orange;
-	line-height: 28px;
+	color: $color-green;
+	line-height:1.5;
 }
 .cartItems .item-header{
 	color: #aaa;
@@ -3379,6 +3432,10 @@ md-toast{
 		height: 75px;
 		width: 75px;
 		margin: 0 10px 0 0;
+		img {
+			max-width: 100%;
+			width: 100%;
+		}
 	}
 	.items .name a {
 		font-family: $font-cond;
@@ -3438,6 +3495,7 @@ md-toast{
 	.datas {
 		.data {
 			padding: 0 8px;
+    	margin: 0 0 10px 0;
 
 			.payu-paid-done {
 				background: green;
@@ -3530,9 +3588,9 @@ md-toast{
 		margin-bottom: 10px;
 		h3 {
 			font-family: $font-cond;
-			color: #a9a9a9;
+			color: #fff;
 	    margin-bottom: 10px;
-	    background: #eceff2;
+	    background: $color-green;
 	    padding: 10px;
 	    text-align: center;
 	    text-transform: uppercase;
@@ -3602,7 +3660,7 @@ md-toast{
 	}
 
 	.flatInfoBox {
-		background: #eceff2;
+		background: #f4f4f4;
     border: 1px solid #d2d2d2;
 		margin: 20px 0;
 		padding: 10px 0;

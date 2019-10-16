@@ -78,7 +78,7 @@
 									</td>
 									<td class="center">
 										<span><?=$d['me']?> <?=$d['mertekegyseg']?></span>
-										<?php if ($d['mertekegyseg_ertek'] != 1): ?>
+										<?php if ($d['mertekegyseg_ertek'] > 1): ?>
 											<div class="me-subt" title="Mennyiség">
 												(<?=$d['me']*$d['mertekegyseg_ertek']?>)
 											</div>

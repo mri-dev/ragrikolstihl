@@ -1060,6 +1060,13 @@ class Users
 			throw new \Exception('Ezzel az e-mail címmel már regisztráltak! '.$resendemailtext,1002);
 		}
 
+
+		// Felhasználónév ellenőrzés
+		if($this->userExists('username',$data['username']) )
+		{
+			throw new \Exception('Ez a felhasználónév már foglalt! '.$resendemailtext,1021);
+		}
+
 		if ( empty($user_group) )
 		{
 			throw new \Exception('Sikertelen regisztráció. A regisztrációs oldalon indítsa el a regisztrációt.', 0000);
@@ -1095,6 +1102,7 @@ class Users
 				array(
 					'email' => trim($data[email]),
 					'nev' => trim($data[nev]),
+					'username' => trim($data[username]),
 					'jelszo' => \Hash::jelszo($data[pw2]),
 					'user_group' => $user_group
 				)

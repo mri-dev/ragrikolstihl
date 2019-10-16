@@ -162,7 +162,7 @@
               <tbody>
                   <tr>
                       <td  width="125" style="text-align:left; vertical-align:middle;">
-                          <img src="<?=IMGDOMAIN?><?=$settings['logo']?>" alt="<?=$settings['page_title']?>" style="width:auto !important; height:40px;">
+                          <img src="<?=ADMROOT?><?=$settings['logo']?>" alt="<?=$settings['page_title']?>" style="width:auto !important; height:40px;">
                       </td>
                       <td style="text-align:right; vertical-align:middle;" >
                           <div class="relax"><?=$settings['page_description']?></div>

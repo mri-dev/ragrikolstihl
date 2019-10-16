@@ -139,9 +139,345 @@ class NagyMachinatorImport
     }
 
     // Updater
-    //$this->autoUpdater( $originid );
+    $this->autoUpdater( $originid );
 
     return true;
+  }
+
+  public function autoUpdater( $originid = 0, $debug = false )
+  {
+    $update = array();
+
+    $q = "SELECT
+      tp.*
+    FROM `xml_temp_products` as tp
+    WHERE 1=1 and
+    tp.origin_id = {$originid}";
+
+    if (true) {
+      $q .= " and
+      (SELECT count(ID) FROM shop_termekek WHERE xml_import_origin = {$originid} and xml_import_res_id = tp.ID ) != 0";
+    }
+
+    $data = $this->db->query($q);
+
+    if ($data->rowCount() != 0)
+    {
+      $data = $data->fetchAll(\PDO::FETCH_ASSOC);
+      $upsetbench = array();
+
+      $i = 0;
+      foreach ((array)$data as $d)
+      {
+        //echo $d['prod_id'] . '<br>';
+        //if($d['prod_id'] != '10000250') continue;
+        //$i++; if ($i >= 100) { break; }
+
+        $current_data = $this->db->query("SELECT
+          ID,
+          nev,
+          keszletID,
+          szallitasID,
+          raktar_keszlet,
+          mertekegyseg
+        FROM shop_termekek
+        WHERE 1=1 and
+        xml_import_origin = {$originid} and
+        xml_import_res_id = {$d[ID]}")->fetch(\PDO::FETCH_ASSOC);
+        //if($current_data['ID'] != 2421) continue;
+
+        $d['will_update'] = $this->whatWantUpdate($originid, $d, $current_data);
+        $d['current_data'] = $current_data;
+
+        $update[] = $d;
+      }
+
+      foreach ((array)$update as $up) {
+        if(empty($up['will_update'])) continue;
+
+        $upset = '';
+
+        foreach ((array)$up['will_update']['what'] as $upkey) {
+          if (is_null($up['will_update']['field'][$upkey]['new'])) {
+            $upset .= $upkey." = NULL, ";
+          } else {
+            $v = $this->db->db->quote($up['will_update']['field'][$upkey]['new']);
+            $upset .= $upkey." = ".$v.", ";
+          }
+        }
+
+        if ($upset != '') {
+          $upset = rtrim($upset, ', ');
+          $upsetbench[$upset][] = $up['current_data']['ID'];
+        }
+      }
+
+      $xcutr = 0;
+      foreach ((array)$upsetbench as $whr => $ids) {
+        $upq = "UPDATE shop_termekek SET $whr WHERE xml_import_origin = {$originid} and ID IN (".implode(",", $ids).")";
+
+        $this->db->query($upq);
+        //echo $upq."<br>";
+      }
+
+      unset($upsetbench);
+
+      //print_r($upsetbench);
+    }
+    $this->autoIOProducts( $originid );
+
+    if ($debug) {
+      return $update;
+    } else {
+      unset($update);
+      unset($data);
+      return true;
+    }
+  }
+
+  public function whatWantUpdate( $originid = 0, $tempdata = array(), $current_data = array() )
+  {
+    $wupdate = array();
+
+    list($keszletID, $szallitasID) = $this->pushedProductKeszletSzallitasID($originid, $tempdata['termek_keszlet']);
+
+    /* * /
+    if ($current_data['netto_ar'] != $netto_ar && $current_data['akcios'] == 0) {
+      $wupdate['what'][] = 'netto_ar';
+      $wupdate['field']['netto_ar'] = array(
+        'new' => $netto_ar,
+        'old' => $current_data['netto_ar']
+      );
+    }
+    /* */
+
+    /* * /
+    if ($current_data['netto_ar'] != $netto_ar && $current_data['akcios_netto_ar'] != $netto_ar && $current_data['akcios'] == 1) {
+      $wupdate['what'][] = 'akcios_netto_ar';
+      $wupdate['field']['akcios_netto_ar'] = array(
+        'new' => $netto_ar,
+        'old' => $current_data['akcios_netto_ar']
+      );
+    }
+    /* */
+
+    /* * /
+    if ($current_data['brutto_ar'] != $brutto_ar && $current_data['akcios'] == 0) {
+      $wupdate['what'][] = 'brutto_ar';
+      $wupdate['field']['brutto_ar'] = array(
+        'new' => $brutto_ar,
+        'old' => $current_data['brutto_ar']
+      );
+    }
+    /* */
+
+    /* * /
+    if ($current_data['brutto_ar'] != $brutto_ar && $current_data['akcios_brutto_ar'] != $brutto_ar && $current_data['akcios'] == 1) {
+      $wupdate['what'][] = 'akcios_brutto_ar';
+      $wupdate['field']['akcios_brutto_ar'] = array(
+        'new' => $brutto_ar,
+        'old' => $current_data['akcios_brutto_ar']
+      );
+    }
+    /* */
+
+    /* * /
+    if ($egyedi_ar !== false && !empty($egyedi_ar) && $current_data['egyedi_ar'] != $egyedi_ar) {
+      $wupdate['what'][] = 'egyedi_ar';
+      $wupdate['field']['egyedi_ar'] = array(
+        'new' => $egyedi_ar,
+        'old' => $current_data['egyedi_ar']
+      );
+    }
+    /* */
+
+    if ($tempdata['termek_nev'] != $current_data['nev']) {
+      $wupdate['what'][] = 'nev';
+      $wupdate['field']['nev'] = array(
+        'new' => $tempdata['termek_nev'],
+        'old' => $current_data['nev']
+      );
+    }
+
+    if ($tempdata['termek_keszlet'] != $current_data['raktar_keszlet']) {
+      $wupdate['what'][] = 'raktar_keszlet';
+      $wupdate['field']['raktar_keszlet'] = array(
+        'new' => $tempdata['termek_keszlet'],
+        'old' => $current_data['raktar_keszlet']
+      );
+    }
+
+    if ($tempdata['mennyisegegyseg'] != $current_data['mertekegyseg']) {
+      $wupdate['what'][] = 'mertekegyseg';
+      $wupdate['field']['mertekegyseg'] = array(
+        'new' => $tempdata['mennyisegegyseg'],
+        'old' => $current_data['mertekegyseg']
+      );
+    }
+
+    if ($keszletID != $current_data['keszletID']) {
+      $wupdate['what'][] = 'keszletID';
+      $wupdate['field']['keszletID'] = array(
+        'new' => $keszletID,
+        'old' => $current_data['keszletID']
+      );
+    }
+
+    if ($szallitasID != $current_data['szallitasID']) {
+      $wupdate['what'][] = 'szallitasID';
+      $wupdate['field']['szallitasID'] = array(
+        'new' => $szallitasID,
+        'old' => $current_data['szallitasID']
+      );
+    }
+
+    // Akciózás
+    if ( false )
+    {
+      if ( isset($tempdata['nagyker_ar_netto_akcios']) && (float)$tempdata['nagyker_ar_netto_akcios'] != 0 )
+      {
+        $nagyker_netto_akcios = (float)$tempdata['nagyker_ar_netto_akcios'];
+        $nagyker_brutto_akcios = $nagyker_netto_akcios * 1.27;
+        $kisker_netto = (float)$tempdata['kisker_ar_netto'];
+        $kisker_netto_akcios = (float)$tempdata['kisker_ar_netto_akcios'];
+        $kisker_brutto_akcios = round($kisker_netto_akcios * 1.27);
+        $kisker_brutto = round($kisker_netto * 1.27);
+
+        // 0-5 kerekítés
+        $nagyker_netto_akcios = round( $nagyker_netto_akcios / 5 ) * 5;
+        $nagyker_brutto_akcios = round( $nagyker_brutto_akcios / 5 ) * 5;
+        $kisker_netto = round( $kisker_netto / 5 ) * 5;
+        $kisker_netto_akcios = round( $kisker_netto_akcios /  5) * 5;
+        $kisker_brutto_akcios = round( $kisker_brutto_akcios /  5) * 5;
+        $kisker_brutto = round( $kisker_brutto /  5) * 5;
+
+        // Akciós állapot
+        if( $current_data['akcios'] != 1 ) {
+          $wupdate['what'][] = 'akcios';
+          $wupdate['field']['akcios'] = array(
+            'new' => 1,
+            'old' => $current_data['akcios']
+          );
+        }
+
+        // Egyedi ár
+        if ( $current_data['egyedi_ar'] != $kisker_brutto_akcios) {
+          $wupdate['what'][] = 'egyedi_ar';
+          $wupdate['field']['egyedi_ar'] = array(
+            'new' => $kisker_brutto_akcios,
+            'old' => $current_data['egyedi_ar']
+          );
+        }
+
+        // Akciós nettó
+        if ( $current_data['akcios_netto_ar'] != $nagyker_netto_akcios ) {
+          $wupdate['what'][] = 'akcios_netto_ar';
+          $wupdate['field']['akcios_netto_ar'] = array(
+            'new' => $nagyker_netto_akcios,
+            'old' => $current_data['akcios_netto_ar']
+          );
+        }
+
+        // Akciós bruttó
+        if ( $current_data['akcios_brutto_ar'] != $nagyker_brutto_akcios ) {
+          $wupdate['what'][] = 'akcios_brutto_ar';
+          $wupdate['field']['akcios_brutto_ar'] = array(
+            'new' => $nagyker_brutto_akcios,
+            'old' => $current_data['akcios_brutto_ar']
+          );
+        }
+
+        // Egyedi ár akciós bruttó
+        if ( $current_data['akcios_egyedi_brutto_ar'] != $kisker_brutto ) {
+          $wupdate['what'][] = 'akcios_egyedi_brutto_ar';
+          $wupdate['field']['akcios_egyedi_brutto_ar'] = array(
+            'new' => $kisker_brutto,
+            'old' => $current_data['akcios_egyedi_brutto_ar']
+          );
+        }
+      }
+
+      // Akció levétele
+      else if( isset($tempdata['nagyker_ar_netto_akcios']) && (float)$tempdata['nagyker_ar_netto_akcios'] == 0 && $current_data['akcios'] == 1 )
+      {
+        // Akciós állapot
+        if( $current_data['akcios'] == 1 ) {
+          $wupdate['what'][] = 'akcios';
+          $wupdate['field']['akcios'] = array(
+            'new' => 0,
+            'old' => $current_data['akcios']
+          );
+        }
+
+        // Egyedi ár
+        if ( $current_data['egyedi_ar'] != 0) {
+          $wupdate['what'][] = 'egyedi_ar';
+          $wupdate['field']['egyedi_ar'] = array(
+            'new' => $egyedi_ar,
+            'old' => $current_data['egyedi_ar']
+          );
+        }
+
+        // Akciós nettó
+        if ( !is_null($current_data['akcios_netto_ar']) ) {
+          $wupdate['what'][] = 'akcios_netto_ar';
+          $wupdate['field']['akcios_netto_ar'] = array(
+            'new' => null,
+            'old' => $current_data['akcios_netto_ar']
+          );
+        }
+
+        // Akciós bruttó
+        if ( !is_null($current_data['akcios_brutto_ar']) ) {
+          $wupdate['what'][] = 'akcios_brutto_ar';
+          $wupdate['field']['akcios_brutto_ar'] = array(
+            'new' => null,
+            'old' => $current_data['akcios_brutto_ar']
+          );
+        }
+
+        // Egyedi ár akciós bruttó
+        if ( !is_null($current_data['akcios_egyedi_brutto_ar']) ) {
+          $wupdate['what'][] = 'akcios_egyedi_brutto_ar';
+          $wupdate['field']['akcios_egyedi_brutto_ar'] = array(
+            'new' => null,
+            'old' => $current_data['akcios_egyedi_brutto_ar']
+          );
+        }
+      }
+    }
+
+    //print_r($tempdata);
+
+    return $wupdate;
+  }
+
+  public function autoIOProducts( $orignid = 0 )
+  {
+    if ($orignid == 0) {
+      return false;
+    }
+
+    $q = "SELECT
+    ID, nagyker_kod, lathato
+    FROM `shop_termekek`
+    WHERE
+      `xml_import_origin` = $orignid and
+      xml_import_done = 1 and
+      lathato = 1 and
+      (SELECT t.io FROM xml_temp_products as t WHERE t.prod_id != '' and t.prod_id = nagyker_kod and t.origin_id = xml_import_origin) != lathato";
+
+    $data = $this->db->query( $q );
+
+    if ($data->rowCount() != 0) {
+      $data = $data->fetchAll(\PDO::FETCH_ASSOC);
+      foreach ($data as $d) {
+        $io = ($d['lathato'] == 1) ? 0 : 1;
+        $u = "UPDATE shop_termekek SET lathato = $io WHERE xml_import_origin = $orignid and ID = ".$d['ID'];
+        //echo $u."<br>";
+        $this->db->query( $u );
+      }
+    }
   }
 
   public function syncStock()

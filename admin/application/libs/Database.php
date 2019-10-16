@@ -119,8 +119,6 @@ class Database{
 
 						END IF;
 
-						SET felh_ar = round(felh_ar * afa);
-
 					  RETURN felh_ar;
 					END;
 					$$
