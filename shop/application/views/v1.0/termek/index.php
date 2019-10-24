@@ -212,6 +212,7 @@
             <?php endif; ?>
           </div>
           <div class="divider"></div>
+          Cikkszám: <strong><?=$this->product['cikkszam']?></strong>
           <div class="group helpdesk-actions">
             <div class="social-shares">
               <div class="h">Megosztás:</div>
