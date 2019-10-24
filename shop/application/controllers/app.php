@@ -33,9 +33,11 @@ class app extends Controller{
 			$machinator = new NagyMachinatorImport(array('db' => $this->db));
 
 			// Készlet
-			// TODO: http://188.6.165.137:80/LGQUERY?Listan%C3%A9v=SOOS Szabad Keszlet lista&IRKepl=10&PrnForma=CSV
+			//  http://188.6.165.137:80/LGQUERY?Listan%C3%A9v=SOOS Szabad Keszlet lista&IRKepl=10&PrnForma=CSV
+
 			try {
-				$machinator->setListName('WebService Keszlet Minta');
+				$machinator->setListName('SOOS Szabad Keszlet lista');
+				$machinator->setURLParam('IRKepl', 10);
 				$machinator->outputFormat('XML');
 				$data = $machinator->connect();
 				if ($data) {

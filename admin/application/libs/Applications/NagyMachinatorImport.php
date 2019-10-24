@@ -510,7 +510,7 @@ class NagyMachinatorImport
           //if( $i >= 10) break;
           if((string)$item->Cikkszam == '0' || (string)$item->Cikkszam == '') continue;
           $hashkey = md5($originid.'_'.(string)$item->Cikkszam);
-          $keszlet = (float)$item->Mennyiseg;
+          $keszlet = (float)$item->Szabad_keszlet;
 
           /*
           $netto_kisker = $item->AlapAr;
