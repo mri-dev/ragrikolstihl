@@ -709,7 +709,7 @@ class Products
 		if ( $arg['search'] && is_array($arg['search']) && !empty($arg['search']) ) {
 			$add = " and (";
 				foreach ($arg['search'] as $src ) {
-					$add .= "(p.nev LIKE '%".$src."%' or p.kulcsszavak LIKE '%".$src."%' or p.rovid_leiras LIKE '%".$src."%') and ";
+					$add .= "(p.cikkszam = '".trim($src)."' or p.nev LIKE '%".$src."%' or p.kulcsszavak LIKE '%".$src."%' or p.rovid_leiras LIKE '%".$src."%') and ";
 				}
 				$add = rtrim($add," and ");
 			$add .= ") ";
