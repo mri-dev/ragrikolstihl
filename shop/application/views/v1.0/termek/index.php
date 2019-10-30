@@ -104,9 +104,6 @@
               <? if($this->product['akcios'] == '1'): ?>
                   <img src="<?=IMG?>discount_icon.png" title="Akciós!" alt="Akciós">
               <? endif; ?>
-              <? if($this->product['ujdonsag'] == '1'): ?>
-                  <img src="<?=IMG?>new_icon.png" title="Újdonság!" alt="Újdonság">
-              <? endif; ?>
               </div>
           </div>
         <div class="divider"></div>
@@ -282,23 +279,23 @@
           </div>
         <?php endif; ?>
 
-        <?php if ($this->product['links']): ?>
+        <?php if ($this->product['documents']): ?>
+        <a name="documents"></a>
         <div class="documents">
-          <div class="head">
-            <h3>Dokumentumok</h3>
-          </div>
+          <div class="head"><h3>Dokumentumok</h3></div>
           <div class="clr"></div>
           <div class="c">
             <div class="docs">
-              <?php foreach ( (array)$this->product['links'] as $doc ): ?>
+              <?php foreach ( (array)$this->product['documents'] as $doc ): ?>
               <div class="doc">
-                <a target="_blank" href="<?=$doc['link']?>"><img src="<?=IMG?>icons/docst-doc.svg" alt=""><?=$doc['title']?></a>
+                <a target="_blank" title="Kiterjesztés: <?=strtoupper($doc['ext'])?>" href="/app/dcl/<?=$doc['hashname']?>"><img src="<?=IMG?>icons/<?=$doc['icon']?>.svg" alt=""><strong><?=$doc['cim']?></strong><?=($doc[filesize])?' <span class="size">&bull; '.strtoupper($doc['ext']).' &bull; '.$doc[filesize].'</span>':''?></a>
               </div>
               <?php endforeach; ?>
             </div>
           </div>
         </div>
         <?php endif; ?>
+
       </div>
       <?php if ( $this->related_list ): ?>
       <div class="related-products">

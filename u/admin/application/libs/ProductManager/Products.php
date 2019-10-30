@@ -378,7 +378,7 @@ class Products
 
 			// Kategóriákba sorolás
 			if ( $product->getCategoryList() ) {
-			 	$this->doCategoryConnect( $product->getId(), $product->getCategoryList() );
+			 	//$this->doCategoryConnect( $product->getId(), $product->getCategoryList() );
 			}
 
 			// Árváltozások módosítása
