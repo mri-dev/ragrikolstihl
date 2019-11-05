@@ -121,7 +121,8 @@ class Controller {
               *****/
               $arg = array(
                 'limit' 	=> 5,
-                'collectby' => 'top'
+                'collectby' => 'top',
+                'archivalt' => 0
               );
               $top_products = (new Products( array(
                 'db' => $this->db,

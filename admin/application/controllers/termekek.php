@@ -56,8 +56,6 @@ class termekek extends Controller
 				}else{
 					setcookie('filter_cikkszam','',time()-100,'/'.$this->view->gets[0]);
 				}
-
-
 				if($_POST['szin'] != ''){
 					setcookie('filter_szin',$_POST['szin'],time()+60*24,'/'.$this->view->gets[0]);
 					$filtered = true;
@@ -65,6 +63,19 @@ class termekek extends Controller
 					setcookie('filter_szin','',time()-100,'/'.$this->view->gets[0]);
 				}
 
+				if($_POST['cat'] != ''){
+					setcookie('filter_cat',$_POST['cat'],time()+60*24,'/'.$this->view->gets[0]);
+					$filtered = true;
+				}else{
+					setcookie('filter_cat','',time()-100,'/'.$this->view->gets[0]);
+				}
+
+				if($_POST['order'] != ''){
+					setcookie('filter_order',$_POST['order'],time()+60*24,'/'.$this->view->gets[0]);
+					$filtered = true;
+				}else{
+					setcookie('filter_order','',time()-100,'/'.$this->view->gets[0]);
+				}
 
 				if($_POST['meret'] != ''){
 					setcookie('filter_meret',$_POST['meret'],time()+60*24,'/'.$this->view->gets[0]);
@@ -98,6 +109,13 @@ class termekek extends Controller
 					$filtered = true;
 				}else{
 					setcookie('filter_keszletID','',time()-100,'/'.$this->view->gets[0]);
+				}
+
+				if($_POST['archivalt'] != ''){
+					setcookie('filter_archivalt',$_POST['archivalt'],time()+60*24,'/'.$this->view->gets[0]);
+					$filtered = true;
+				}else{
+					setcookie('filter_archivalt','',time()-100,'/'.$this->view->gets[0]);
 				}
 
 				if($_POST['lathato'] != ''){
@@ -136,12 +154,22 @@ class termekek extends Controller
 				'admin' => true,
 				'filters' => $filters,
 				'limit' => 50,
-				'page' => Helper::currentPageNum(),
-				'order' => array(
-					'by' => 'p.ID',
-					'how' => 'DESC'
-				)
+				'page' => Helper::currentPageNum()
 			);
+
+			$arg['order']['by'] = 'p.ID';
+			$arg['order']['how'] = 'DESC';
+
+			if (isset($_COOKIE['filter_order'])) {
+				$xord = explode('-', $_COOKIE['filter_order']);
+				$arg['order']['by'] = $xord[0];
+				$arg['order']['how'] = $xord[1];
+			}
+
+			if (isset($_COOKIE['filter_cat'])) {
+				$arg['in_cat'] = $_COOKIE['filter_cat'];
+			}
+
 			$products_list = $products->prepareList( $arg )->getList();
 			$this->out( 'products', $products );
 			$this->out( 'termekek', $products_list );
@@ -199,6 +227,9 @@ class termekek extends Controller
 			setcookie('filter_szin','',time()-100,'/'.$this->view->gets[0]);
 			setcookie('filter_meret','',time()-100,'/'.$this->view->gets[0]);
 			setcookie('filter_lathato','',time()-100,'/'.$this->view->gets[0]);
+			setcookie('filter_cat','',time()-100,'/'.$this->view->gets[0]);
+			setcookie('filter_order','',time()-100,'/'.$this->view->gets[0]);
+			setcookie('filter_archivalt','',time()-100,'/'.$this->view->gets[0]);
 			setcookie('filter_fotermek','',time()-100,'/'.$this->view->gets[0]);
 			setcookie('filter_marka','',time()-100,'/'.$this->view->gets[0]);
 			setcookie('filter_szallitasID','',time()-100,'/'.$this->view->gets[0]);

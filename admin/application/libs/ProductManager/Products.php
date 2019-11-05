@@ -483,7 +483,7 @@ class Products
 		FROM `shop_utoljaraLatottTermek` as v
 		LEFT OUTER JOIN shop_termekek as t ON t.ID = v.termekID
 		LEFT OUTER JOIN shop_markak as m ON m.ID = t.marka
-		WHERE v.mID != '$mID' and t.ID IS NOT NULL and t.lathato = 1
+		WHERE v.mID != '$mID' and t.ID IS NOT NULL and t.lathato = 1 and t.archivalt = 0
 		GROUP BY t.ID
 		ORDER BY v.idopont DESC
 		LIMIT 0,$limit";
@@ -518,7 +518,7 @@ class Products
 		FROM `shop_utoljaraLatottTermek` as v
 		LEFT OUTER JOIN shop_termekek as t ON t.ID = v.termekID
 		LEFT OUTER JOIN shop_markak as m ON m.ID = t.marka
-		WHERE v.mID = '$mID' and t.ID IS NOT NULL and t.lathato = 1
+		WHERE v.mID = '$mID' and t.ID IS NOT NULL and t.lathato = 1 and t.archivalt = 0
 		ORDER BY v.idopont DESC
 		LIMIT 0,$limit";
 
@@ -595,6 +595,7 @@ class Products
 			p.kulcsszavak,
 			p.fotermek,
 			p.sorrend,
+			p.archivalt,
 			getTermekAr(p.ID, ".$uid.") as ar,
 			getTermekOriginalAr(p.ID, ".$uid.") as eredeti_ar,
 			(SELECT GROUP_CONCAT(stik.kategoria_id) FROM shop_termek_in_kategoria as stik LEFT OUTER JOIN shop_termek_kategoriak as tk ON tk.ID = stik.kategoria_id WHERE stik.termekID = p.ID and tk.ID IS NOT NULL) as in_cat,
@@ -664,39 +665,53 @@ class Products
 			$size_whr .= $add;
 		}
 
+		if ( isset($arg['archivalt']) ) {
+			$add = " and p.archivalt = ".$arg['archivalt']." ";
+			$whr .= $add;
+			$size_whr .= $add;
+		}
+
 		if ( $arg['akcios'] === true ) {
 			$add = " and p.akcios = 1 ";
 			$whr .= $add;
 			$size_whr .= $add;
 		}
 
-		if ( isset($arg['in_cat']) ) {
-			$in_cats = array();
-
-			if (is_array($arg['in_cat'])) {
-				$catid = $arg['in_cat'];
-				$in_cats = array_merge($in_cats, $arg['in_cat']);
-			} else {
-				$catid = (int)$arg['in_cat'];
-				$in_cats[] = $catid;
-			}
-
-			$cat_children = $this->getCategoryChildren($catid);
-			if ($cat_children)
+		if ( isset($arg['in_cat']) )
+		{
+			if ($arg['in_cat'] == -1)
 			{
-				$in_cats = array_merge($in_cats, $cat_children);
-			}
+				$add = " and (SELECT GROUP_CONCAT(kategoria_id) FROM shop_termek_in_kategoria WHERE termekID = p.ID ) IS NULL ";
+				$whr .= $add;
+				$size_whr .= $add;
+			} else {
+				$in_cats = array();
 
-			$in_cat_str = ' and (';
-			foreach ((array)$in_cats as $ic) {
-				$in_cat_str .= "FIND_IN_SET(".$ic.",(SELECT GROUP_CONCAT(kategoria_id) FROM shop_termek_in_kategoria WHERE termekID = p.ID )) or ";
-			}
-			$in_cat_str = rtrim($in_cat_str, " or ");
-			$in_cat_str .= ')';
+				if (is_array($arg['in_cat'])) {
+					$catid = $arg['in_cat'];
+					$in_cats = array_merge($in_cats, $arg['in_cat']);
+				} else {
+					$catid = (int)$arg['in_cat'];
+					$in_cats[] = $catid;
+				}
 
-			$add = $in_cat_str;
-			$whr .= $add;
-			$size_whr .= $add;
+				$cat_children = $this->getCategoryChildren($catid);
+				if ($cat_children)
+				{
+					$in_cats = array_merge($in_cats, $cat_children);
+				}
+
+				$in_cat_str = ' and (';
+				foreach ((array)$in_cats as $ic) {
+					$in_cat_str .= "FIND_IN_SET(".$ic.",(SELECT GROUP_CONCAT(kategoria_id) FROM shop_termek_in_kategoria WHERE termekID = p.ID )) or ";
+				}
+				$in_cat_str = rtrim($in_cat_str, " or ");
+				$in_cat_str .= ')';
+
+				$add = $in_cat_str;
+				$whr .= $add;
+				$size_whr .= $add;
+			}
 		}
 
 		if ( $arg['csoport_kategoria'] ) {
@@ -709,7 +724,7 @@ class Products
 		if ( $arg['search'] && is_array($arg['search']) && !empty($arg['search']) ) {
 			$add = " and (";
 				foreach ($arg['search'] as $src ) {
-					$add .= "(p.cikkszam = '".trim($src)."' or p.nev LIKE '%".$src."%' or p.kulcsszavak LIKE '%".$src."%' or p.rovid_leiras LIKE '%".$src."%') and ";
+					$add .= "(p.cikkszam = '".$src."' or p.nev LIKE '%".$src."%' or p.kulcsszavak LIKE '%".$src."%' or p.rovid_leiras LIKE '%".$src."%') and ";
 				}
 				$add = rtrim($add," and ");
 			$add .= ") ";
@@ -759,6 +774,10 @@ class Products
 			foreach($arg['filters'] as $key => $v){
 				switch($key)
 				{
+					// excluded
+					case 'order': case 'cat':
+					break;
+
 					case 'ID':
 						if( is_array($v) ) {
 							$value_set = false;
@@ -931,8 +950,6 @@ class Products
 		$current_page = ($arg['page'] ?: 1);
 		$start_item = $current_page * $this->product_limit_per_page - $this->product_limit_per_page;
 		$qry .= " LIMIT ".$start_item.",".$this->product_limit_per_page.";";
-
-		//echo $qry . '<br>';
 
 		$this->qry_str = $qry;
 

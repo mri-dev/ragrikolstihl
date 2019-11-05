@@ -21,6 +21,37 @@
 	<?=$this->fb_login_status?>
 </div>
 <?=$this->navigator?>
+<div class="filters">
+  <form class="" id="filterform" action="/termekek/1" method="post">
+    <input type="hidden" name="filterList" value="1">
+    <div class="row">
+      <div class="col-md-3 col-md-offset-7 <?=(isset($_COOKIE['filter_cat']) && !empty($_COOKIE['filter_cat']))?'has-success':''?>">
+        <label for="fil_order">Kategória szűkítés</label>
+        <select class="form-control" name="cat" onchange="$('#filterform').submit();">
+          <option value="" <?=(!isset($_COOKIE['filter_cat']))?'selected="selected"':''?>>Mindegy</option>
+          <option value="-1" <?=(isset($_COOKIE['filter_cat']) && $_COOKIE['filter_cat'] == '-1')?'selected="selected"':''?>>-/- Nincs kategóriába helyezve</option>
+          <option value="" disabled="disabled"></option>
+          <? while( $this->categories->walk() ): $item = $this->categories->the_cat(); ?>
+          <option value="<?=$item['ID']?>" <?=(isset($_COOKIE['filter_cat']) && $_COOKIE['filter_cat'] == $item['ID'])?'selected="selected"':''?>><?=str_repeat('&mdash;',$item['deep'])?> <?=$item['neve']?></option>
+          <? endwhile; ?>
+        </select>
+      </div>
+      <div class="col-md-2 <?=(isset($_COOKIE['filter_order']) && !empty($_COOKIE['filter_order']))?'has-success':''?>">
+        <label for="fil_order">Rendezés</label>
+        <select class="form-control" name="order" onchange="$('#filterform').submit();">
+          <option value="p.ID-DESC" <?=(!isset($_COOKIE['filter_order']) || $_COOKIE['filter_order'] == 'p.ID-DESC')?'selected="selected"':''?>>ID - Újak elől</option>
+          <option value="p.ID-ASC" <?=(isset($_COOKIE['filter_order']) && $_COOKIE['filter_order'] == 'p.ID-ASC')?'selected="selected"':''?>>ID - Régiek elől</option>
+
+          <option value="ar-ASC" <?=(isset($_COOKIE['filter_order']) && $_COOKIE['filter_order'] == 'ar-ASC')?'selected="selected"':''?>>Ár - Növekvő</option>
+          <option value="ar-DESC" <?=(isset($_COOKIE['filter_order']) && $_COOKIE['filter_order'] == 'ar-DESC')?'selected="selected"':''?>>Ár - Csökkenő</option>
+
+          <option value="p.nev-ASC" <?=(isset($_COOKIE['filter_order']) && $_COOKIE['filter_order'] == 'p.nev-ASC')?'selected="selected"':''?>>Név - A->Z</option>
+          <option value="p.nev-DESC" <?=(isset($_COOKIE['filter_order']) && $_COOKIE['filter_order'] == 'p.nev-DESC')?'selected="selected"':''?>>Név - Z->A</option>
+        </select>
+      </div>
+    </div>
+  </form>
+</div>
 <div>
 	<span class="label label-default"><input type="checkbox" id="showKats" /> részletek mutatása</span>
 </div>
@@ -42,6 +73,7 @@
       <th width="100">Száll. idő</th>
       <th width="120">Állapot</th>
       <th width="65">Készlet</th>
+      <th width="75">Archivált</th>
       <th width="75">Aktív</th>
       <!-- <th width="20" title="Főtermék">Fő</th>-->
       <th width="20"></th>
@@ -93,6 +125,13 @@
             </select>
         </td>
         <td></td>
+        <td align="center">
+          <select class="form-control" name="archivalt" style="max-width:150px;">
+            <option value="" selected="selected">X / ✓</option>
+            <option value="0" <?=('0' == $_COOKIE['filter_archivalt'])?'selected':''?>>X</option>
+            <option value="1" <?=('1' == $_COOKIE['filter_archivalt'])?'selected':''?>>✓</option>
+          </select>
+        </td>
         <td align="center"><select class="form-control"  name="lathato" style="max-width:150px;">
               <option value="" selected="selected">X / ✓</option>
              <option value="0" <?=('0' == $_COOKIE['filter_lathato'])?'selected':''?>>X</option>
@@ -183,15 +222,16 @@
             <td align="center">
 			          <input type="number" step="any" class="form-control action" mode="raktar_keszlet" tid="<?=$d['product_id']?>" min="-1" value="<?=$d['raktar_keszlet']?>" />
             </td>
+            <td align="center"><? if($d['archivalt'] == '1'): ?><i class="fa fa-check archtgl" title="Archiválás / Archiválás levétele" tid="<?=$d['product_id']?>"></i><? else: ?><i class="fa fa-times archtgl" title="Archiválás / Archiválás levétele" tid="<?=$d['product_id']?>"></i><? endif; ?></td>
             <td align="center"><? if($d['lathato'] == '1'): ?><i class="fa fa-check vtgl" title="Aktív / Kattintson az inaktiváláshoz" tid="<?=$d['product_id']?>"></i><? else: ?><i class="fa fa-times vtgl" title="Inaktív / Kattintson az aktiváláshoz" tid="<?=$d['product_id']?>"></i><? endif; ?></td>
             <!--<td align="center"><? if($d['fotermek'] == '1'): ?><i class="fa fa-check ftgl" title="Főtermék / Kattintson az inaktiváláshoz" tid="<?=$d['product_id']?>"></i><? else: ?><i class="fa fa-times ftgl" title="Nem főtermék / Kattintson az aktiváláshoz" tid="<?=$d['product_id']?>"></i><? endif; ?></td>-->
             <td align="center">
             <div class="dropdown">
             	<i class="fa fa-gears dropdown-toggle" title="Beállítások" id="dm<?=$d['product_id']?>" data-toggle="dropdown"></i>
-                  <ul class="dropdown-menu" role="menu" aria-labelledby="dm<?=$d['product_id']?>">
-                  	<li role="presentation"><a role="menuitem" tabindex="-1" href="/termekek/t/edit/<?=$d['product_id']?>">szerkesztés <i class="fa fa-pencil"></i></a></li>
-				    <li role="presentation"><a role="menuitem" tabindex="-1" href="/termekek/t/del/<?=$d['product_id']?>">törlés <i class="fa fa-times"></i></a></li>
-				  </ul>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dm<?=$d['product_id']?>">
+              	<li role="presentation"><a role="menuitem" tabindex="-1" href="/termekek/t/edit/<?=$d['product_id']?>">szerkesztés <i class="fa fa-pencil"></i></a></li>
+    				    <li role="presentation"><a role="menuitem" tabindex="-1" href="/termekek/t/del/<?=$d['product_id']?>">törlés <i class="fa fa-times"></i></a></li>
+    				  </ul>
             </div>
             </td>
         </tr>
@@ -270,6 +310,7 @@
 						<option value="action_szallitasID">Szállítási idő cseréje</option>
 						<option value="action_keszletID">Állapot cseréje</option>
 						<option value="action_lathato">Aktíválás/Deaktiválás</option>
+						<option value="action_archivalt">Archiválás</option>
 						<option value="action_ujdonsag">Újdonság állapot</option>
 						<option value="action_akcios">Akciós állapot</option>
 						<option value="action_akcio_szaz">Akciós termék, ár csökkentés (% alapján)</option>
@@ -408,6 +449,16 @@
 					</select>
 				</div>
 				<!--//Action - Aktív -->
+        <!-- Action - Aktív -->
+				<div id="action_archivalt" class="hided actionContainer">
+					<select name="action_archivalt" id="action_archivalt" class="form-control">
+						<option value="">-- státusz kiválasztása --</option>
+						<option value="" disabled></option>
+						<option value="0">Ne legyen archivált</option>
+						<option value="1">Archiválás</option>
+					</select>
+				</div>
+				<!--//Action - Aktív -->
 				<!-- Action - Akció százalék -->
 				<div id="action_akcio_szaz" class="hided actionContainer">
 					<div class="input-group">
@@ -473,9 +524,12 @@
 		$('.termeklista i.vtgl').click(function(){
 			visibleToggler($(this));
 		});
-        $('.termeklista i.ftgl').click(function(){
-            mainProductToggler($(this));
-        });
+    $('.termeklista i.ftgl').click(function(){
+        mainProductToggler($(this));
+    });
+    $('.termeklista i.archtgl').click(function(){
+        archiveToggler($(this));
+    });
 		$('.itemInf').click(function(){
 			var id = $(this).attr('itemId');
 			$('.termeklista td.in.i'+id).slideToggle(400);
@@ -556,11 +610,40 @@
         }
     }
 
+    function archiveToggler(e){
+        var tid = e.attr('tid');
+        var src =  e.attr('class').indexOf('check');
+
+        if(src >= 0){
+            e.removeClass('fa-check').addClass('fa-spinner fa-spin');
+            doArchiveChange(e, tid, false);
+        }else{
+            e.removeClass('fa-times').addClass('fa-spinner fa-spin');
+            doArchiveChange(e, tid, true);
+        }
+    }
+
 	function doVisibleChange(e, tid, show){
 		var v = (show) ? '1' : '0';
 		$.post("<?=AJAX_POST?>",{
 			type : 'termekChangeActions',
 			mode : 'showHideTermek',
+			id 	: tid,
+			val : v
+		},function(d){
+			if(!show){
+				e.removeClass('fa-spinner fa-spin').addClass('fa-times');
+			}else{
+				e.removeClass('fa-spinner fa-spin').addClass('fa-check');
+			}
+		},"html");
+	}
+
+  function doArchiveChange(e, tid, show){
+		var v = (show) ? '1' : '0';
+		$.post("<?=AJAX_POST?>",{
+			type : 'termekChangeActions',
+			mode : 'archive',
 			id 	: tid,
 			val : v
 		},function(d){

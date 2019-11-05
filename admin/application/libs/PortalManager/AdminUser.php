@@ -2871,6 +2871,9 @@ class AdminUser
 				case $prefix.'lathato':
 					$query = "UPDATE shop_termekek SET lathato = '$setValue' WHERE ID IN (".implode($_POST[selectedItem],', ').") ";
 				break;
+				case $prefix.'archivalt':
+					$query = "UPDATE shop_termekek SET archivalt = '$setValue' WHERE ID IN (".implode($_POST[selectedItem],', ').") ";
+				break;
 				case $prefix.'cetelem':
 					$query = "UPDATE shop_termekek SET no_cetelem = '$setValue' WHERE ID IN (".implode($_POST[selectedItem],', ').") ";
 				break;

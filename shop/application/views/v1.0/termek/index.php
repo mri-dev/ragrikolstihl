@@ -139,10 +139,12 @@
           </div>
           <?php endif; ?>
         </div>
-        <div class="divider"></div>
-        <div class="short-desc">
-          <?=$this->product['rovid_leiras']?>
-        </div>
+        <?php if (!empty($this->product['rovid_leiras'])): ?>
+          <div class="divider"></div>
+          <div class="short-desc">
+            <?=$this->product['rovid_leiras']?>
+          </div>
+        <?php endif; ?>
 
         <?
         if( count($this->product['hasonlo_termek_ids']['colors']) > 1 ):
@@ -209,7 +211,9 @@
             <?php endif; ?>
           </div>
           <div class="divider"></div>
-          Cikkszám: <strong><?=$this->product['cikkszam']?></strong>
+          <div class="cikkszam sku">
+            Cikkszám: <strong><?=$this->product['cikkszam']?></strong>
+          </div>          
           <div class="group helpdesk-actions">
             <div class="social-shares">
               <div class="h">Megosztás:</div>
