@@ -1,6 +1,7 @@
 <?	class View {
 		public $title = TITLE;
 		public $called = null;
+		public $vs = '';
 
 		function __construct(){}
 
@@ -85,9 +86,9 @@
 
 		function addStyle($style, $after = '', $source = true){
 			if($source){
-				return '<link rel="stylesheet" type="text/css" href="' . STYLE . $style .'.css" '.$after.'/>'."\n\r";
+				return '<link rel="stylesheet" type="text/css" href="' . STYLE . $style .'.css'.( ($this->vs != '') ? '?t='.uniqid():'').'" '.$after.'/>'."\n\r";
 			}else{
-				return '<link rel="stylesheet" type="text/css" href="' . SSTYLE . $style .'.css" '.$after.'/>'."\n\r";
+				return '<link rel="stylesheet" type="text/css" href="' . SSTYLE . $style .'.css'.( ($this->vs != '')? '?t='.uniqid():'').'" '.$after.'/>'."\n\r";
 			}
 		}
 
@@ -113,48 +114,48 @@
 		function addJS($file, $type = false, $source = true){
 			if($source){
 				$wt = (!$type) ? JS.$file.'.js' : $file ;
-				return '<script '.(($this->jsassync && $this->jsassync !== false)?$this->jsassync:'').'  type="text/javascript" src="'.$wt.'"></script>'."\n\r";
+				return '<script '.(($this->jsassync && $this->jsassync !== false)?$this->jsassync:'').'  type="text/javascript" src="'.$wt.''.( ($this->vs != '') ? '?t='.uniqid():'').'"></script>'."\n\r";
 			}else{
 				$wt = (!$type) ? SJS.$file.'.js' : $file ;
-				return '<script '.(($this->jsassync && $this->jsassync !== false)?$this->jsassync:'').'  type="text/javascript" src="'.$wt.'"></script>'."\n\r";
+				return '<script '.(($this->jsassync && $this->jsassync !== false)?$this->jsassync:'').'  type="text/javascript" src="'.$wt.''.( ($this->vs != '') ? '?t='.uniqid():'').'"></script>'."\n\r";
 			}
 		}
 
-        function show($path, $inside = false){
-            $file = VIEW;
+    function show($path, $inside = false){
+        $file = VIEW;
 
-            if($inside){
-                $main = $this->gets[0].'/';
-                $file .= $main;
-            }
-
-            $file .= $path.'.php';
-
-            if(file_exists($file)){
-                require_once $file;
-            }
+        if($inside){
+            $main = $this->gets[0].'/';
+            $file .= $main;
         }
 
-        function getPreferences($prefs = array(), $arg = array()){
-            $parent_path = VIEW.$this->gets[0].'/preferences/';
-            $css_file = ($arg[css] != '') ? $arg[css].'.' : 'main.';
+        $file .= $path.'.php';
 
-            if(!empty($prefs))
-                foreach($prefs as $pf){
-                    switch($pf){
-                        case 'js':
-                            $file = $parent_path.'main.'.$pf;
-                            if(file_exists($file))
-                                echo '<script type="application/javascript" src="/'.$file.'"></script>';
-                            break;
-                        case 'css':
-                            $file = $parent_path.$css_file.$pf;
-
-                            if(file_exists($file))
-                                echo '<link rel="stylesheet" type="text/css" href="/'.$file.'" media="screen">';
-                            break;
-                    }
-                }
+        if(file_exists($file)){
+            require_once $file;
         }
+    }
+
+    function getPreferences($prefs = array(), $arg = array()){
+        $parent_path = VIEW.$this->gets[0].'/preferences/';
+        $css_file = ($arg[css] != '') ? $arg[css].'.' : 'main.';
+
+        if(!empty($prefs))
+        foreach($prefs as $pf){
+            switch($pf){
+                case 'js':
+                    $file = $parent_path.'main.'.$pf;
+                    if(file_exists($file))
+                        echo '<script type="application/javascript" src="/'.$file.'"></script>';
+                    break;
+                case 'css':
+                    $file = $parent_path.$css_file.$pf;
+
+                    if(file_exists($file))
+                        echo '<link rel="stylesheet" type="text/css" href="/'.$file.'" media="screen">';
+                    break;
+            }
+        }
+		}
 	}
 ?>

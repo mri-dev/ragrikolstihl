@@ -501,7 +501,7 @@
 				}
 				.short-desc {
 					z-index: 2;
-					background: rgba(224, 224, 224, 0.8); 
+					background: rgba(224, 224, 224, 0.8);
 					border-top: 0.4px solid rgba(148, 148, 148, 0.5);
 					padding: 5px;
 					font-size: 0.8em;
@@ -1166,15 +1166,26 @@
 	&.landing{
 		.grid-layout{
 			justify-content: space-between;
+			align-items: unset;
 		}
 		.stihl-webshop{
 			background: $color-orange;
 			color: white;
+			position: relative;
+			height: 100%;
 
-			.img {
-				height: 250px;
+			.image {
+				height: 100%;
+				position: relative;
+				overflow: hidden;
+				z-index: 1;
 				img {
+					position: absolute;
+					left: 50%;
+					top: 50%;
 					height: 100%;
+					-webkit-transform: translate(-50%,-50%);
+					transform: translate(-50%,-50%);
 				}
 			}
 
@@ -1188,6 +1199,9 @@
 				line-height: 55px;
 				padding: 15px 0;
 				font-size: 1.5em;
+				top: 0;
+				width: 100%;
+				left: 0;
 
 				i {
 					margin: 0 0 0 15px;
@@ -1200,6 +1214,21 @@
 				}
 			}
 
+			.header, .wshop{
+				position: absolute;
+				z-index: 2;
+				background: transparentize($color-green, 0.1);
+			}
+			.header{
+				background: $color-orange;
+			}
+
+			.wshop{
+				bottom: 0;
+				left: 0;
+				width: 100%;
+			}
+
 			.wshop,
 			.agrikol{
 				a{
@@ -1209,11 +1238,6 @@
 					padding: 20px 10px;
 					text-align: center;
 					font-weight: bold;
-				}
-			}
-			.agrikol{
-				a{
-					background: darken($color-grey, 10%);
 				}
 			}
 		}

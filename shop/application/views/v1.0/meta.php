@@ -10,7 +10,9 @@
 <?=$this->addStyle('FontAwesome.min', 'media="all"')?>
 <?=$this->addStyle('dashicons.min','media="all"')?>
 <!--<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">-->
+<?php $this->vs = uniqid(); ?>
 <?=$this->addStyle('media', 'media="all"', false)?>
+<?php $this->vs = ''; ?>
 <link rel="stylesheet" type="text/css" href="<?=JS?>fancybox/jquery.fancybox.css?v=2.1.4" media="all" />
 <link rel="stylesheet" type="text/css" href="<?=JS?>fancybox/helpers/jquery.fancybox-buttons.css?v=1.0.5" />
 <link rel="stylesheet" type="text/css" href="<?=JS?>slick/slick.css"/>
@@ -32,7 +34,9 @@
 <script defer src="//ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.js"></script>
 <?=$this->addJS('bootstrap.min',false)?>
 <?=$this->addJS('jquery.cookieaccept',false,false)?>
+<?php $this->vs = uniqid(); ?>
 <?=$this->addJS('master',false,false)?>
+<?php $this->vs = ''; ?>
 <?=$this->addJS('pageOpener',false,false)?>
 <?=$this->addJS('user',false,false)?>
 <?=$this->addJS('jquery.cookie',false)?>

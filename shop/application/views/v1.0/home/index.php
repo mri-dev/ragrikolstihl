@@ -11,10 +11,7 @@
 						<img src="<?=IMGDOMAIN . $this->settings['welcome_img_small']?>" alt="Stihl">
 					</div>
 					<div class="wshop">
-						<a href="<?=$this->settings['welcome_outside_url']?>" target="_blank">Webáruház</a>
-					</div>
-					<div class="agrikol">
-						<a href="/webshop">Egyéb termékek</a>
+						<a href="/webshop" target="_blank">Tovább a Webáruházra ></a>
 					</div>
 				</div>
 			</div>

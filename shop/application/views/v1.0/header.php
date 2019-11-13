@@ -45,7 +45,7 @@
             <img src="<?=IMG?>person-design-stihl.png" alt="Person Contact">
           </div>
         </div>
-        <div class="actions" ng-controller="ActionButtons">
+        <div class="actions hide-on-mobile" ng-controller="ActionButtons">
           <div class="flex flexmob-exc-resp">
             <div class="visszahivas">
               <button type="button" ng-click="requestRecall()">Ingyenes visszahívás</button>
@@ -55,7 +55,7 @@
             </div>
           </div>
         </div>
-        <div class="cart">
+        <div class="cart hide-on-mobile">
           <div class="holder" id="mb-cart">
             <div class="flex" mb-event="true" data-mb='{ "event": "toggleOnClick", "target" : "#mb-cart" }'>
               <div class="ico">
@@ -85,8 +85,8 @@
             </div>
           </div>
         </div>
-        <div class="div"></div>
-        <div class="buttons">
+        <div class="div hide-on-mobile"></div>
+        <div class="buttons hide-on-mobile">
           <div class="login">
             <a href="/user/belepes" class="holder">
               <div class="ico">
@@ -104,7 +104,7 @@
             </a>
           </div>
         </div>
-        <div class="social">
+        <div class="social hide-on-mobile">
           <div class="flex flexmob-exc-resp">
             <?php if ( !empty($this->settings['social_facebook_link'])) : ?>
             <div class="facebook">
@@ -137,7 +137,7 @@
         <div class="logo">
           <a href="<?=$this->settings['page_url']?>/webshop"><img src="<?=IMG?>ragrikol_logo_white.svg" alt="<?=$this->settings['page_title']?>"></a>
         </div>
-        <div class="searcher">
+        <div class="searcher hide-on-mobile">
           <div class="searchform">
             <form class="" action="/termekek/" method="get">
             <div class="flex flexmob-exc-resp">
@@ -151,7 +151,7 @@
             </form>
           </div>
         </div>
-        <div class="actions">
+        <div class="actions hide-on-mobile">
           <div class="flex">
             <div class="favorite">
               <a href="/kedvencek" class="holder">
