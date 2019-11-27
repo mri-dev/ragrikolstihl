@@ -106,31 +106,33 @@
 					</div>
 				</div>
 			</div>
-			<div class="con">
-				<h3>Kupon tulajdonos</h3>
-				<small>Tulajdonos kiválasztása esetén az ügyfélkapuban a tulajdonos látja a kuponnal várásolt megrendelések alapadatait: vásárlás ideje, megrendelés állapota, fizetett összeg.</strong></small>
-				<div class="divider"></div>
-				<div style="margin-top:10px;">
-					<label style="color: black; font-size: 12px;">
-					<input type="checkbox" name="has_author" onclick="if($(this).is(':checked')){$('#auth-list').slideDown(200);}else{$('#auth-list').slideUp(200);}">
-					Igen, kiválasztom a kupon tulajdonosát.</label>
-					</label>
-					<br>
-					<div class="prod-list" id="auth-list" style="display: none;">
+			<?php if (false): ?>
+				<div class="con">
+					<h3>Kupon tulajdonos</h3>
+					<small>Tulajdonos kiválasztása esetén az ügyfélkapuban a tulajdonos látja a kuponnal várásolt megrendelések alapadatait: vásárlás ideje, megrendelés állapota, fizetett összeg.</strong></small>
 					<div class="divider"></div>
-					<br>
-						<div class="row np">
-	        				<div class="col-sm-10">
-	        					<input type="text" class="form-control userReceiver" cid="1" placeholder="Felhasználó keresése név vagy email szerint...">
-	        					<div class="userReceiver-list" id="userReceiver_list1"></div>
-	        				</div>
-	        				<div class="col-sm-2">
-	        					<input type="text" name="author_id" id="adder_1_uid" class="form-control" placeholder="ID">
-	        				</div>
-		    			</div>
+					<div style="margin-top:10px;">
+						<label style="color: black; font-size: 12px;">
+						<input type="checkbox" name="has_author" onclick="if($(this).is(':checked')){$('#auth-list').slideDown(200);}else{$('#auth-list').slideUp(200);}">
+						Igen, kiválasztom a kupon tulajdonosát.</label>
+						</label>
+						<br>
+						<div class="prod-list" id="auth-list" style="display: none;">
+						<div class="divider"></div>
+						<br>
+							<div class="row np">
+		        				<div class="col-sm-10">
+		        					<input type="text" class="form-control userReceiver" cid="1" placeholder="Felhasználó keresése név vagy email szerint...">
+		        					<div class="userReceiver-list" id="userReceiver_list1"></div>
+		        				</div>
+		        				<div class="col-sm-2">
+		        					<input type="text" name="author_id" id="adder_1_uid" class="form-control" placeholder="ID">
+		        				</div>
+			    			</div>
+						</div>
 					</div>
 				</div>
-			</div>
+			<?php endif; ?>
 		</div>
 		<?php endif; ?>
 	</div>
