@@ -84,7 +84,7 @@
 				</div>
 			</div>
 		</div>
-		<?php if (false): ?>
+		<?php if (true): ?>
 		<div class="col-sm-6">
 			<div class="con">
 				<h3>Termék szükítés</h3>
