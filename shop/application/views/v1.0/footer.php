@@ -95,7 +95,7 @@
 												</div>
 											</div>
 											<div class="button">
-												<button type="submit" name="subscribe">Mehet</button>
+												<button type="submit" name="subscribe">Tovább</button>
 											</div>
 										</form>
 									</div>

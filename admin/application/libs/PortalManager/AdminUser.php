@@ -2820,6 +2820,13 @@ class AdminUser
 				break;
 				case $prefix.'addtocategory':
 					$catid = $_POST[$prefix.'addtocategory'];
+					
+					if (!empty($_POST['selectedItem']) && count($_POST['selectedItem']) > 0) {
+						// pre-remove
+						foreach ($_POST['selectedItem'] as $tid ) {
+							$this->db->squery("DELETE FROM shop_termek_in_kategoria WHERE termekID = :tid", array('tid' => $tid));
+						}
+					}
 
 					foreach ( $catid as $cid ) {
 						foreach ($_POST['selectedItem'] as $tid ) {

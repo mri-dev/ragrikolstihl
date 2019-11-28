@@ -18,14 +18,14 @@ class termek extends Controller{
 			$this->out( 'product', $product );
 			$this->out( 'slideshow', $this->Portal->getSlideshow( $product['nev'] ) );
 
-
 			// Nincs kép a termékről - átirányítás
 			if( strpos( $product['profil_kep'] , 'no-product-img' ) !== false ) {
 				//Helper::reload('/');
 			}
 
 			// Termék kérdés
-			if(Post::on('requestRecall')){
+			if(Post::on('requestRecall'))
+			{
 				try{
 					$this->view->msg 	= Helper::makeAlertMsg('pSuccess',$this->shop->requestReCall($_POST));
 				}catch(Exception $e){
@@ -34,7 +34,7 @@ class termek extends Controller{
 				}
 			}
 
-			if (true)
+			if ( true )
 			{
 				// További ajánlott termékek
 				if ( $product['related_products_ids'] )
