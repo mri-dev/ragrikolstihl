@@ -50,6 +50,74 @@
 /* 0 - 1023 px - SMARTPHONE */
 @media all and (max-width: 1023px)
 {
+	.sub-categories > .holder{
+		display: none;
+	}
+	.filter-sidebar .side-group .head{
+		font-size: 1.3rem;
+	}
+	footer .main{
+		padding: 15px;
+	}
+	footer .main > .pw > .wrapper .links,
+	footer .main > .pw > .wrapper .subs{
+		flex-basis: 100%;
+	}
+	footer .main > .pw > .wrapper .links > .wrapper > .flex .segitseg{
+		text-align: center;
+	}
+	footer .main > .pw > .wrapper .links ul li a{
+		font-size: 1.2rem;
+	}
+	footer .main > .pw > .wrapper .links > .wrapper{
+		padding: 20px 0;
+	}
+	footer .main h3 {
+    margin: 0 0 15px 0;
+    font-size: 1.5rem;
+	}
+	footer .main{
+		margin: 0;
+	}
+	footer .main > .pw > .wrapper{
+		padding: 25px 0 0 0;
+	}
+	footer .nav{
+		padding: 15px;
+	}
+	footer .nav .logo{
+		flex-basis: 100%;
+		text-align: center;
+		padding: 10px 0 25px 0;
+	}
+	footer .info > .pw > .flex > div {
+		flex-basis: 100% !important;
+		text-align: center !important;
+	}
+	footer .info > .pw > .flex > div + div {
+		margin-top: 15px;
+	}
+	footer .info .social .flex{
+		justify-content: center;
+	}
+	footer .info .social .flex > div{
+		padding: 10px;
+	}
+	footer .info{
+		padding: 15px;
+	}
+	footer .nav .navi{
+		padding: 0;
+	}
+	footer .nav .flex > div {
+		flex-basis: 100%;
+	}
+	footer .nav .navi a{
+		padding: 10px;
+		display: block;
+		text-align: center;
+		font-size: 1.2rem;
+	}
 	header .sec-bottom{
 		height: auto;
 	}
@@ -76,10 +144,17 @@
 			display: none;
 		}
 	}
+	footer{
+		margin:0;
+	}
 
 	header .main .logo{
 		flex-basis: 100%;
 		padding: 5px;
+	}
+
+	.home .home-content{
+		padding: 0;
 	}
 	.fb-page {
 		display: none !important;
@@ -95,27 +170,48 @@
 		display: block;
 		width: 100%;
 	}
-
+	.home.landing .welcome .text{
+		position: relative;
+		width: 100%;
+		max-width: initial;
+		background: rgba(255, 255, 255, 0.77);
+    padding: 15px;
+		font-size: 1.3rem;
+		overflow: initial;
+		height: auto;
+		max-height: initial;
+	}
+	.home.landing .welcome {
+    background-position: center;
+    background-size: cover;
+		height: auto;
+		max-height: initial;
+	}
 
 	.website {
 		margin: 0;
-		margin-top: 195px;
+	}
+
+	body.fixheader .website{
+		margin-top: 225px;
 	}
 
 	header {
-		position: fixed;
 		top: 0;
 		width: 100%;
 		display: block;
 		z-index: 1111;
 		font-size: 1.4em;
 		border-bottom: 2px solid #e6e6e6;
+    box-shadow: 0 5px 30px -10px #a5a2a2;
 	}
 
 	.slideShow {
 		display: none !important;
 	}
-
+	.home.landing .stihl-webshop{
+		height: 450px;
+	}
 	.general-sidebar {
 		height: 100%;
 		position: fixed;
@@ -146,8 +242,7 @@
 
 	.grid-layout:not(.kpm),
 	.grid-layout:not(.kpm) .grid-row {
-		width: 100% !important;
-		display: block;
+		flex-basis: 100% !important;
 	}
 
 	.product-view,
@@ -320,8 +415,18 @@
 		margin: 0;
 		.image, .details, .buttons {
 			float: none;
-			width: 100%;
-			display: block;
+			flex-basis: 100%;
+			width: auto;
+		}
+
+		.buttons > div.fav {
+			flex-basis: 20% !important;
+		}
+		.buttons > div.link {
+			flex-basis: 40% !important;
+		}
+		.buttons > div.order {
+			flex-basis: 40% !important;
 		}
 
 		.buttons .holder {
@@ -443,6 +548,32 @@
 /* 0 - 640 px - SMARTPHONE */
 @media all and (max-width: 640px)
 {
+	.page .side-menu{
+		flex-basis: 100%;
+	}
+	.webshop-product-top .items .item, .related-products .items .item{
+		flex-basis: 100%;
+	}
+	.webshop-product-top .items, .related-products .items{
+		padding: 10px;
+	}
+	.webshop-product-top .items .item .image, .webshop-product-top .items .item .details, .webshop-product-top .items .item .buttons{
+		margin: 0;
+	}
+	.webshop-product-top .items .item + .item,
+	.related-products .items .item + .item{
+		margin-top: 10px;
+	}
+	.page .responsive-view{
+		padding: 15px;
+	}
+	.side-menu ul li a{
+		padding: 8px 15px;
+	}
+	.side-menu ul li.head a, .side-menu ul li.head{
+		background: #efefef;
+		padding: 15px;
+	}
 	header .sec-bottom .highlight-view{
 		display: none;
 	}
@@ -494,9 +625,6 @@
 	}
 	.viewSwitcher > div {
 		width: 100%;
-	}
-	.website {
-		margin-top: 195px;
 	}
 
 	.kollega-list {

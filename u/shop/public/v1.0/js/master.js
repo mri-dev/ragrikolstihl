@@ -19,7 +19,6 @@ $(function(){
 
 	$(document).scroll(function(){
 		var top = $(this).scrollTop();
-		var bw = $(window).width();
 
 		if(top > 200){
 			if($('#topper .upTop').css('display') == 'none'){
@@ -28,31 +27,6 @@ $(function(){
 		}else{
 			$('#topper .upTop').fadeOut(400);
 		}
-
-		// Mobile header fixing
-		if ( bw <= 780 ) {
-			if ( top >= 67 ) {
-				$('header').css({
-					position: 'fixed'
-				});
-				$('header .top').hide();
-				$('body').addClass('fixheader');
-
-			} else {
-				$('header .top').show();
-				$('header').css({
-					position: 'relative'
-				});
-				$('body').removeClass('fixheader');
-			}
-
-			if ( top >= 500 ) {
-				$('header .sec-bottom').hide();
-			} else {
-				$('header .sec-bottom').show();
-			}
-		}
-
 
 		// Transports box changes
 		if(transports_c.length ){

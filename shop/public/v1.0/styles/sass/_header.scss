@@ -321,6 +321,8 @@ header {
 	.main {
 		background-color: $color-green-light;
 		padding: 10px 0;
+		position: relative;
+		z-index: 10;
 
 		& > .pw > .flex {
 			align-items: center;
@@ -703,6 +705,8 @@ header {
 	.sec-bottom{
 		background-color: $color-orange;
 		height: $sec-bottom-header-height;
+		position: relative;
+		z-index: 5;
 
 		.item-holder {
 			display: -webkit-box;
