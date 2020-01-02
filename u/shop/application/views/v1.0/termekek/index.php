@@ -11,23 +11,20 @@
                   <? if($this->parent_menu&& count($this->parent_menu) > 0): ?>
                   <div class="sub-categories">
                       <div class="title">
-                        <h3 class="hide-on-mobile"><? $subk = ''; foreach($this->parent_row as $sc) { $subk .= $sc.' / '; } echo rtrim($subk,' / '); ?> alkategóriái</h3>
-                        <h3 onclick="$('.sub-categories > .lists').slideToggle(400);" class="show-on-mobile"><? $subk = ''; foreach($this->parent_row as $sc) { $subk .= $sc.' / '; } echo rtrim($subk,' / '); ?> alkategóriái <span><i class="fa fa-caret-down"></i> </span></h3>
-                        <? if($this->parent_category): ?>
-                        <a class="back" href="<?=$this->parent_category->getURL()?>"><i class="fa fa-arrow-left"></i> vissza: <?=$this->parent_category->getName()?></a>
-                         <? endif; ?>
+                          <h3><? $subk = ''; foreach($this->parent_row as $sc) { $subk .= $sc.' / '; } echo rtrim($subk,' / '); ?> alkategóriái</h3>
+                          <? if($this->parent_category): ?>
+                          <a class="back" href="<?=$this->parent_category->getURL()?>"><i class="fa fa-arrow-left"></i> vissza: <?=$this->parent_category->getName()?></a>
+                           <? endif; ?>
                       </div>
-                      <div class="lists">
-                        <div class="holder">
-                          <? foreach( $this->parent_menu as $cat ): $ii = getimagesize(rtrim(IMGDOMAIN,"/").$cat['kep']); ?>
-                          <div class="item">
-                            <div class="wrapper">
-                              <div class="img<?=($ii[1]>$ii[0])?' portrait-view':''?>"><a href="<?=$cat['link']?>"><img src="<?=rtrim(IMGDOMAIN,"/").$cat['kep']?>" alt="<?=$cat['neve']?>"></a></div>
-                              <div class="title"><a href="<?=$cat['link']?>"><?=$cat['neve']?></a></div>
-                            </div>
+                      <div class="holder">
+                        <? foreach( $this->parent_menu as $cat ): ?>
+                        <div class="item">
+                          <div class="wrapper">
+                            <div class="img"><a href="<?=$cat['link']?>"><img src="<?=rtrim(IMGDOMAIN,"/").$cat['kep']?>" alt="<?=$cat['neve']?>"></a></div>
+                            <div class="title"><a href="<?=$cat['link']?>"><?=$cat['neve']?></a></div>
                           </div>
-                          <? endforeach; ?>
                         </div>
+                        <? endforeach; ?>
                       </div>
                   </div>
                   <? endif; ?>

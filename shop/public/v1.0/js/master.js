@@ -337,6 +337,7 @@ $(function(){
 	// Mobile Device events
 	$('*[mb-event]').each( function(i){
 		var _ =  $(this).data('mb');
+		var op =  (typeof _.tgltext !== 'undefined') ? _.tgltext : 'opened';
 
 		switch (_.event) {
 			case 'toggleOnClick':
@@ -345,12 +346,12 @@ $(function(){
 					$(_.target).unbind('mouseenter mouseleave click');
 					$(this).click( function(){
 						var t = $(_.target);
-						var opened = t.hasClass('opened');
+						var opened = t.hasClass(op);
 						if ( opened ) {
-							t.removeClass('opened');
+							t.removeClass(op);
 						} else {
-							$('.mb-tgl-close').removeClass('opened');
-							t.addClass('opened');
+							$('.mb-tgl-close').removeClass(op);
+							t.addClass(op);
 						}
 					});
 				}
@@ -437,7 +438,7 @@ function postFilterForm() {
 }
 
 function Cart(){
-	this.content = "#cartContent";
+	this.content = ".cartContent";
 	this.push = function(i){
 		var oi = $(this.content).find(".item");
 		var ec = '<div class="item i'+i.termekID+'">'+
@@ -467,6 +468,7 @@ function Cart(){
 			ec += '<span class="ar">'+( (i.ar != '-1')? i.ar+' Ft / '+((i.mertekegyseg) ? i.mertekegyseg: 'db') : 'Ár: érdeklődjön' )+'</span>';
 			ec += '</div>';
 			ec += '<div class="clr"></div></div>';
+
 		if(oi.length == 0){
 			$(this.content).html(ec);
 		}else{

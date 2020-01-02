@@ -4,7 +4,7 @@
 <div class="single-menu imaged arrowed color-orange">
   <a href="<?=$this->settings['welcome_outside_url']?>" target="_blank"><img src="<?=IMG?>stihl-bg-top.svg" alt="Stihl Termékek"> <strong>TERMÉKEK</strong></a>
 </div>
-<div class="cat-menu hide-on-mobile">
+<div class="cat-menu">
   <ul>
     <?php foreach ( (array)$this->categories->tree  as $cat ) { ?>
     <li class="menu-item item<?=$cat['ID']?> deep<?=$cat['deep']?>"><a href="<?=$cat['link']?>"><?=$cat['neve']?></a><? if($cat['child']): ?><div class="toggler" toggle-menu="<?=$cat['ID']?>"></div><? endif; ?></li>
