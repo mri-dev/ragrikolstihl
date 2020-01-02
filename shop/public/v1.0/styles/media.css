@@ -7331,191 +7331,195 @@ footer {
 /* 0 - 1023 px - SMARTPHONE */
 @media all and (max-width: 1023px) {
   /* line 53, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  .mobile-actions .cart .floating .cartContent {
+    max-height: 400px;
+    overflow: auto; }
+  /* line 57, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   header .main {
     padding: 0 !important; }
-    /* line 55, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+    /* line 59, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
     header .main .logo {
       padding: 10px !important; }
-  /* line 59, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 63, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .product-view > .product-data,
   .product-view > .product-data .more-datas .info-texts,
   .product-view > .product-data .more-datas .related-products {
     padding: 0; }
-  /* line 64, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 68, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .product-view > .product-data .top-datas > div,
   .product-view > .sidebar,
   .product-view > .product-data .more-datas .info-texts,
   .product-view > .product-data .more-datas .related-products {
     flex-basis: 100%; }
-  /* line 70, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 74, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .product-view > .sidebar {
     order: 3; }
-  /* line 73, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 77, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .product-view > .product-data .top-datas .main-data .helpdesk-actions > .callhelp {
     flex-basis: 100%;
     margin: 10px 0;
     padding: 0 !important; }
-  /* line 78, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 82, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .product-view > .product-data .top-datas .main-data .status-params > div {
     flex-basis: 100% !important;
     height: 20px;
     margin: 5px 0; }
-  /* line 83, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 87, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .product-view > .product-data .top-datas .main-data .status-params > div > .h {
     flex-basis: 40%; }
-  /* line 86, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 90, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .product-view > .product-data .top-datas .main-data .status-params > div > .v {
     flex-basis: 60%;
     text-align: right; }
-  /* line 90, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 94, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .product-view > .product-data .top-datas .main-data .status-params .free-transport {
     text-align: center; }
-  /* line 93, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 97, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .product-view > .product-data .top-datas .main-data .status-params .free-transport .free-transport-ele {
     margin: 0 auto; }
-  /* line 96, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 100, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .product-view > .product-data .more-datas .info-texts .description {
     padding: 0 15px; }
-  /* line 99, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 103, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .product-view > .product-data .top-datas .main-data,
   .product-view > .product-data .top-datas .images {
     padding: 15px; }
-  /* line 103, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 107, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .product-view > .product-data .nav {
     margin: 15px 15px 0 15px; }
-  /* line 106, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 110, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .related-products .items .item {
     flex-basis: 100% !important; }
-  /* line 109, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 113, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .sub-categories .item .img {
     height: 18vw; }
-  /* line 112, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 116, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .sub-categories .item {
     flex-basis: calc(100%/3); }
-  /* line 115, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 119, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .sub-categories > .lists {
     display: none; }
-  /* line 118, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 122, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .cat-nav {
     margin: 10px; }
-  /* line 121, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 125, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .filter-sidebar .side-group .head {
     font-size: 1.3rem; }
-  /* line 124, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 128, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   footer .main {
     padding: 15px; }
-  /* line 127, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 131, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   footer .main > .pw > .wrapper .links,
   footer .main > .pw > .wrapper .subs {
     flex-basis: 100%; }
-  /* line 131, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 135, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   footer .main > .pw > .wrapper .links > .wrapper > .flex .segitseg {
     text-align: center; }
-  /* line 134, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 138, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   footer .main > .pw > .wrapper .links ul li a {
     font-size: 1.2rem; }
-  /* line 137, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 141, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   footer .main > .pw > .wrapper .links > .wrapper {
     padding: 20px 0; }
-  /* line 140, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 144, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   footer .main h3 {
     margin: 0 0 15px 0;
     font-size: 1.5rem; }
-  /* line 144, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 148, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   footer .main {
     margin: 0; }
-  /* line 147, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 151, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   footer .main > .pw > .wrapper {
     padding: 25px 0 0 0; }
-  /* line 150, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 154, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   footer .nav {
     padding: 15px; }
-  /* line 153, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 157, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   footer .nav .logo {
     flex-basis: 100%;
     text-align: center;
     padding: 10px 0 25px 0; }
-  /* line 158, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 162, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   footer .info > .pw > .flex > div {
     flex-basis: 100% !important;
     text-align: center !important; }
-  /* line 162, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 166, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   footer .info > .pw > .flex > div + div {
     margin-top: 15px; }
-  /* line 165, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 169, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   footer .info .social .flex {
     justify-content: center; }
-  /* line 168, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 172, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   footer .info .social .flex > div {
     padding: 10px; }
-  /* line 171, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 175, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   footer .info {
     padding: 15px; }
-  /* line 174, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 178, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   footer .nav .navi {
     padding: 0; }
-  /* line 177, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 181, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   footer .nav .flex > div {
     flex-basis: 100%; }
-  /* line 180, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 184, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   footer .nav .navi a {
     padding: 10px;
     display: block;
     text-align: center;
     font-size: 1.2rem; }
-  /* line 186, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 190, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   header .sec-bottom {
     height: auto; }
-  /* line 189, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 193, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   header .sec-bottom .item-holder {
     flex-wrap: wrap; }
-  /* line 192, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 196, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   header .sec-bottom .item-holder > div {
     flex-basis: 100%;
     flex: auto; }
-  /* line 196, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 200, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   header .sec-bottom .highlight-view .hl-cont ul {
     width: 100%;
     left: none; }
-  /* line 200, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 204, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   header .sec-bottom .highlight-view .hl-cont ul li {
     font-size: 1.4vw; }
-  /* line 203, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 207, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   header .sec-bottom .contacts .email,
   header .sec-bottom .contacts .address {
     flex-basis: 50%;
     text-align: center;
     padding: 5px; }
-    /* line 208, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+    /* line 212, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
     header .sec-bottom .contacts .email .ico,
     header .sec-bottom .contacts .address .ico {
       display: none; }
-  /* line 212, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 216, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   footer {
     margin: 0; }
-  /* line 216, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 220, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .sub-categories {
     margin: 20px 0;
     padding: 0 10px; }
-  /* line 221, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 225, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   header .main .logo {
     flex-basis: 100%;
     padding: 5px; }
-  /* line 226, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 230, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .category-listing .list-view > .grid-layout .grid-row.products {
     padding: 0; }
-  /* line 230, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 234, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .sub-categories .title h3 {
     background: #efefef;
     padding: 10px;
     border-radius: 10px; }
-  /* line 236, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 240, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .home .home-content {
     padding: 0; }
-  /* line 239, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 243, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .fb-page {
     display: none !important; }
-  /* line 243, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 247, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   a.fb-link {
     background: #3a5795;
     border: 2px solid #4162a7;
@@ -7525,7 +7529,7 @@ footer {
     color: white;
     display: block;
     width: 100%; }
-  /* line 253, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 257, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .home.landing .welcome .text {
     position: relative;
     width: 100%;
@@ -7536,19 +7540,19 @@ footer {
     overflow: initial;
     height: auto;
     max-height: initial; }
-  /* line 264, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 268, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .home.landing .welcome {
     background-position: center;
     background-size: cover;
     height: auto;
     max-height: initial; }
-  /* line 271, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 275, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .website {
     margin: 0; }
-  /* line 275, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 279, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   body.fixheader .website {
     margin-top: 225px; }
-  /* line 279, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 283, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   header {
     top: 0;
     width: 100%;
@@ -7557,13 +7561,13 @@ footer {
     font-size: 1.4em;
     border-bottom: 2px solid #e6e6e6;
     box-shadow: 0 5px 30px -10px #a5a2a2; }
-  /* line 289, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 293, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .slideShow {
     display: none !important; }
-  /* line 292, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 296, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .home.landing .stihl-webshop {
     height: 450px; }
-  /* line 295, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 299, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .general-sidebar {
     height: 100%;
     position: fixed;
@@ -7573,27 +7577,27 @@ footer {
     display: none;
     background: rgba(0, 0, 0, 0.91);
     padding-bottom: 25px; }
-  /* line 305, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 309, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .general-sidebar.opened {
     display: block; }
-  /* line 308, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 312, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .general-sidebar .menu {
     width: 70%;
     overflow: auto;
     height: 100%; }
-  /* line 313, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 317, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .general-sidebar .menu li.menu-item a {
     font-size: 1.5em; }
-  /* line 317, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 321, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .site-container {
     width: 100%;
     float: none;
     display: block; }
-  /* line 323, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 327, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .grid-layout:not(.kpm),
   .grid-layout:not(.kpm) .grid-row {
     flex-basis: 100% !important; }
-  /* line 330, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 334, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .product-view .grid-layout:not(.kpm, .kpm) *[class^=grid-row],
   .product-view .grid-layout:not(.kpm, .kpm),
   .product-view .grid-layout:not(.grid-np, .grid-np):not(.kpm, .kpm) > .grid-row:first-child,
@@ -7603,56 +7607,56 @@ footer {
   .account .grid-layout:not(.grid-np, .grid-np):not(.kpm, .kpm) > .grid-row:first-child,
   .account .grid-layout:not(.grid-np, .grid-np):not(.kpm, .kpm) > .grid-row:last-child {
     padding: 0 !important; }
-  /* line 338, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 342, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .flatInfoBox > div {
     font-size: 0.9em; }
-  /* line 342, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 346, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .grid-layout .grid-row:after {
     content: "";
     position: relative;
     height: 1px;
     width: 100%;
     clear: both; }
-  /* line 351, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 355, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .referring-view .kimelt-link {
     display: none; }
-  /* line 355, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 359, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .referring-view .partner-referer-orders h2 {
     line-height: 1;
     margin: 10px 0; }
-  /* line 362, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 366, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .account h1 {
     margin: 20px 0 25px 0; }
-  /* line 368, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 372, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .order .serial {
     float: none;
     width: 100%; }
-  /* line 373, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 377, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .order h1 {
     margin: 10px 0; }
-  /* line 378, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 382, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .mobile-header {
     line-height: 3; }
-    /* line 381, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+    /* line 385, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
     .mobile-header .cart, .mobile-header .place-search, .mobile-header .acv, .mobile-header .ct {
       float: right; }
-      /* line 384, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+      /* line 388, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
       .mobile-header .cart a, .mobile-header .place-search a, .mobile-header .acv a, .mobile-header .ct a {
         display: block;
         padding: 0 15px;
         color: #FF99B5; }
-    /* line 390, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+    /* line 394, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
     .mobile-header .menu-switcher {
       float: left;
       padding: 0 25px; }
-    /* line 394, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+    /* line 398, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
     .mobile-header .menu-switcher:active {
       background: #222; }
-    /* line 399, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+    /* line 403, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
     .mobile-header .cart a {
       text-decoration: none;
       color: white; }
-    /* line 403, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+    /* line 407, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
     .mobile-header .cart .cart-item-num-v {
       background: #fff;
       color: #388a3d;
@@ -7660,254 +7664,254 @@ footer {
       font-size: 0.65em;
       border-radius: 20px;
       padding: 0 6px; }
-  /* line 414, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 418, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .product-view .main-view {
     display: block; }
-    /* line 416, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+    /* line 420, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
     .product-view .main-view .images, .product-view .main-view .data-view {
       width: 100%;
       display: block; }
-    /* line 420, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+    /* line 424, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
     .product-view .main-view .images .all {
       margin: 0 auto;
       width: 375px; }
-    /* line 425, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+    /* line 429, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
     .product-view .main-view .free-transport {
       margin: 10px 0; }
-    /* line 429, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+    /* line 433, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
     .product-view .main-view .links {
       padding: 0 15px; }
-    /* line 432, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+    /* line 436, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
     .product-view .main-view .data-view {
       padding: 0 15px; }
-      /* line 434, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+      /* line 438, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
       .product-view .main-view .data-view .action-bar a {
         font-size: 1.2em; }
-    /* line 439, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+    /* line 443, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
     .product-view .main-view .prices .base {
       float: left; }
-    /* line 442, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+    /* line 446, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
     .product-view .main-view .prices .partner-price {
       float: right; }
-    /* line 447, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+    /* line 451, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
     .product-view .main-view .status {
       font-size: 1.5em; }
-    /* line 451, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+    /* line 455, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
     .product-view .main-view #cart-msg {
       font-size: 1.4em; }
-  /* line 456, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 460, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .product-view .buy-basic-info {
     margin-top: 15px; }
-  /* line 461, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 465, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .dropdown-list-container .dropdown-list-selecting.showed {
     z-index: 10; }
-  /* line 464, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 468, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .dropdown-list-title {
     font-size: 1.8em; }
-  /* line 467, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 471, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .dropdown-list-container .dropdown-list-selecting > div {
     font-size: 1.8em;
     padding: 10px 0; }
-  /* line 471, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 475, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .dropdown-list-container .dropdown-list-selecting {
     top: 48px; }
-  /* line 476, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 480, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .category-listing .category-title .filters {
     display: block;
     width: 100%;
     margin-bottom: 15px; }
-  /* line 482, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 486, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .category-listing h1 {
     display: block;
     margin: 10px; }
-  /* line 488, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 492, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .product-ajanlott .items .item,
   .related-products .items .item {
     width: 100%;
     display: block; }
-  /* line 494, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 498, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .webshop-product-top .items .item {
     margin: 0; }
-    /* line 496, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+    /* line 500, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
     .webshop-product-top .items .item .image, .webshop-product-top .items .item .details, .webshop-product-top .items .item .buttons {
       float: none;
       flex-basis: 100%;
       width: auto; }
-    /* line 502, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+    /* line 506, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
     .webshop-product-top .items .item .buttons > div.fav {
       flex-basis: 20% !important; }
-    /* line 505, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+    /* line 509, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
     .webshop-product-top .items .item .buttons > div.link {
       flex-basis: 40% !important; }
-    /* line 508, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+    /* line 512, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
     .webshop-product-top .items .item .buttons > div.order {
       flex-basis: 40% !important; }
-    /* line 513, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+    /* line 517, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
     .webshop-product-top .items .item .buttons .holder .watch, .webshop-product-top .items .item .buttons .holder .order {
       float: left;
       width: 50%;
       height: auto !important; }
-      /* line 518, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+      /* line 522, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
       .webshop-product-top .items .item .buttons .holder .watch a, .webshop-product-top .items .item .buttons .holder .order a {
         padding: 25px 5px; }
-    /* line 524, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+    /* line 528, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
     .webshop-product-top .items .item .price {
       font-size: 0.90em; }
-    /* line 528, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+    /* line 532, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
     .webshop-product-top .items .item .extra-info {
       width: 100%;
       margin: 0; }
-      /* line 531, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+      /* line 535, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
       .webshop-product-top .items .item .extra-info .each {
         line-height: 1;
         padding: 5px;
         font-size: 0.65em; }
-  /* line 538, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 542, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .nextOrded .steps {
     padding: 10px; }
-  /* line 542, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 546, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .divCol,
   .nextOrded .col2 {
     height: auto !important;
     border: none !important; }
-  /* line 547, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 551, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .order-contact-info * {
     text-align: left !important;
     line-height: 1.2; }
-  /* line 552, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 556, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .nextOrded .col1,
   .nextOrded .col2 {
     padding: 0 !important; }
-  /* line 557, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 561, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .nextOrded .allStepView ul li {
     float: none;
     width: 100%; }
-  /* line 561, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 565, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .nextOrded .allStepView ul li.active:after {
     display: none; }
-  /* line 564, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 568, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .nextOrded .allStepView ul li.done:after {
     left: auto;
     top: 50%; }
-  /* line 570, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 574, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .shop-search-view .near-of-me {
     text-align: center; }
-    /* line 574, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+    /* line 578, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
     .shop-search-view .near-of-me .place-details .name {
       margin: 8px 0;
       line-height: 1; }
-    /* line 580, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+    /* line 584, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
     .shop-search-view .near-of-me .infos {
       text-align: center;
       border-top: 1px solid #67c16c;
       padding-top: 5px;
       margin-top: 5px; }
-  /* line 589, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 593, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .shop-search-view .shop-list .logo {
     text-align: center; }
-  /* line 593, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 597, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .shop-search-view .shop-list .shop {
     border-bottom: 5px solid #f26522; }
-    /* line 596, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+    /* line 600, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
     .shop-search-view .shop-list .shop .infos {
       text-align: center;
       border-top: 1px solid #f58752;
       padding: 10px 0;
       margin: 15px 15px 5px 15px; }
-  /* line 603, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 607, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .shop-search-view .shop-list .shop:last-child {
     border-bottom: none; }
-  /* line 609, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 613, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .shop-cat .cat {
     width: 50%;
     display: block;
     float: left; }
-  /* line 615, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 619, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   footer .menu li a {
     font-size: 1.15em;
     line-height: 1.55; }
-  /* line 620, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 624, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .hide-on-mobile {
     display: none !important; }
-  /* line 623, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 627, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .show-on-mobile {
     display: block !important; } }
 
 /* 0 - 640 px - SMARTPHONE */
 @media all and (max-width: 640px) {
-  /* line 631, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 635, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .page .side-menu {
     flex-basis: 100%; }
-  /* line 634, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 638, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .webshop-product-top .items .item, .related-products .items .item {
     flex-basis: 100%; }
-  /* line 637, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 641, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .webshop-product-top .items, .related-products .items {
     padding: 10px; }
-  /* line 640, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 644, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .webshop-product-top .items .item .image, .webshop-product-top .items .item .details, .webshop-product-top .items .item .buttons {
     margin: 0; }
-  /* line 643, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 647, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .webshop-product-top .items .item + .item,
   .related-products .items .item + .item {
     margin-top: 10px; }
-  /* line 647, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 651, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .page .responsive-view {
     padding: 15px; }
-  /* line 650, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 654, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .side-menu ul li a {
     padding: 8px 15px; }
-  /* line 653, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 657, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .side-menu ul li.head a, .side-menu ul li.head {
     background: #efefef;
     padding: 15px; }
-  /* line 657, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 661, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   header .sec-bottom .highlight-view {
     display: none; }
-  /* line 663, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 667, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .kollega-list ul li {
     width: 33.333333333%; }
-  /* line 666, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 670, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .kollega-list ul li + .clr {
     display: none; } }
 
 /* 0 - 375 px - SMARTPHONE */
 @media all and (max-width: 398px) {
-  /* line 676, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 680, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .sub-categories .item .img {
     height: 36vw; }
-  /* line 679, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 683, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .sub-categories .item {
     flex-basis: calc(100%/2); }
-  /* line 682, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 686, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .product-view .product-desc {
     width: 100% !important; }
-    /* line 685, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+    /* line 689, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
     .product-view .product-desc img {
       width: 90%;
       height: auto; } }
 
 /* 0 - 375 px - SMARTPHONE */
 @media all and (max-width: 375px) {
-  /* line 695, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 699, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   body {
     font-size: 0.9em; }
-  /* line 699, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 703, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .floating-box.contact-msg .labtext {
     left: -85px; }
-  /* line 703, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 707, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .product-view .main-view .images .all {
     width: 300px; }
-  /* line 708, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 712, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .switcherView .inset iframe {
     width: 100% !important; }
-  /* line 712, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 716, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .viewSwitcher > div {
     width: 100%; }
-  /* line 719, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 723, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .kollega-list ul li {
     width: 50%; }
-  /* line 722, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
+  /* line 726, /Users/MolnarIstvan/Documents/Munka/ragrikolstihl/shop/public/v1.0/styles/sass/_responsives.scss */
   .kollega-list ul li + .clr {
     display: none; } }
 

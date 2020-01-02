@@ -50,6 +50,10 @@
 /* 0 - 1023 px - SMARTPHONE */
 @media all and (max-width: 1023px)
 {
+	.mobile-actions .cart .floating .cartContent{
+		max-height: 400px;
+		overflow: auto;
+	}
 	header .main{
 		padding: 0 !important;
 		.logo{
