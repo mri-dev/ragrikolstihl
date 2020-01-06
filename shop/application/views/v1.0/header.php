@@ -32,14 +32,22 @@
 
 <div class="mobile-menu">
   <div class="wrapper">
-    <div class="header">Menü</div>
+    <div class="header">
+      Menü
+      <div class="close" mb-event="true" data-mb='{ "tgltext": "menutoggled", "event": "toggleOnClick", "target" : "body" }'>
+        <i class="fa fa-times"></i>
+      </div>
+    </div>
     <div class="mcont">
       <div class="cat-menu">
         <ul>
+          <?php if ($this->user['email']): ?>
+          <li class="menu-item deep0 loggedin"><a href="/user/belepes"><i class="fa fa-user"></i> Belépve: <strong><?=$this->user['data']['nev']?></strong>!</a></li>
+          <?php else: ?>
           <li class="menu-item deep0"><a href="/user/belepes"><i class="fa fa-lock"></i> Bejelentkezés / Regisztráció</a></li>
+          <?php endif; ?>
           <li class="menu-item deep0"><a href="/p/aszf"><i class="fa fa-file-text-o"></i> Általános Szerződési Feltételek</a></li>
           <li class="menu-item deep0"><a href="/p/szallitasi-informaciok"><i class="fa fa-truck"></i> Szállítási információk</a></li>
-
           <li class="menu-item deep0"><a href="/kapcsolat"><i class="fa fa-envelope-o"></i> Kapcsolat</a></li>
         </ul>
       </div>
@@ -223,7 +231,7 @@
               </a>
             </div>
             <div class="search">
-              <div class="toggler">
+              <div class="toggler" mb-event="true" data-mb='{ "event": "toggleOnClick", "target" : "#mb-mobile-searcher" }'>
                 <i class="fa fa-search"></i>
               </div>
             </div>
@@ -250,6 +258,19 @@
                 </div>
               </div>
             </div>
+          </div>
+
+          <div class="mobile-searcher" id="mb-mobile-searcher">
+            <form class="" action="/termekek/" method="get">
+              <div class="wrapper">
+                <div class="input">
+                  <input type="text" name="src" value="<?=$_GET['src']?>" placeholder="Termékek keresése...">
+                </div>
+                <div class="sub">
+                  <input type="submit" name="" value="Keresés">
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>

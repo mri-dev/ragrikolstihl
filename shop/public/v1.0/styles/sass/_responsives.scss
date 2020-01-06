@@ -50,6 +50,34 @@
 /* 0 - 1023 px - SMARTPHONE */
 @media all and (max-width: 1023px)
 {
+	.nextOrded .steps{
+		.row.np > div[class*=col-]{
+			width: 100% !important;
+			float: none !important;
+		}
+
+		.coupon-code{
+			margin: 15px 0 0 0;
+		}
+	}
+	.account .login-form{
+		max-width: 100%;
+		width: 100%;
+		padding: 15px;
+	}
+	.nextOrded .stepzerostarter .cartInfo{
+		text-align: center;
+	}
+	.nextOrded .stepzerostarter{
+		height: auto;
+	}
+	.nextOrded .stepzerostarter .megrendel button{
+		width: 100%;
+	}
+	.nextOrded .stepzerostarter > div {
+		flex-basis: 100% !important;
+		flex: initial;
+	}
 	.mobile-actions .cart .floating .cartContent{
 		max-height: 400px;
 		overflow: auto;
@@ -258,7 +286,7 @@
 		position: relative;
 		width: 100%;
 		max-width: initial;
-		background: rgba(255, 255, 255, 0.77);
+		background: rgba(255, 255, 255, 0.73);
     padding: 15px;
 		font-size: 1.3rem;
 		overflow: initial;
@@ -627,11 +655,55 @@
 	.show-on-mobile {
 	  display: block !important;
 	}
+	.account .orderpage h4{
+		font-size: 1.4rem;
+	}
+
+	.order .items .name a{
+		font-size: 1rem;
+		line-height: 1 !important;
+	}
+	.cartItems .item .subLine > span {
+		display: block;
+		width: 100%;
+		line-height: 1 !important;
+	}
+	.cartItems .item .subLine .stock{
+		margin: 0;
+	}
+	.cartItems .item .img{
+		float: none;
+	}
+	.nextOrded .allStepView ul li.done:after{
+		left: 25px;
+	}
+	.mobile-actions > .holder .favorite .badge {
+    position: absolute;
+    top: 4px;
+    left: -5px;
+	}
 }
 
 /* 0 - 640 px - SMARTPHONE */
 @media all and (max-width: 640px)
 {
+	.a-up{
+		text-align: center;
+	}
+	.account .orderpage .items {
+		table tbody tr td:first-child{
+			text-align: center !important;
+			font-size: 1.5rem !important;
+		}
+		table thead tr td:last-child{
+			display: none !important;
+		}
+	}
+	.account table tr,
+	.account table td{
+		display: block;
+		width: 100%;
+	}
 	.page .side-menu{
 		flex-basis: 100%;
 	}
@@ -656,7 +728,6 @@
 	}
 	.side-menu ul li.head a, .side-menu ul li.head{
 		background: #efefef;
-		padding: 15px;
 	}
 	header .sec-bottom .highlight-view{
 		display: none;
