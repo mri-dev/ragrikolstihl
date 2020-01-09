@@ -616,7 +616,7 @@ class Products
 		$add = '';
 
 		if (!$admin_listing) {
-			$add = " and p.lathato = 1 ";
+			$add = " and p.lathato = 1 and p.archivalt = 0 ";
 			$whr .= $add;
 			$size_whr .= $add;
 
@@ -1640,7 +1640,6 @@ class Products
 			LEFT OUTER JOIN shop_termek_allapotok as ta ON ta.ID = t.keszletID
 			LEFT OUTER JOIN shop_szallitasi_ido as sza ON sza.ID = t.szallitasID
 			WHERE 			t.ID = $product_id
-
 		");
 
 		$data = $q->fetch(\PDO::FETCH_ASSOC);
