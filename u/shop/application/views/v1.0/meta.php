@@ -45,7 +45,7 @@
 <?=$this->addJS('upload',false,false)?>
 <?=$this->addJS('angular-cookies',false, false)?>
 <?=$this->addJS('jquery.cetelemCalculator',false, false)?>
-<!-- <script type="text/plain" src="<?=SJS?>popup.receiver.js"></script>-->
+<script type="text/plain" src="<?=SJS?>popup.receiver.js"></script>
 <script defer type="text/javascript" src="<?=JS?>slick/slick.min.js"></script>
 <script defer type="text/javascript" src="<?=JS?>fancybox/jquery.fancybox.js?v=2.1.4"></script>
 <script defer type="text/javascript" src="<?=JS?>fancybox/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>

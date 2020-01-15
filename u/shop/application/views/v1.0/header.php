@@ -29,6 +29,49 @@
   js.src = "//connect.facebook.net/hu_HU/sdk.js#xfbml=1&version=v2.3";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="mobile-menu">
+  <div class="wrapper">
+    <div class="header">
+      Menü
+      <div class="close" mb-event="true" data-mb='{ "tgltext": "menutoggled", "event": "toggleOnClick", "target" : "body" }'>
+        <i class="fa fa-times"></i>
+      </div>
+    </div>
+    <div class="mcont">
+      <div class="cat-menu">
+        <ul>
+          <?php if ($this->user['email']): ?>
+          <li class="menu-item deep0 loggedin"><a href="/user/belepes"><i class="fa fa-user"></i> Belépve: <strong><?=$this->user['data']['nev']?></strong>!</a></li>
+          <?php else: ?>
+          <li class="menu-item deep0"><a href="/user/belepes"><i class="fa fa-lock"></i> Bejelentkezés / Regisztráció</a></li>
+          <?php endif; ?>
+          <li class="menu-item deep0"><a href="/p/aszf"><i class="fa fa-file-text-o"></i> Általános Szerződési Feltételek</a></li>
+          <li class="menu-item deep0"><a href="/p/szallitasi-informaciok"><i class="fa fa-truck"></i> Szállítási információk</a></li>
+          <li class="menu-item deep0"><a href="/kapcsolat"><i class="fa fa-envelope-o"></i> Kapcsolat</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="header">Termék kategóriák</div>
+    <div class="mcont">
+      <div class="cat-menu">
+        <ul>
+          <?php foreach ( (array)$this->categories->tree  as $cat ) { ?>
+          <li class="menu-item item<?=$cat['ID']?> deep<?=$cat['deep']?>"><a href="<?=$cat['link']?>"><?=$cat['neve']?></a><? if($cat['child']): ?><div class="toggler" toggle-menu="<?=$cat['ID']?>"></div><? endif; ?></li>
+            <?php
+            foreach ( (array)$cat['child'] as $cat2): $rowclass = 'row-'.$cat['ID'].'-'.$cat2['ID']; ?>
+              <li class="menu-item item<?=$cat2['ID']?> <?=$rowclass?> deep<?=$cat2['deep']?> childof<?=$cat2['szulo_id']?>"><a href="<?=$cat2['link']?>"><?=$cat2['neve']?></a><? if($cat2['child']): ?><div class="toggler" toggle-menu="<?=$cat2['ID']?>"></div><? endif; ?></li>
+              <?php
+              foreach ( (array)$cat2['child'] as $cat3): $rowclass = 'row-'.$cat['ID'].'-'.$cat2['ID'].'-'.$cat3['ID']; ?>
+                <li class="menu-item item<?=$cat3['ID']?> <?=$rowclass?> deep<?=$cat3['deep']?> childof<?=$cat3['szulo_id']?>"><a href="<?=$cat3['link']?>"><?=$cat3['neve']?></a><? if($cat3['child']): ?><div class="toggler" toggle-menu="<?=$cat3['ID']?>"></div><? endif; ?></li>
+              <?php endforeach;  ?>
+            <?php endforeach;  ?>
+          <?php } ?>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 <header>
   <div class="top">
     <div class="pw">
@@ -59,7 +102,7 @@
           <div class="holder" id="mb-cart">
             <div class="flex" mb-event="true" data-mb='{ "event": "toggleOnClick", "target" : "#mb-cart" }'>
               <div class="ico">
-                <span class="badge" id="cart-item-num-v">0</span>
+                <span class="badge cart-item-num-v" id="cart-item-num-v">0</span>
                 <img src="<?=IMG?>icons/cartv2.svg" alt="Kosár" />
               </div>
               <div class="info">
@@ -69,7 +112,7 @@
               </div>
             </div>
             <div class="floating">
-              <div id="cartContent" class="overflowed">
+              <div id="cartContent" class="cartContent overflowed">
                 <div class="noItem"><div class="inf">A kosár üres</div></div>
               </div>
               <div class="whattodo">
@@ -167,6 +210,67 @@
               <img src="<?=IMG?>contact-phone.svg" alt="Telefon"><br>
               <a href="tel:<?php echo $this->settings['page_author_phone']; ?>"><?php echo $this->settings['page_author_phone']; ?></a>
             </div>
+          </div>
+        </div>
+        <div class="mobile-actions show-on-mobile">
+          <div class="holder">
+            <div class="menubar">
+              <div class="toggler" mb-event="true" data-mb='{ "tgltext": "menutoggled", "event": "toggleOnClick", "target" : "body" }'>
+                <i class="fa fa-bars"></i>
+              </div>
+            </div>
+            <div class="space">
+
+            </div>
+            <div class="favorite">
+              <a href="/kedvencek" class="holder">
+                <div class="ico">
+                  <span class="badge">{{fav_num}}</span>
+                  <i class="fa fa-heart"></i>
+                </div>
+              </a>
+            </div>
+            <div class="search">
+              <div class="toggler" mb-event="true" data-mb='{ "event": "toggleOnClick", "target" : "#mb-mobile-searcher" }'>
+                <i class="fa fa-search"></i>
+              </div>
+            </div>
+            <div class="cart" id="mb-mobile-cart">
+              <div class="toggler" mb-event="true" data-mb='{ "event": "toggleOnClick", "target" : "#mb-mobile-cart" }'>
+                <div class="ico">
+                  <span class="badge cart-item-num-v" id="cart-item-num-v">0</span>
+                  <img src="<?=IMG?>icons/cartv2.svg" alt="Kosár" />
+                </div>
+              </div>
+              <div class="floating">
+                <div class="cartContent overflowed">
+                  <div class="noItem"><div class="inf">A kosár üres</div></div>
+                </div>
+                <div class="whattodo">
+                  <div class="flex">
+                    <div class="doempty">
+                      <a href="/kosar/?clear=1">Kosár ürítése <i class="fa fa-trash"></i></a>
+                    </div>
+                    <div class="doorder">
+                      <a href="/kosar">Megrendelése <i class="fa fa-arrow-circle-o-right"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mobile-searcher" id="mb-mobile-searcher">
+            <form class="" action="/termekek/" method="get">
+              <div class="wrapper">
+                <div class="input">
+                  <input type="text" name="src" value="<?=$_GET['src']?>" placeholder="Termékek keresése...">
+                </div>
+                <div class="sub">
+                  <input type="submit" name="" value="Keresés">
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>

@@ -117,7 +117,7 @@
         				<li class="<?=($this->gets[0] == 'ajanloszoveg')?'on':''?>"><a href="/ajanloszoveg" title="Ajánló felirat"><span class="ni">8</span><i class="fa fa-quote-right"></i> Ajánló feliratok</a></li>
         				<li class="<?=($this->gets[0] == 'slideshow')?'on':''?>"><a href="/slideshow" title="Slideshow"><span class="ni">8</span><i class="fa fa-th"></i> Slideshow</a></li>
         				<!-- <li class="<?=($this->gets[0] == 'tablazatok')?'on':''?>"><a href="/tablazatok" title="Táblázatok"><span class="ni">8</span><i class="fa fa-table"></i> Táblázatok</a></li>-->
-        				<!-- <li class="<?=($this->gets[0] == 'dokumentumok')?'on':''?>"><a href="/dokumentumok" title="Dokumentumok"><span class="ni">8</span><i class="fa fa-file-text-o "></i> Dokumentumok</a></li>-->
+        				<li class="<?=($this->gets[0] == 'dokumentumok')?'on':''?>"><a href="/dokumentumok" title="Dokumentumok"><span class="ni">8</span><i class="fa fa-file-text-o "></i> Dokumentumok</a></li>
                 <!-- <li class="<?=($this->gets[0] == 'tudastar')?'on':''?>"><a href="/tudastar" title="Tudástár"><span class="ni">8</span><i class="fa fa-lightbulb-o"></i> Tudástár</a></li>-->
         				<li class="<?=($this->gets[0] == 'emails')?'on':''?>"><a href="/emails" title="Email sablonok"><span class="ni">8</span><i class="fa fa-envelope"></i> Email sablonok</a></li>
         				<li class="<?=($this->gets[0] == 'atiranyitas')?'on':''?>"><a href="/atiranyitas" title="Átirányítások"><span class="ni">8</span><i class="fa fa-long-arrow-right"></i> Átirányítások</a></li>

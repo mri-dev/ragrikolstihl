@@ -10,6 +10,7 @@
     <? $this->render('meta'); ?>
 </head>
 <body ng-controller="App" ng-init="init(<?=($this->gets[0] == 'kosar' && $this->gets[1] == 4)?'true':'false'?>)">
+  <div ng-show="showed"  class="popupview" data-ng-init="init({'contentWidth': 1050, 'domain': '.r-agrikol.web-pro.hu', 'receiverdomain' : 'https://www.r-agrikol.web-pro.hu', 'imageRoot' : 'https://www.cp.r-agrikol.web-pro.hu/'})"><ng-include src="'/application/views/v1.0/popupview.html'"></ng-include></div>
 <? if(!empty($this->settings[google_analitics])): ?>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
