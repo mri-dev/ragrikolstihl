@@ -260,24 +260,29 @@
 		                	</div>
 		                </div>
 										<?php endif; ?>
-										<?php if(!$this->user): ?>
+										<?php if(!$this->user && false): ?>
 											<h3 class="offline-pretitle">Regisztráció nélküli vásárlás esetén kérjük, hogy adja meg a alapadataiat!</h3>
+										<?php endif; ?>
+										<?php if(!$this->user): ?>
+											<h3 class="offline-pretitle">A vásárláshoz jelentkezzen be! Ha még nincs fiókja, regisztráljon!</h3>
 										<?php endif; ?>
 		                <br>
 		                <div class="row np">
 		                    <div class="col-sm-6 col col1">
 		                    	<? if(!$this->user): ?>
-		                        <div class="offline">
-		                        	<div class="p10">
-		                            	<div class="head"><strong>Alapadatok megadása</strong></div>
-		                            	<input type="text" class="form-control" name="nev" value="<?=($this->orderExc)?$_POST[nev]:$this->storedString[0][nev]?>"  placeholder="Az Ön neve" />
-		                                <? if($this->orderExc && in_array('nev',$this->orderExc[input])): ?><span class="errMsg">Kérjük, töltse ki ezt a mezőt!</span><? endif; ?>
-		                                <br />
-		                                <input type="text" class="form-control" name="email" value="<?=($this->orderExc)?$_POST[email]:$this->storedString[0][email]?>" placeholder="Az Ön e-mail címe" />
-		                                <? if($this->orderExc && in_array('email',$this->orderExc[input])): ?><span class="errMsg">Kérjük, töltse ki ezt a mezőt!</span><? endif; ?>
-		                                <div class="regInfo">vagy jelentkezzen be <br> <i class="fa fa-angle-down"></i></div>
-		                            </div>
-		                        </div>
+														<?php if (false): ?>
+															<div class="offline">
+																<div class="p10">
+																		<div class="head"><strong>Alapadatok megadása</strong></div>
+																		<input type="text" class="form-control" name="nev" value="<?=($this->orderExc)?$_POST[nev]:$this->storedString[0][nev]?>"  placeholder="Az Ön neve" />
+																			<? if($this->orderExc && in_array('nev',$this->orderExc[input])): ?><span class="errMsg">Kérjük, töltse ki ezt a mezőt!</span><? endif; ?>
+																			<br />
+																			<input type="text" class="form-control" name="email" value="<?=($this->orderExc)?$_POST[email]:$this->storedString[0][email]?>" placeholder="Az Ön e-mail címe" />
+																			<? if($this->orderExc && in_array('email',$this->orderExc[input])): ?><span class="errMsg">Kérjük, töltse ki ezt a mezőt!</span><? endif; ?>
+																			<div class="regInfo">jelentkezzen be <br> <i class="fa fa-angle-down"></i></div>
+																	</div>
+															</div>
+														<?php endif; ?>
 		                        <div class="logIn">
 		                        	<fieldset>
 	                                <div>
@@ -412,9 +417,11 @@
 																<? endif;?>
 														</span>
 												</div>
+												<?php if( $this->user ): ?>
 												<div class="megrendel">
 														<button name="orderState" value="start"  type="submit" class="btn btn-success">Megrendelés folytatása <i class="fa fa-arrow-circle-right"></i></button>
 												</div>
+												<?php endif; ?>
 												<?php if ( isset($this->settings['elofoglalas_ora']) && $this->settings['elofoglalas_ora'] != 0 && $this->user && $this->user['data']['user_group'] == 'company'): ?>
 												<div class="elofoglalas">
 													<a class="help" target="_blank" href="/p/aszf/#elofoglalas" title="Foglalja le a termékeket <?=$this->settings['elofoglalas_ora']?> órára."><i class="fa fa-question-circle-o"></i></a>
