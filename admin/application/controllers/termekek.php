@@ -30,10 +30,12 @@ class termekek extends Controller
 				try{
 					$arg = array();
 					$re = $this->AdminUser->doAction($_POST[selectAction], 'action_', $arg);
-					/*echo '<pre>';
+					/* * /
+					echo '<pre>';
 					print_r($_POST);
-					echo '</pre>';*/
-					$this->view->rmsg	= Helper::makeAlertMsg('pSuccess', $re);
+					echo '</pre>';
+					/* */
+					//$this->view->rmsg	= Helper::makeAlertMsg('pSuccess', $re);
 				}catch(Exception $e){
 					$this->view->err 	= true;
 					$this->view->rmsg= Helper::makeAlertMsg('pError', $e->getMessage());

@@ -392,7 +392,7 @@
 						<option value="">-- új márka kiválasztása --</option>
 						<option value="" disabled></option>
 						<? foreach($this->markak as $d): ?>
-						<option value="<?=$d['ID']?>"><?=$d[neve]?></option>
+						<option value="<?=$d['product_id']?>"><?=$d[neve]?></option>
 						<? endforeach; ?>
 					</select>
 				</div>
@@ -403,7 +403,7 @@
 						<option value="">-- új szállítási idő kiválasztása --</option>
 						<option value="" disabled></option>
 						<? foreach($this->szallitas as $d): ?>
-						<option value="<?=$d['ID']?>"><?=$d[elnevezes]?></option>
+						<option value="<?=$d['product_id']?>"><?=$d[elnevezes]?></option>
 						<? endforeach; ?>
 					</select>
 				</div>
@@ -414,7 +414,7 @@
 						<option value="">-- új állapot kiválasztása --</option>
 						<option value="" disabled></option>
 						<? foreach($this->keszlet as $d): ?>
-						<option value="<?=$d['ID']?>"><?=$d[elnevezes]?></option>
+						<option value="<?=$d['product_id']?>"><?=$d[elnevezes]?></option>
 						<? endforeach; ?>
 					</select>
 				</div>
