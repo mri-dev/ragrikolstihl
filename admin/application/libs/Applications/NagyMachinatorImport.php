@@ -464,8 +464,9 @@ class NagyMachinatorImport
     WHERE
       `xml_import_origin` = $orignid and
       xml_import_done = 1 and
-      lathato = 1 and
       (SELECT t.io FROM xml_temp_products as t WHERE t.prod_id != '' and t.prod_id = nagyker_kod and t.origin_id = xml_import_origin) != lathato";
+
+    //echo $q ."<br>";
 
     $data = $this->db->query( $q );
 
