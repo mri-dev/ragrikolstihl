@@ -213,7 +213,7 @@
           <div class="divider"></div>
           <div class="cikkszam sku">
             Cikkszám: <strong><?=$this->product['cikkszam']?></strong>
-          </div>          
+          </div>
           <div class="group helpdesk-actions">
             <div class="social-shares">
               <div class="h">Megosztás:</div>
@@ -324,7 +324,7 @@
     <pre><?php //print_r($this->product); ?></pre>
   </div>
   <div class="sidebar filter-sidebar">
-
+    <? $this->render('templates/sidebar_menu'); ?>
     <? if( $this->viewed_products_list ): ?>
     <div class="lastviewed side-group">
       <div class="head">
